@@ -1,3 +1,14 @@
+/// <summary>
+/// 
+/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// 
+/// Description: This is a file that works on most controls for the 
+/// Dragon Riding minigame, as well as spawning in player and enemy fireballs
+/// and implementing the Game timer
+/// 
+/// </summary>
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +16,14 @@ using UnityEngine.InputSystem;
 
 public class DragonMovement : MonoBehaviour
 {
+    #region variables
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Rigidbody2D Rb2D;
     [SerializeField] private float moveSpeed;
     [SerializeField] private GameObject pF;
     [SerializeField] private GameObject enemyFireballSpawn;
     [SerializeField] private GameObject eF;
+    
 
 
     public Coroutine EnemyFireballRef;
@@ -26,17 +39,23 @@ public class DragonMovement : MonoBehaviour
     public bool didFire;
     private float moveDirection;
     private int numOfLives = 2;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        // Enables the action map
+
         EnableInputs();
+
+        // bools are set
 
         isMoving = false;
         didFire = false;
         isFireballDestroyed = true;
         isGameRunning = false;
 
+        // Starting game timer
         if (GameTimerRef == null)
         {
             GameTimerRef = StartCoroutine(GameTimer());
@@ -53,6 +72,7 @@ public class DragonMovement : MonoBehaviour
             moveDirection = move.ReadValue<float>();
         }
 
+        // Starts spawning enemy fireballs while game timer is running
         if (isGameRunning)
         {
             if (EnemyFireballRef == null)
@@ -66,11 +86,12 @@ public class DragonMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Giving movement to player dragon
         if (isMoving)
         {
             Rb2D.GetComponent<Rigidbody2D>().velocity = new Vector2(0, moveDirection * moveSpeed);
         }
-
+        // Stopping movement
         if (!isMoving)
         {
             Rb2D.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -89,8 +110,8 @@ public class DragonMovement : MonoBehaviour
         }
     }
 
-
-
+    #region theCoroutines
+    // Spawns enemy fireballs per second
     public IEnumerator EnemyFireballTimer()
     {
         SpawnEnemyFireball();
@@ -98,7 +119,8 @@ public class DragonMovement : MonoBehaviour
         EnemyFireballRef = null;
 
     }
-
+    
+    // main game timer, set to 20 seconds
     public IEnumerator GameTimer()
     {
         isGameRunning = true;
@@ -106,7 +128,9 @@ public class DragonMovement : MonoBehaviour
         GameTimerRef = null;
         isGameRunning = false;
     }
+    #endregion
 
+    // enables action map
     public void EnableInputs()
     {
         playerInput.currentActionMap.Enable();
@@ -119,6 +143,7 @@ public class DragonMovement : MonoBehaviour
         fireball.started += Fireball_started;
     }
 
+    #region inputActions
     private void Fireball_started(InputAction.CallbackContext obj)
     {
 
@@ -146,7 +171,9 @@ public class DragonMovement : MonoBehaviour
     {
         isMoving = true;
     }
+    #endregion
 
+    #region spawnFunctions
     public void SpawnFireball()
     {
         if (didFire)
@@ -166,6 +193,7 @@ public class DragonMovement : MonoBehaviour
 
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
     }
+    #endregion
 
     public void OnDestroy()
     {

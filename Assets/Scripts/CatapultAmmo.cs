@@ -1,3 +1,13 @@
+/// <summary>
+/// 
+/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// 
+/// Description: This is a file that works on the behavior and movement 
+/// of the ammo for the catapult in the Catapult minigame
+/// 
+/// </summary>
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +26,7 @@ public class CatapultAmmo : MonoBehaviour
 
     }
 
+    // Checking collisions with catapult ammo
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.name == "EnemyKnight(Clone)")
