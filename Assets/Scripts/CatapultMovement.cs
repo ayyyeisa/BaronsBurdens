@@ -1,3 +1,13 @@
+/// <summary>
+/// 
+/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// 
+/// Description: This is a file that works on most controls for the 
+/// Catapult minigame, as well as spawning in enemy knights and 
+/// ammo for the catapult
+/// 
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +15,7 @@ using UnityEngine.InputSystem;
 
 public class CatapultMovement : MonoBehaviour
 {
+    #region variables
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Rigidbody2D Rb2D;
     [SerializeField] private float moveSpeed;
@@ -23,10 +34,12 @@ public class CatapultMovement : MonoBehaviour
     private float moveDirection;
     public static bool IsAmmoDestroyed;
     private int numOfEnemyKnights = 20;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        // Enabling action map, setting bools
         EnableInputs();
         isMoving = false;
         didShoot = false;
@@ -38,11 +51,13 @@ public class CatapultMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (isMoving)
         {
             moveDirection = move.ReadValue<float>();
         }
 
+        // Starts coroutine of spawning enemy knights
         if (numOfEnemyKnights > 0)
         {
             if (EnemyKnightRef == null)
@@ -53,6 +68,7 @@ public class CatapultMovement : MonoBehaviour
 
     }
 
+    // Coroutine to spawn an enemy knight every 2 seconds
     public IEnumerator EnemyKnightTimer()
     {
         SpawnEnemyKnight();
@@ -64,17 +80,19 @@ public class CatapultMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // giving movement to trajectory arrow
         if (isMoving)
         {
             Rb2D.GetComponent<Rigidbody2D>().velocity = new Vector2(moveDirection * moveSpeed, 0);
         }
-
+        // stopping movement
         if (!isMoving)
         {
             Rb2D.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 
+    // enables action map
     public void EnableInputs()
     {
         playerInput.currentActionMap.Enable();
@@ -87,6 +105,9 @@ public class CatapultMovement : MonoBehaviour
         shoot.started += Shoot_started;
     }
 
+    #region spawnFunctions
+
+    // spawns in an enemy knight
     public void SpawnEnemyKnight()
     {
         Vector2 playerPause = enemyKnightSpawn.transform.position;
@@ -95,6 +116,7 @@ public class CatapultMovement : MonoBehaviour
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(2, 0);
     }
 
+    // spawns in ammo for the catapult
     public void SpawnAmmo()
     {
         if (didShoot)
@@ -108,7 +130,9 @@ public class CatapultMovement : MonoBehaviour
             IsAmmoDestroyed = false;
         }
     }
+    #endregion
 
+    #region inputActions
     private void Shoot_started(InputAction.CallbackContext obj)
     {
         if (IsAmmoDestroyed)
@@ -130,6 +154,7 @@ public class CatapultMovement : MonoBehaviour
     {
         isMoving = true;
     }
+    #endregion
 
     public void OnDestroy()
     {

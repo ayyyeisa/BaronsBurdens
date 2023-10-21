@@ -1,3 +1,14 @@
+/// <summary>
+/// 
+/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// 
+/// Description: This is a file that works on the behavior of 
+/// the player fireballs that spawn in for the Dragon Riding
+/// minigame
+/// 
+/// </summary>
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +27,7 @@ public class PlayerFireball : MonoBehaviour
 
     }
 
+    // Checking collisions with player fireball
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Wall")
