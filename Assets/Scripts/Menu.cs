@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
+
     public void PlayDragon()
     {
+        //Opens Dragon Riding Scene from Menu
         EditorSceneManager.LoadScene("DragonRidingScene");
     }
     public void PlayCatapult()
     {
+        //Opens Catapult Scene from Menu
         EditorSceneManager.LoadScene("CatapultScene");
     }
     public void PlayDuel()
     {
-
+        //Opens Duel Scene from Menu
         EditorSceneManager.LoadScene("DuelScene");
-
 
     }
     public void QuitGame()
