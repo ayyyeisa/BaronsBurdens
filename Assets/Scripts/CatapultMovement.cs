@@ -34,6 +34,10 @@ public class CatapultMovement : MonoBehaviour
     private float moveDirection;
     public static bool IsAmmoDestroyed;
     private int numOfEnemyKnights = 20;
+
+    //variables for countdown timer
+    private float currentTime = 0f;
+    private float startingTime = 20f;
     #endregion
 
     // Start is called before the first frame update
@@ -45,6 +49,7 @@ public class CatapultMovement : MonoBehaviour
         didShoot = false;
         IsAmmoDestroyed = true;
 
+        currentTime = startingTime;
 
     }
 
@@ -63,6 +68,17 @@ public class CatapultMovement : MonoBehaviour
             if (EnemyKnightRef == null)
             {
                 EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
+
+                currentTime -= 1 * Time.deltaTime;
+                Debug.Log("Current time: " + currentTime);
+                if(currentTime == 0 && numOfEnemyKnights > 0)
+                {
+                    Debug.Log("You lose");
+                }
+                else if(currentTime == 0 && numOfEnemyKnights== 0)
+                {
+                    Debug.Log("You win");
+                }
             }
         }
 
