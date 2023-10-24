@@ -1,6 +1,7 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// Author: Ryan Egan
+/// Date: October 23, 2023
 /// 
 /// Description: This is a file that works on most controls for the 
 /// Dragon Riding minigame, as well as spawning in player and enemy fireballs
@@ -13,6 +14,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DragonMovement : MonoBehaviour
 {
@@ -23,22 +26,30 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] private GameObject pF;
     [SerializeField] private GameObject enemyFireballSpawn;
     [SerializeField] private GameObject eF;
+    [SerializeField] private TMP_Text livesText;
+    [SerializeField] private GameObject startGameScreen;
+    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameObject loseScreen;
     
 
 
     public Coroutine EnemyFireballRef;
     public Coroutine GameTimerRef;
     private bool isGameRunning;
+    private bool spaceIsPressed;
+    private bool gameIsOver;
 
     public static bool isFireballDestroyed;
 
     private InputAction move;
     private InputAction fireball;
+    private InputAction restart;
+    private InputAction quit;
 
     private bool isMoving;
     public bool didFire;
     private float moveDirection;
-    private int numOfLives = 2;
+    private int numOfLives = 3;
     #endregion
 
     // Start is called before the first frame update
@@ -54,12 +65,18 @@ public class DragonMovement : MonoBehaviour
         didFire = false;
         isFireballDestroyed = true;
         isGameRunning = false;
+        spaceIsPressed = false;
+        gameIsOver = false;
+
+        
 
         // Starting game timer
-        if (GameTimerRef == null)
+        
+      /*  if (GameTimerRef == null)
         {
             GameTimerRef = StartCoroutine(GameTimer());
         }
+      */
 
 
     }
@@ -67,13 +84,18 @@ public class DragonMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!(isGameRunning) && !(gameIsOver))
+        {
+            GameStartCheck();
+        }
+
         if (isMoving)
         {
             moveDirection = move.ReadValue<float>();
         }
 
         // Starts spawning enemy fireballs while game timer is running
-        if (isGameRunning)
+        if (spaceIsPressed && isGameRunning)
         {
             if (EnemyFireballRef == null)
             {
@@ -102,11 +124,29 @@ public class DragonMovement : MonoBehaviour
     {
         if ((collision.transform.name == "EnemyFireball(Clone)") && (numOfLives == 0))
         {
-            Destroy(gameObject);
+            // Destroy(gameObject);
+           // loseScreen.gameObject.SetActive(true);
         }
         else if ((collision.transform.name == "EnemyFireball(Clone)") && (numOfLives > 0))
         {
             numOfLives--;
+            livesText.text = "Lives: " + numOfLives.ToString();
+            if(numOfLives == 0)
+            {
+                loseScreen.gameObject.SetActive(true);
+            }
+            
+        }
+    }
+
+    private void GameStartCheck()
+    {
+        if(spaceIsPressed)
+        {
+            if (GameTimerRef == null)
+            {
+                GameTimerRef = StartCoroutine(GameTimer());
+            }
         }
     }
 
@@ -114,8 +154,9 @@ public class DragonMovement : MonoBehaviour
     // Spawns enemy fireballs per second
     public IEnumerator EnemyFireballTimer()
     {
-        SpawnEnemyFireball();
+       // SpawnEnemyFireball();
         yield return new WaitForSeconds(1f);
+        SpawnEnemyFireball();
         EnemyFireballRef = null;
 
     }
@@ -127,6 +168,12 @@ public class DragonMovement : MonoBehaviour
         yield return new WaitForSeconds(20f);
         GameTimerRef = null;
         isGameRunning = false;
+        gameIsOver = true;
+
+        if(numOfLives > 0)
+        {
+            winScreen.gameObject.SetActive(true);
+        }
     }
     #endregion
 
@@ -137,26 +184,52 @@ public class DragonMovement : MonoBehaviour
 
         move = playerInput.currentActionMap.FindAction("Move");
         fireball = playerInput.currentActionMap.FindAction("Fireball");
+        restart = playerInput.currentActionMap.FindAction("Restart");
+        quit = playerInput.currentActionMap.FindAction("Quit");
 
         move.started += Move_started;
         move.canceled += Move_canceled;
         fireball.started += Fireball_started;
+        restart.started += Restart_started;
+        quit.started += Quit_started;
+    }
+
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        // this will be another SceneManager.LoadScene() method for when the main menu scene is complete
+        Application.Quit();
+    }
+
+    private void Restart_started(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(1);
     }
 
     #region inputActions
     private void Fireball_started(InputAction.CallbackContext obj)
     {
-
-        if (isFireballDestroyed)
+        if(!spaceIsPressed)
         {
-            didFire = true;
-            SpawnFireball();
-
-            print("Fireball shot");
-
-            isFireballDestroyed = false;
+            startGameScreen.gameObject.SetActive(false);
+            livesText.gameObject.SetActive(true);
+            livesText.text = "Lives: " + numOfLives;
+            spaceIsPressed = true;
 
         }
+        else if(spaceIsPressed)
+        {
+            if (isFireballDestroyed && isGameRunning)
+            {
+                didFire = true;
+                SpawnFireball();
+
+                print("Fireball shot");
+
+                isFireballDestroyed = false;
+
+            }
+        }
+       
 
 
 
@@ -169,7 +242,11 @@ public class DragonMovement : MonoBehaviour
 
     private void Move_started(InputAction.CallbackContext obj)
     {
-        isMoving = true;
+        if(isGameRunning)
+        {
+            isMoving = true;
+        }
+        
     }
     #endregion
 
@@ -179,7 +256,8 @@ public class DragonMovement : MonoBehaviour
         if (didFire)
         {
             Vector2 playerPause = gameObject.transform.position;
-            playerPause.x += 0.5f;
+            playerPause.x += 5.0f;
+            playerPause.y -= 1.0f;
             GameObject temp = Instantiate(pF, playerPause, Quaternion.identity);
 
             temp.GetComponent<Rigidbody2D>().velocity = new Vector2(7, 0);
@@ -188,7 +266,7 @@ public class DragonMovement : MonoBehaviour
 
     public void SpawnEnemyFireball()
     {
-        Vector2 playerPause = enemyFireballSpawn.transform.position;
+        Vector2 playerPause = new Vector2(enemyFireballSpawn.transform.position.x, Random.Range(-3.55f, 3.55f));
         GameObject temp = Instantiate(eF, playerPause, Quaternion.identity);
 
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
@@ -200,5 +278,7 @@ public class DragonMovement : MonoBehaviour
         move.started -= Move_started;
         move.canceled -= Move_canceled;
         fireball.started -= Fireball_started;
+        restart.started -= Restart_started;
+        quit.started -= Quit_started;
     }
 }
