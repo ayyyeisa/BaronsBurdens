@@ -1631,7 +1631,7 @@ MonoBehaviour:
   playerInput: {fileID: 1813224614}
   Rb2D: {fileID: 1813224613}
   moveSpeed: 5
-  pF: {fileID: 1945460652047122439, guid: ee6b8a9e04c28024fb297e1b399321dc, type: 3}
+  pF: {fileID: 3843001752800423100, guid: 92cfe39d78d40ff4daa2af7d9823d92a, type: 3}
   enemyFireballSpawn: {fileID: 2073064598}
   eF: {fileID: 160446635653241355, guid: cce744182ba2af74789e57b897cc9609, type: 3}
   livesText: {fileID: 999451387}

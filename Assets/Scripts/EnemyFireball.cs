@@ -33,7 +33,7 @@ public class EnemyFireball : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (collision.transform.name == "PlayerFireball(Clone)")
+        else if (collision.transform.name == "Fire_Ball(Clone)")
         {
             Destroy(gameObject);
         }

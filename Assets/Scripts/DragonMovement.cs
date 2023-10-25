@@ -256,8 +256,8 @@ public class DragonMovement : MonoBehaviour
         if (didFire)
         {
             Vector2 playerPause = gameObject.transform.position;
-            playerPause.x += 5.0f;
-            playerPause.y -= 1.0f;
+            playerPause.x += 4.5f;
+            playerPause.y -= 1.3f;
             GameObject temp = Instantiate(pF, playerPause, Quaternion.identity);
 
             temp.GetComponent<Rigidbody2D>().velocity = new Vector2(7, 0);
