@@ -228,6 +228,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "DuelControls",
+            "id": "61534836-e1b2-4bbb-a9e0-924ab4cfb6f2",
+            "actions": [
+                {
+                    "name": "Parry",
+                    "type": "Button",
+                    "id": "a5b36412-7b38-4f29-acc7-8b557ff427b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block",
+                    "type": "Button",
+                    "id": "58b9d3d2-b037-4d34-9bb9-e73a1f2af7ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "9f95c382-c85c-425e-9c70-32852bfbc0bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d83f826c-85d2-40de-bf8e-d0f15e89f801",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Parry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39e7d60c-0a0e-4309-978a-eb30ace21ee6",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82331d6b-f07a-4ce8-80e8-23cb976c4ed3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
