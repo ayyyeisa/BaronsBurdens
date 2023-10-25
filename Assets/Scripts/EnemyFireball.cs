@@ -1,6 +1,7 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// Author: Ryan Egan
+/// Date: October 23, 2023
 /// 
 /// Description: This is a file that works on the behavior for the enemy
 /// fireballs that spawn in for the Dragon Riding minigame
@@ -26,14 +27,16 @@ public class EnemyFireball : MonoBehaviour
 
     }
 
-    // checking collisions with enemy fireballs
+    /// <summary>
+    /// Description: This function checks the collisions the enemy fireballs will interact with
+    /// </summary>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Wall")
         {
             Destroy(gameObject);
         }
-        else if (collision.transform.name == "PlayerFireball(Clone)")
+        else if (collision.transform.name == "Fire_Ball(Clone)")
         {
             Destroy(gameObject);
         }

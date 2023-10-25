@@ -1,6 +1,7 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// Author: Ryan Egan, Tri Nguyen
+/// Date: October 23, 2023
 /// 
 /// Description: This is a file that works on most controls for the 
 /// Catapult minigame, as well as spawning in enemy knights and 
@@ -68,7 +69,10 @@ public class CatapultMovement : MonoBehaviour
 
     }
 
-    // Coroutine to spawn an enemy knight every 2 seconds
+
+    /// <summary>
+    /// Description: This function is a coroutine that will spawn in an enemy knight every 2 seconds
+    /// </summary>
     public IEnumerator EnemyKnightTimer()
     {
         SpawnEnemyKnight();
@@ -91,8 +95,9 @@ public class CatapultMovement : MonoBehaviour
             Rb2D.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
-
-    // enables action map
+    /// <summary>
+    /// Description: This function will enable the action map and read inputs
+    /// </summary>
     public void EnableInputs()
     {
         playerInput.currentActionMap.Enable();
@@ -107,7 +112,10 @@ public class CatapultMovement : MonoBehaviour
 
     #region spawnFunctions
 
-    // spawns in an enemy knight
+
+    /// <summary>
+    /// Description: This function is what spawns in an enemy knight at its spawn point
+    /// </summary>
     public void SpawnEnemyKnight()
     {
         Vector2 playerPause = enemyKnightSpawn.transform.position;
@@ -116,7 +124,9 @@ public class CatapultMovement : MonoBehaviour
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(2, 0);
     }
 
-    // spawns in ammo for the catapult
+    /// <summary>
+    /// Description: This function is what spawns in the catapult ammo at its spawn point
+    /// </summary>
     public void SpawnAmmo()
     {
         if (didShoot)
