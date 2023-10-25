@@ -1,3 +1,14 @@
+/// <summary>
+/// 
+/// Author: Ryan Egan
+/// Date: October 25, 2023
+/// 
+/// Description: This file makes the background in the game move and loop repeatedly
+/// 
+/// </summary>
+
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +31,9 @@ public class MovingBackground : MonoBehaviour
         MoveBackground();
     }
 
+    /// <summary>
+    /// Description: This method is what makes the background move
+    /// </summary>
     public void MoveBackground()
     {
         Vector2 currentPosition = transform.position;
@@ -35,6 +49,9 @@ public class MovingBackground : MonoBehaviour
         transform.position = currentPosition;
     }
 
+    /// <summary>
+    /// Description: This method is what makes the background loop back to its original position
+    /// </summary>
     public virtual void HandleOffScreen(ref Vector2 pos)
     {
         pos.x += 2 * scrollWidth;

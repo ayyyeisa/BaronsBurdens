@@ -68,16 +68,6 @@ public class DragonMovement : MonoBehaviour
         spaceIsPressed = false;
         gameIsOver = false;
 
-        
-
-        // Starting game timer
-        
-      /*  if (GameTimerRef == null)
-        {
-            GameTimerRef = StartCoroutine(GameTimer());
-        }
-      */
-
 
     }
 
@@ -120,14 +110,13 @@ public class DragonMovement : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Description: This method checks the collisions the player will be interacting with
+    /// </summary>
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.transform.name == "EnemyFireball(Clone)") && (numOfLives == 0))
-        {
-            // Destroy(gameObject);
-           // loseScreen.gameObject.SetActive(true);
-        }
-        else if ((collision.transform.name == "EnemyFireball(Clone)") && (numOfLives > 0))
+        if ((collision.transform.name == "Enemy_Fireball(Clone)") && (numOfLives > 0))
         {
             numOfLives--;
             livesText.text = "Lives: " + numOfLives.ToString();
@@ -139,6 +128,11 @@ public class DragonMovement : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Description: This method checks if the spacebar was pressed for the first time in the minigame.
+    /// If it was, the game timer coroutine will start
+    /// </summary>
     private void GameStartCheck()
     {
         if(spaceIsPressed)
@@ -151,17 +145,22 @@ public class DragonMovement : MonoBehaviour
     }
 
     #region theCoroutines
-    // Spawns enemy fireballs per second
+
+    /// <summary>
+    /// Description: This function is a coroutine that will spawn in an enemy fireball per second
+    /// </summary>
     public IEnumerator EnemyFireballTimer()
     {
-       // SpawnEnemyFireball();
+       
         yield return new WaitForSeconds(1f);
         SpawnEnemyFireball();
         EnemyFireballRef = null;
 
     }
     
-    // main game timer, set to 20 seconds
+    /// <summary>
+    /// Description: This function is a coroutine that is the main game timer, set to 20 seconds
+    /// </summary>
     public IEnumerator GameTimer()
     {
         isGameRunning = true;
@@ -177,7 +176,10 @@ public class DragonMovement : MonoBehaviour
     }
     #endregion
 
-    // enables action map
+
+    /// <summary>
+    /// Description: This function will enable the action map and read inputs
+    /// </summary>
     public void EnableInputs()
     {
         playerInput.currentActionMap.Enable();
@@ -251,6 +253,10 @@ public class DragonMovement : MonoBehaviour
     #endregion
 
     #region spawnFunctions
+
+    /// <summary>
+    /// Description: This function will spawn in the player's fireball upon shooting
+    /// </summary>
     public void SpawnFireball()
     {
         if (didFire)
@@ -264,6 +270,10 @@ public class DragonMovement : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// Description: This function is what spawns in the enemy fireballs at a fixed x position and random y position
+    /// </summary>
     public void SpawnEnemyFireball()
     {
         Vector2 playerPause = new Vector2(enemyFireballSpawn.transform.position.x, Random.Range(-3.55f, 3.55f));

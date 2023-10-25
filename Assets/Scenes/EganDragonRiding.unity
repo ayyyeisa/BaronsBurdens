@@ -1633,7 +1633,7 @@ MonoBehaviour:
   moveSpeed: 5
   pF: {fileID: 3843001752800423100, guid: 92cfe39d78d40ff4daa2af7d9823d92a, type: 3}
   enemyFireballSpawn: {fileID: 2073064598}
-  eF: {fileID: 160446635653241355, guid: cce744182ba2af74789e57b897cc9609, type: 3}
+  eF: {fileID: 5977069114073661725, guid: 90c57c0bc4ab2694eae28aa4ae2c05ca, type: 3}
   livesText: {fileID: 999451387}
   startGameScreen: {fileID: 1798721957}
   winScreen: {fileID: 1157643632}
@@ -1724,7 +1724,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 19521d3e257202748a5734fbbfbdb974, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
