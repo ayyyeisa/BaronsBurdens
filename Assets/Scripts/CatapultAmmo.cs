@@ -1,6 +1,7 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
+/// Author: Ryan Egan, Tri Nguyen
+/// October 23, 2023
 /// 
 /// Description: This is a file that works on the behavior and movement 
 /// of the ammo for the catapult in the Catapult minigame
@@ -61,8 +62,9 @@ public class CatapultAmmo : MonoBehaviour
             rb2D.AddForce(force * catapultStrength);
         }
     }
-
-    // Checking collisions with catapult ammo
+    /// <summary>
+    /// Description: This method will check the collisions the catapult ammo will interact with
+    /// </summary>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.name == "EnemyKnight(Clone)")

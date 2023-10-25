@@ -1,7 +1,7 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan, Scott Berry, Tri Nguyen, Carl Crumer, Isa Luluquisin
-/// 
+/// Author: Ryan Egan
+/// Date: October 23, 2023
 /// Description: This is a file that works on the behavior for the enemy
 /// knights that spawn in for the Catapult minigame
 /// 
@@ -25,8 +25,9 @@ public class EnemyKnight : MonoBehaviour
     {
 
     }
-
-    // checking collisions with enemy knight
+    /// <summary>
+    /// Description: This method will check the collisions the enemy knights will interact with
+    /// </summary>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.name == "CatapultAmmo(Clone)")
