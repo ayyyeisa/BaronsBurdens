@@ -17,6 +17,7 @@ using UnityEngine.InputSystem;
 public class CatapultMovement : MonoBehaviour
 {
     #region variables
+    [SerializeField] private GameObject trajectoryPoint;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Rigidbody2D Rb2D;
     [SerializeField] private float moveSpeed;
@@ -150,8 +151,23 @@ public class CatapultMovement : MonoBehaviour
             Vector2 playerPause = catapultAmmoSpawn.transform.position;
             GameObject temp = Instantiate(catapultAmmo, playerPause, Quaternion.identity);
 
-            temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
+            Debug.Log("Traj y pos is: " + trajectoryPoint.transform.position.y);
+            Debug.Log("Traj x pos is: " + trajectoryPoint.transform.position.x);
+            Debug.Log("spawn y pos is: " + temp.transform.position.y);
+            Debug.Log("Spawn x pos is: " + temp.transform.position.x);
 
+            float targetDistance = temp.transform.position.x - trajectoryPoint.transform.position.x;
+            Debug.Log("target distance is: " + targetDistance);
+            float targetHeight = temp.transform.position.y - trajectoryPoint.transform.position.y;
+            Debug.Log("target height is: " + targetHeight);
+            //calculate velocity needed to reach the trajectory point
+            float initialVelocity = targetDistance / (Mathf.Cos(45 * Mathf.Deg2Rad) * (targetDistance / Mathf.Sqrt(2 * Physics2D.gravity.magnitude * targetHeight)));
+            Debug.Log("Current Vel is: " + initialVelocity);
+            //Calculate vertical and horizontal speed
+            float horizontalSpeed = -initialVelocity * Mathf.Sin(45 * Mathf.Deg2Rad);
+            float verticalSpeed = initialVelocity * Mathf.Cos(45 *Mathf.Deg2Rad);
+
+            temp.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalSpeed, verticalSpeed);
             didShoot = false;
             IsAmmoDestroyed = false;
         }

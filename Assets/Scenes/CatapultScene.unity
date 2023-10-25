@@ -733,7 +733,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4637153426697146688, guid: e73c08b4968186c45b6f3884d30298c4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -768,7 +769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1371636590760730995, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3129
+      value: 3.69
       objectReference: {fileID: 0}
     - target: {fileID: 5807275960071450800, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
       propertyPath: m_RootOrder
@@ -887,7 +888,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: f96d9d7f-352a-4149-9203-1c880844b693
+  m_DefaultActionMap: CatapultControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &4730583842977407381

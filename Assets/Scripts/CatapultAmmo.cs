@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CatapultAmmo : MonoBehaviour
+<<<<<<< Updated upstream
 {
     public float catapultStrength;
 
@@ -65,6 +66,10 @@ public class CatapultAmmo : MonoBehaviour
     /// <summary>
     /// Description: This method will check the collisions the catapult ammo will interact with
     /// </summary>
+=======
+{ 
+    // Checking collisions with catapult ammo
+>>>>>>> Stashed changes
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.name == "EnemyKnight(Clone)")
@@ -79,27 +84,4 @@ public class CatapultAmmo : MonoBehaviour
         }
     }
 
-    public Vector2[] Plot(Rigidbody2D rb2D, Vector2 pos, Vector2 force, int steps)
-    {
-        //create array of steps to draw trajectory line
-        Vector2[] result = new Vector2[steps];
-
-        //calculate timestep
-        float timeStep = Time.fixedDeltaTime / Physics2D.velocityIterations;
-        Vector2 gravityAcceleration = Physics2D.gravity * rb2D.gravityScale * timeStep * timeStep;
-
-        float drag = 1f - timeStep * rb2D.drag;
-        Vector2 moveStep = force * timeStep;
-
-        //for every step, add gravity acceleration then multiply by drag force to moveStep then add to current position
-        for (int i = 0; i < steps; i++)
-        {
-            moveStep += gravityAcceleration;
-            moveStep *= drag;
-            pos += moveStep;
-            //replace elements in initial result
-            result[i] = pos;
-        }
-        return result;
-    }
 }
