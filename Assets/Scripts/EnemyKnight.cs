@@ -28,6 +28,10 @@ public class EnemyKnight : MonoBehaviour
     /// <summary>
     /// Description: This method will check the collisions the enemy knights will interact with
     /// </summary>
+    /// <param>
+    /// Collision2D collision
+    /// Collider is the enemy knight
+    /// </param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.name == "CatapultAmmo(Clone)")

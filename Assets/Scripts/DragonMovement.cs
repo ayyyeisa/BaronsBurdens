@@ -114,6 +114,10 @@ public class DragonMovement : MonoBehaviour
     /// <summary>
     /// Description: This method checks the collisions the player will be interacting with
     /// </summary>
+    /// <param>
+    /// Collision2D collision
+    /// collider is the player
+    /// </param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if ((collision.transform.name == "Enemy_Fireball(Clone)") && (numOfLives > 0))

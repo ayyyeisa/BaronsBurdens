@@ -30,6 +30,10 @@ public class EnemyFireball : MonoBehaviour
     /// <summary>
     /// Description: This function checks the collisions the enemy fireballs will interact with
     /// </summary>
+    /// <param>
+    /// Collision2D collision
+    /// Collider is the enemy fireball
+    /// </param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Wall")

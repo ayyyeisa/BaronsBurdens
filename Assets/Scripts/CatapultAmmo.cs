@@ -66,9 +66,16 @@ public class CatapultAmmo : MonoBehaviour
     /// <summary>
     /// Description: This method will check the collisions the catapult ammo will interact with
     /// </summary>
+<<<<<<< Updated upstream
 =======
 { 
     // Checking collisions with catapult ammo
+>>>>>>> Stashed changes
+=======
+    /// <param>
+    /// Collision2D collision
+    /// Collider is the catapult ammo
+    /// </param>
 >>>>>>> Stashed changes
     public void OnCollisionEnter2D(Collision2D collision)
     {
