@@ -1,3 +1,9 @@
+//Menu.cs
+//Carl Crumer
+//Creation Date: October 22 2023
+//
+// The script handles the main menu and loading different minigame
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +17,7 @@ public class Menu : MonoBehaviour
         //Opens Dragon Riding Scene from Menu
         EditorSceneManager.LoadScene("DragonRidingScene");
     }
+    
     public void PlayCatapult()
     {
         //Opens Catapult Scene from Menu
