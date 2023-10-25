@@ -37,7 +37,7 @@ public class EnemyFireball : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (collision.transform.name == "DragonPlayer")
+        else if (collision.transform.tag == "DragonPlayer")
         {
             Destroy(gameObject);
         }
