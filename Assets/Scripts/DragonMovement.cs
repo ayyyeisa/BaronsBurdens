@@ -127,6 +127,7 @@ public class DragonMovement : MonoBehaviour
             if(numOfLives == 0)
             {
                 loseScreen.gameObject.SetActive(true);
+                isGameRunning = false;
             }
             
         }
@@ -202,12 +203,14 @@ public class DragonMovement : MonoBehaviour
 
     private void Quit_started(InputAction.CallbackContext obj)
     {
-        // this will be another SceneManager.LoadScene() method for when the main menu scene is complete
-        Application.Quit();
+        // Loads back the Main menu scene
+        SceneManager.LoadScene(0);
+        
     }
 
     private void Restart_started(InputAction.CallbackContext obj)
     {
+        // loads back the Dragon Riding Scene
         SceneManager.LoadScene(1);
     }
 
@@ -280,10 +283,17 @@ public class DragonMovement : MonoBehaviour
     /// </summary>
     public void SpawnEnemyFireball()
     {
-        Vector2 playerPause = new Vector2(enemyFireballSpawn.transform.position.x, Random.Range(-3.55f, 3.55f));
-        GameObject temp = Instantiate(eF, playerPause, Quaternion.identity);
+        if(isGameRunning)
+        {
+            Vector2 playerPause = new Vector2(enemyFireballSpawn.transform.position.x, Random.Range(-3.55f, 3.55f));
+            GameObject temp = Instantiate(eF, playerPause, Quaternion.identity);
 
-        temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
+            temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
+        }
+       // Vector2 playerPause = new Vector2(enemyFireballSpawn.transform.position.x, Random.Range(-3.55f, 3.55f));
+       // GameObject temp = Instantiate(eF, playerPause, Quaternion.identity);
+
+      //  temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
     }
     #endregion
 

@@ -13,6 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CatapultMovement : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class CatapultMovement : MonoBehaviour
 
     private InputAction move;
     private InputAction shoot;
+    private InputAction restart;
+    private InputAction quit;
 
     public Coroutine EnemyKnightRef;
 
@@ -121,10 +124,24 @@ public class CatapultMovement : MonoBehaviour
 
         move = playerInput.currentActionMap.FindAction("Move");
         shoot = playerInput.currentActionMap.FindAction("Shoot");
+        restart = playerInput.currentActionMap.FindAction("Restart");
+        quit = playerInput.currentActionMap.FindAction("Quit");
 
         move.started += Move_started;
         move.canceled += Move_canceled;
         shoot.started += Shoot_started;
+        restart.started += Restart_started;
+        quit.started += Quit_started;
+    }
+
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void Restart_started(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(2);
     }
 
     #region spawnFunctions
@@ -203,5 +220,7 @@ public class CatapultMovement : MonoBehaviour
         move.started -= Move_started;
         move.canceled -= Move_canceled;
         shoot.started -= Shoot_started;
+        restart.started -= Restart_started;
+        quit.started -= Quit_started;
     }
 }

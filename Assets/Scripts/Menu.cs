@@ -9,17 +9,17 @@ public class Menu : MonoBehaviour
     public void PlayDragon()
     {
         //Opens Dragon Riding Scene from Menu
-        EditorSceneManager.LoadScene("DragonRidingScene");
+        EditorSceneManager.LoadScene(1);
     }
     public void PlayCatapult()
     {
         //Opens Catapult Scene from Menu
-        EditorSceneManager.LoadScene("CatapultScene");
+        EditorSceneManager.LoadScene(2);
     }
     public void PlayDuel()
     {
         //Opens Duel Scene from Menu
-        EditorSceneManager.LoadScene("DuelScene");
+        EditorSceneManager.LoadScene(3);
 
     }
     public void QuitGame()
