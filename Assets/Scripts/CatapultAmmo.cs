@@ -18,8 +18,9 @@ public class CatapultAmmo : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.name == "EnemyKnight(Clone)")
+        if (collision.transform.tag == "Enemy")
         {
+            Debug.Log("enemy hit");
             Destroy(gameObject);
             CatapultMovement.IsAmmoDestroyed = true;
         }

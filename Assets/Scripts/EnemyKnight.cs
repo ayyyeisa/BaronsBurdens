@@ -34,8 +34,9 @@ public class EnemyKnight : MonoBehaviour
     /// </param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.name == "CatapultAmmo(Clone)")
+        if (collision.transform.tag == "CatapultAmmo")
         {
+            Debug.Log("Ammo hit");
             Destroy(gameObject);
         }
         else if (collision.transform.tag == "Wall")

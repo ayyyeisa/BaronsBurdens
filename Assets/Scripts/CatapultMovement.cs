@@ -58,7 +58,12 @@ public class CatapultMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        currentTime -= 1 * Time.deltaTime;
+        if (currentTime < 0)
+        {
+            currentTime = 0;
+        }
+        Debug.Log("Current time is: " + currentTime);
         if (isMoving)
         {
             moveDirection = move.ReadValue<float>();
@@ -70,9 +75,6 @@ public class CatapultMovement : MonoBehaviour
             if (EnemyKnightRef == null)
             {
                 EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
-
-                currentTime -= 1 * Time.deltaTime;
-                Debug.Log("Current time: " + currentTime);
                 if(currentTime == 0 && numOfEnemyKnights > 0)
                 {
                     Debug.Log("You lose");
@@ -137,7 +139,7 @@ public class CatapultMovement : MonoBehaviour
     {
         Vector2 playerPause = enemyKnightSpawn.transform.position;
         GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
-
+        temp.transform.tag = "Enemy";
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(2, 0);
     }
 
@@ -150,22 +152,16 @@ public class CatapultMovement : MonoBehaviour
         {
             Vector2 playerPause = catapultAmmoSpawn.transform.position;
             GameObject temp = Instantiate(catapultAmmo, playerPause, Quaternion.identity);
-
-            Debug.Log("Traj y pos is: " + trajectoryPoint.transform.position.y);
-            Debug.Log("Traj x pos is: " + trajectoryPoint.transform.position.x);
-            Debug.Log("spawn y pos is: " + temp.transform.position.y);
-            Debug.Log("Spawn x pos is: " + temp.transform.position.x);
-
+            temp.transform.tag = "CatapultAmmo";
+            //calculate distance between ammo spawn point and arrow pos
             float targetDistance = temp.transform.position.x - trajectoryPoint.transform.position.x;
-            Debug.Log("target distance is: " + targetDistance);
-            float targetHeight = temp.transform.position.y - trajectoryPoint.transform.position.y;
-            Debug.Log("target height is: " + targetHeight);
+
             //calculate velocity needed to reach the trajectory point
-            float initialVelocity = targetDistance / (Mathf.Cos(45 * Mathf.Deg2Rad) * (targetDistance / Mathf.Sqrt(2 * Physics2D.gravity.magnitude * targetHeight)));
-            Debug.Log("Current Vel is: " + initialVelocity);
+            float initialVelocity = Mathf.Sqrt(targetDistance * Physics2D.gravity.magnitude / Mathf.Sin(90 * Mathf.Deg2Rad));
+
             //Calculate vertical and horizontal speed
-            float horizontalSpeed = -initialVelocity * Mathf.Sin(45 * Mathf.Deg2Rad);
-            float verticalSpeed = initialVelocity * Mathf.Cos(45 *Mathf.Deg2Rad);
+            float horizontalSpeed = -initialVelocity * Mathf.Cos(45 * Mathf.Deg2Rad) *2;
+            float verticalSpeed = initialVelocity * Mathf.Sin(45 *Mathf.Deg2Rad) *2;
 
             temp.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalSpeed, verticalSpeed);
             didShoot = false;

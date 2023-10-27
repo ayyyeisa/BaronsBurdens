@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - DragonPlayer
   - Wall
+  - CatapultAmmo
+  - Enemy
   layers:
   - Default
   - TransparentFX
