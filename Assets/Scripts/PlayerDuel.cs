@@ -126,7 +126,7 @@ private void EndGame()
 }
     //isValidInput checks if the key that the player has entered is the correct key 
     //corresponding to the instruction given.
-private bool IsValidInput(keyCode keyPressed)
+private bool IsValidInput(KeyCode keyPressed)
 {
     foreach (KeyCode validKey in validInputs)
     {
@@ -148,7 +148,7 @@ private bool IsValidInput(keyCode keyPressed)
 {
 
     instructionText.text = GetRandomInstruction();
-    yield return WaitForSeconds(3f);
+    yield return new WaitForSeconds(3f);
     instructionText.text = "Missed!";
     yield return new WaitForSeconds(1f);
     instructionText.text = "Get Ready...";
