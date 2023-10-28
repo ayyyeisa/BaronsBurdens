@@ -140,7 +140,7 @@ public class CatapultMovement : MonoBehaviour
         Vector2 playerPause = enemyKnightSpawn.transform.position;
         GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
         temp.transform.tag = "Enemy";
-        temp.GetComponent<Rigidbody2D>().velocity = new Vector2(2, 0);
+        temp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(1,4), 0);
     }
 
     /// <summary>
