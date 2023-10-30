@@ -12,16 +12,22 @@ using UnityEditor.SceneManagement;
 
 public class PlayerDuel : MonoBehaviour
 {
-    //Text for instructions, the player's lives, and a time 
+    //Text for instructions, the player's lives, and a time
+    //use this 
     public TMP_Text instructionText;
     public TMP_Text livesText;
     public TMP_Text timerText;
-    //player gets 2 lives, the game lasts for 20 seconds
-    private int lives = 2;
-    private int hits = 0;
     private float gameDuration = 30f;
     private float timer = 0f;
     private bool isRunning = false;
+     // 
+
+
+    //player gets 2 lives, the game lasts for 20 seconds
+    private int lives = 2;
+    private int hits = 0;
+    
+    
     private KeyCode action = KeyCode.None;
     private int roundCount = 0;
 
@@ -48,30 +54,18 @@ public class PlayerDuel : MonoBehaviour
     // at the beginning and when the player restarts the game.
     private void StartGame()
     {
+
+        //use this 
         isRunning = true;
         timer = 0f;
         lives = 2;
-        while (isRunning)
-        {
-
-            DisplayRandomInstruction();
-            //if (Input.anyKey)
-            // {
-            CheckInput();
-            //}
-            roundCount++;
-
-
-
-            // }
-
-        }
     }
         // The Update function is called once per frame and handles game state updates,
         // track the timer, check for player input, and ends the game
         // when the timer reaches the game duration. It also updates the user interface.
         void Update()
         {
+            //use some of this 
             if (isRunning)
             {
                 //timer
@@ -99,6 +93,7 @@ public class PlayerDuel : MonoBehaviour
         }
         // changes the isRunning boolean to false and changes instruction
         //text on UI to read win or lose, and goes back to main menu
+        
         private void EndGame()
         {
             isRunning = false;
