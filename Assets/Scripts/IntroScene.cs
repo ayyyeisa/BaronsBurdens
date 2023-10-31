@@ -1,3 +1,13 @@
+/// <summary>
+/// 
+/// Author: Isa Luluquisin
+/// Date: October 23, 2023
+/// 
+/// Description: This is a file that works on most controls for the 
+/// Dragon Riding minigame, as well as spawning in player and enemy fireballs
+/// and implementing the Game timer
+/// 
+/// </summary>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,24 +17,17 @@ using UnityEngine.Video;
 public class IntroScene : MonoBehaviour
 {
     // Behavior for Intro Scene to load main menu scene once intro scene is done
-    VideoPlayer video;
+    [SerializeField] private VideoPlayer video;
 
     void Start()
     {
-        video = GetComponent<VideoPlayer>();
-        video.Play();
-        StartCoroutine("IntroEnd");
+        video.loopPointReached += LoadScene;
     }
-
-    public IEnumerator IntroEnd()
+    void LoadScene(VideoPlayer video)
     {
-        while (video.isPlaying)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        SceneManager.LoadScene("MainMenu");
     }
-
-    void OnVideoEnd()
+    public void SkipIntroScene()
     {
         SceneManager.LoadScene(1);
     }

@@ -1,3 +1,13 @@
+/// <summary>
+/// 
+/// Author: Ryan Egan
+/// Date: October 23, 2023
+/// 
+/// Description: This is a file that works on most controls for the 
+/// Dragon Riding minigame, as well as spawning in player and enemy fireballs
+/// and implementing the Game timer
+/// 
+/// </summary>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +16,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    public void SkipIntroScene()
-    {
-        SceneManager.LoadScene(1);
-    }
-
     public void PlayDragon()
     {
         //Opens Dragon Riding Scene from Menu
