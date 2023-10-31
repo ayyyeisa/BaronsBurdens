@@ -29,7 +29,6 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject catapultAmmoSpawn;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
-    private EnemyKnight enemy;
 
     private InputAction move;
     private InputAction shoot;
@@ -63,7 +62,6 @@ public class CatapultMovement : MonoBehaviour
 
         winScene.SetActive(false);
         loseScene.SetActive(false);
-
     }
 
     // Update is called once per frame
@@ -75,7 +73,6 @@ public class CatapultMovement : MonoBehaviour
         {
             currentTime = 0;
         }
-        
         timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
         if (isMoving)
         {
@@ -92,11 +89,6 @@ public class CatapultMovement : MonoBehaviour
                 {
                     winScene.SetActive(true);
                     StopAllCoroutines();
-                }
-                if (currentTime > 0) //&& enemy.loseTrigger == true)
-                {
-                    Debug.Log("You lose");
-                    loseScene.SetActive(true);
                 }
             }
         }
@@ -169,6 +161,7 @@ public class CatapultMovement : MonoBehaviour
         Vector2 playerPause = enemyKnightSpawn.transform.position;
         GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
         temp.transform.tag = "Enemy";
+
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(2,4), 0);
     }
 
@@ -182,6 +175,7 @@ public class CatapultMovement : MonoBehaviour
             Vector2 playerPause = catapultAmmoSpawn.transform.position;
             GameObject temp = Instantiate(catapultAmmo, playerPause, Quaternion.identity);
             temp.transform.tag = "CatapultAmmo";
+            
             //calculate distance between ammo spawn point and arrow pos
             float targetDistance = temp.transform.position.x - trajectoryPoint.transform.position.x;
 
@@ -195,6 +189,17 @@ public class CatapultMovement : MonoBehaviour
             temp.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontalSpeed, verticalSpeed);
             didShoot = false;
             IsAmmoDestroyed = false;
+        }
+    }
+    #endregion
+
+    #region Collider
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Enemy")
+        {
+            loseScene.SetActive(true);
+            Time.timeScale = 0;
         }
     }
     #endregion

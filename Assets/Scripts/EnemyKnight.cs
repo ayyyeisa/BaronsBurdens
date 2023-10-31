@@ -14,7 +14,6 @@ using UnityEngine;
 
 public class EnemyKnight : MonoBehaviour
 {
-    public bool loseTrigger = false;
     /// <summary>
     /// Description: This method will check the collisions the enemy knights will interact with
     /// </summary>
@@ -30,7 +29,7 @@ public class EnemyKnight : MonoBehaviour
         }
         else if(collision.transform.name == "LoseSceneTrigger")
         {
-            loseTrigger = true;
+            Destroy(gameObject);
         }
     }
 }

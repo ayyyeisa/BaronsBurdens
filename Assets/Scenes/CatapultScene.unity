@@ -315,8 +315,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 404, y: 232}
-  m_SizeDelta: {x: 808, y: 464}
+  m_AnchoredPosition: {x: 536.05176, y: 316.72684}
+  m_SizeDelta: {x: 1072.1035, y: 633.4536}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &94237689
 GameObject:
@@ -430,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 164.81357, y: 199}
+  m_AnchoredPosition: {x: 164.81357, y: 274}
   m_SizeDelta: {x: 427.6271, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &125902852
@@ -1021,8 +1021,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 404, y: 232}
-  m_SizeDelta: {x: 808, y: 464}
+  m_AnchoredPosition: {x: 536.05176, y: 316.72684}
+  m_SizeDelta: {x: 1072.1035, y: 633.4536}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &998665560
 MonoBehaviour:
@@ -1800,6 +1800,7 @@ GameObject:
   - component: {fileID: 2105748818}
   - component: {fileID: 2105748817}
   - component: {fileID: 2105748816}
+  - component: {fileID: 2105748819}
   m_Layer: 0
   m_Name: LoseSceneTrigger
   m_TagString: Untagged
@@ -1919,6 +1920,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2105748819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105748815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38933a3351e4d14cb0ddb2ce346f3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trajectoryPoint: {fileID: 4730583842977407378}
+  playerInput: {fileID: 4730583842977407380}
+  Rb2D: {fileID: 4730583842977407379}
+  moveSpeed: 5
+  enemyKnight: {fileID: 5794374308437319978, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+  enemyKnightSpawn: {fileID: 2030144657}
+  catapultAmmo: {fileID: 5861994652682480189, guid: e73c08b4968186c45b6f3884d30298c4, type: 3}
+  catapultAmmoSpawn: {fileID: 1242512994}
+  winScene: {fileID: 69443003}
+  loseScene: {fileID: 998665558}
+  timerText: {fileID: 125902852}
 --- !u!1001 &1635057347716354824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2045,6 +2069,34 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: Rb2D
+      value: 
+      objectReference: {fileID: 4730583842977407379}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: winScene
+      value: 
+      objectReference: {fileID: 69443003}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 125902852}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 4730583842977407380}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: enemyKnightSpawn
+      value: 
+      objectReference: {fileID: 2030144657}
+    - target: {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
+      propertyPath: catapultAmmoSpawn
+      value: 
+      objectReference: {fileID: 1242512994}
     - target: {fileID: 5807275960071450800, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2089,13 +2141,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2539934587778834309, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2845700417659030347, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4730583842977407381}
     - targetCorrespondingSourceObject: {fileID: 2845700417659030347, guid: 8fb4ebc1d5ed0d6438a24e2150026e8f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4730583842977407380}
@@ -2165,29 +2215,6 @@ MonoBehaviour:
   m_DefaultActionMap: CatapultControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &4730583842977407381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4730583842977407378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e38933a3351e4d14cb0ddb2ce346f3a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trajectoryPoint: {fileID: 4730583842977407378}
-  playerInput: {fileID: 4730583842977407380}
-  Rb2D: {fileID: 4730583842977407379}
-  moveSpeed: 5
-  enemyKnight: {fileID: 5794374308437319978, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
-  enemyKnightSpawn: {fileID: 2030144657}
-  catapultAmmo: {fileID: 5861994652682480189, guid: e73c08b4968186c45b6f3884d30298c4, type: 3}
-  catapultAmmoSpawn: {fileID: 1242512994}
-  winScene: {fileID: 69443003}
-  loseScene: {fileID: 998665558}
-  timerText: {fileID: 125902852}
 --- !u!1001 &9118562406702959073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2196,13 +2223,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3674313381021331567, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+      propertyPath: loseScene
+      value: 
+      objectReference: {fileID: 998665558}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.9755
+      value: -9.84
       objectReference: {fileID: 0}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_LocalPosition.y
