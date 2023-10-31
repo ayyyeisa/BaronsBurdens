@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c50c913339a8244f9bc0477d05b28b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loseScene: {fileID: 8710621612033000965, guid: 4c623ef40b43cb74e915ebc1578ee900, type: 3}
 --- !u!50 &4753079047630485483
 Rigidbody2D:
   serializedVersion: 4

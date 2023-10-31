@@ -14,17 +14,6 @@ using UnityEngine;
 
 public class EnemyKnight : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     /// <summary>
     /// Description: This method will check the collisions the enemy knights will interact with
     /// </summary>
@@ -36,14 +25,11 @@ public class EnemyKnight : MonoBehaviour
     {
         if (collision.transform.tag == "CatapultAmmo")
         {
-            Debug.Log("Ammo hit");
             Destroy(gameObject);
         }
-        else if (collision.transform.tag == "Wall")
+        else if(collision.transform.name == "LoseSceneTrigger")
         {
             Destroy(gameObject);
         }
-
-
     }
 }

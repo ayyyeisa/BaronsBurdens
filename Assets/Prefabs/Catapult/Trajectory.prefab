@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1371636590760730995}
   - component: {fileID: 1977575771317392602}
+  - component: {fileID: 2539934587778834309}
+  - component: {fileID: 1637051763243224337}
+  - component: {fileID: 7287849720456100515}
   m_Layer: 0
   m_Name: Trajectory
   m_TagString: Untagged
@@ -25,12 +28,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2845700417659030347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.3214, y: 0.3286, z: 0}
-  m_LocalScale: {x: 0.5171, y: 4.0829, z: 1}
+  m_LocalPosition: {x: -1.4642012, y: 1.0845, z: 0}
+  m_LocalScale: {x: 0.631458, y: 0.64311695, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1977575771317392602
 SpriteRenderer:
@@ -72,9 +75,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: b314d2582ac07c840896b4ca9eee5b9d, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -2413806693520163455, guid: 253ccf0f90a321347a4759ce05014ba2, type: 3}
+  m_Color: {r: 0.7830189, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,3 +87,83 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2539934587778834309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845700417659030347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38933a3351e4d14cb0ddb2ce346f3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trajectoryPoint: {fileID: 2845700417659030347}
+  playerInput: {fileID: 1637051763243224337}
+  Rb2D: {fileID: 7287849720456100515}
+  moveSpeed: 5
+  enemyKnight: {fileID: 5794374308437319978, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+  enemyKnightSpawn: {fileID: 0}
+  catapultAmmo: {fileID: 5861994652682480189, guid: e73c08b4968186c45b6f3884d30298c4, type: 3}
+  catapultAmmoSpawn: {fileID: 0}
+  winScene: {fileID: 0}
+  loseScene: {fileID: 0}
+  timerText: {fileID: 0}
+--- !u!114 &1637051763243224337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845700417659030347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 02d1511d5fed8e3439946e19f2661053, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: CatapultControls
+  m_SplitScreenIndex: 0
+  m_Camera: {fileID: 0}
+--- !u!50 &7287849720456100515
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845700417659030347}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6

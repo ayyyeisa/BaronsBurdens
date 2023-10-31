@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CatapultMovement : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject enemyKnightSpawn;
     [SerializeField] private GameObject catapultAmmo;
     [SerializeField] private GameObject catapultAmmoSpawn;
+    [SerializeField] private GameObject winScene;
+    [SerializeField] private GameObject loseScene;
 
     private InputAction move;
     private InputAction shoot;
@@ -41,6 +44,7 @@ public class CatapultMovement : MonoBehaviour
     private int numOfEnemyKnights = 20;
 
     //variables for countdown timer
+    [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
     #endregion
@@ -56,17 +60,20 @@ public class CatapultMovement : MonoBehaviour
 
         currentTime = startingTime;
 
+        winScene.SetActive(false);
+        loseScene.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
         currentTime -= 1 * Time.deltaTime;
+        int convertTimeToInt = Mathf.CeilToInt(currentTime);
         if (currentTime < 0)
         {
             currentTime = 0;
         }
-        Debug.Log("Current time is: " + currentTime);
+        timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
         if (isMoving)
         {
             moveDirection = move.ReadValue<float>();
@@ -78,13 +85,10 @@ public class CatapultMovement : MonoBehaviour
             if (EnemyKnightRef == null)
             {
                 EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
-                if(currentTime == 0 && numOfEnemyKnights > 0)
+                if (currentTime == 0)
                 {
-                    Debug.Log("You lose");
-                }
-                else if(currentTime == 0 && numOfEnemyKnights== 0)
-                {
-                    Debug.Log("You win");
+                    winScene.SetActive(true);
+                    StopAllCoroutines();
                 }
             }
         }
@@ -157,6 +161,7 @@ public class CatapultMovement : MonoBehaviour
         Vector2 playerPause = enemyKnightSpawn.transform.position;
         GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
         temp.transform.tag = "Enemy";
+
         temp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(2,4), 0);
     }
 
@@ -170,6 +175,7 @@ public class CatapultMovement : MonoBehaviour
             Vector2 playerPause = catapultAmmoSpawn.transform.position;
             GameObject temp = Instantiate(catapultAmmo, playerPause, Quaternion.identity);
             temp.transform.tag = "CatapultAmmo";
+            
             //calculate distance between ammo spawn point and arrow pos
             float targetDistance = temp.transform.position.x - trajectoryPoint.transform.position.x;
 
@@ -187,12 +193,22 @@ public class CatapultMovement : MonoBehaviour
     }
     #endregion
 
+    #region Collider
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Enemy")
+        {
+            loseScene.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+    #endregion
+
     #region inputActions
     private void Shoot_started(InputAction.CallbackContext obj)
     {
         if (IsAmmoDestroyed)
         {
-            print("Shooting with catapult");
             didShoot = true;
 
             SpawnAmmo();
