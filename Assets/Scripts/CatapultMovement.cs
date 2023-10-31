@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CatapultMovement : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject enemyKnightSpawn;
     [SerializeField] private GameObject catapultAmmo;
     [SerializeField] private GameObject catapultAmmoSpawn;
+    [SerializeField] private GameObject winScene;
+    [SerializeField] private GameObject loseScene;
+    private EnemyKnight enemy;
 
     private InputAction move;
     private InputAction shoot;
@@ -41,6 +45,7 @@ public class CatapultMovement : MonoBehaviour
     private int numOfEnemyKnights = 20;
 
     //variables for countdown timer
+    [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
     #endregion
@@ -56,17 +61,22 @@ public class CatapultMovement : MonoBehaviour
 
         currentTime = startingTime;
 
+        winScene.SetActive(false);
+        loseScene.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         currentTime -= 1 * Time.deltaTime;
+        int convertTimeToInt = Mathf.CeilToInt(currentTime);
         if (currentTime < 0)
         {
             currentTime = 0;
         }
-        Debug.Log("Current time is: " + currentTime);
+        
+        timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
         if (isMoving)
         {
             moveDirection = move.ReadValue<float>();
@@ -78,13 +88,15 @@ public class CatapultMovement : MonoBehaviour
             if (EnemyKnightRef == null)
             {
                 EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
-                if(currentTime == 0 && numOfEnemyKnights > 0)
+                if (currentTime == 0)
+                {
+                    winScene.SetActive(true);
+                    StopAllCoroutines();
+                }
+                if (currentTime > 0) //&& enemy.loseTrigger == true)
                 {
                     Debug.Log("You lose");
-                }
-                else if(currentTime == 0 && numOfEnemyKnights== 0)
-                {
-                    Debug.Log("You win");
+                    loseScene.SetActive(true);
                 }
             }
         }
@@ -192,7 +204,6 @@ public class CatapultMovement : MonoBehaviour
     {
         if (IsAmmoDestroyed)
         {
-            print("Shooting with catapult");
             didShoot = true;
 
             SpawnAmmo();

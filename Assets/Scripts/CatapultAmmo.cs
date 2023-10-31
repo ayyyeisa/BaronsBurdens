@@ -20,7 +20,6 @@ public class CatapultAmmo : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            Debug.Log("enemy hit");
             Destroy(gameObject);
             CatapultMovement.IsAmmoDestroyed = true;
         }
