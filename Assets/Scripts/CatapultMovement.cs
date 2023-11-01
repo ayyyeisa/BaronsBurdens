@@ -1,6 +1,6 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan, Tri Nguyen
+/// Author: Ryan Egan, Tri Nguyen, Isa Luluquisin
 /// Date: October 23, 2023
 /// 
 /// Description: This is a file that works on most controls for the 
@@ -27,6 +27,7 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject enemyKnightSpawn;
     [SerializeField] private GameObject catapultAmmo;
     [SerializeField] private GameObject catapultAmmoSpawn;
+    [SerializeField] private GameObject startMinigame;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
 
@@ -36,6 +37,9 @@ public class CatapultMovement : MonoBehaviour
     private InputAction quit;
 
     public Coroutine EnemyKnightRef;
+
+    private bool spaceIsPressed;
+    private bool gameIsRunning;
 
     private bool isMoving;
     private bool didShoot;
@@ -57,9 +61,12 @@ public class CatapultMovement : MonoBehaviour
         isMoving = false;
         didShoot = false;
         IsAmmoDestroyed = true;
+        spaceIsPressed = false;
+        gameIsRunning = false;
 
         currentTime = startingTime;
 
+        startMinigame.SetActive(true);
         winScene.SetActive(false);
         loseScene.SetActive(false);
     }
@@ -67,32 +74,48 @@ public class CatapultMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTime -= 1 * Time.deltaTime;
-        int convertTimeToInt = Mathf.CeilToInt(currentTime);
-        if (currentTime < 0)
+        if(!gameIsRunning)
         {
-            currentTime = 0;
+            GameStartCheck();
         }
-        timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
+
         if (isMoving)
         {
             moveDirection = move.ReadValue<float>();
         }
 
-        // Starts coroutine of spawning enemy knights
-        if (numOfEnemyKnights > 0)
+        if(spaceIsPressed && gameIsRunning)
         {
-            if (EnemyKnightRef == null)
+            currentTime -= 1 * Time.deltaTime;
+            int convertTimeToInt = Mathf.CeilToInt(currentTime);
+            if (currentTime < 0)
             {
-                EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
-                if (currentTime == 0)
+                currentTime = 0;
+            }
+            timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
+
+
+            // Starts coroutine of spawning enemy knights
+            if (numOfEnemyKnights > 0)
+            {
+                if (EnemyKnightRef == null)
                 {
-                    winScene.SetActive(true);
-                    StopAllCoroutines();
+                    EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
+                    if (currentTime == 0 && numOfEnemyKnights == 0)
+                    {
+                        winScene.SetActive(true);
+                        gameIsRunning = false;
+                        StopAllCoroutines();
+                    }
+                    else if(currentTime == 0 && numOfEnemyKnights > 0)
+                    {
+                        loseScene.SetActive(true);
+                        gameIsRunning = false;
+                        StopAllCoroutines();
+                    }
                 }
             }
         }
-
     }
 
 
@@ -101,6 +124,7 @@ public class CatapultMovement : MonoBehaviour
     /// </summary>
     public IEnumerator EnemyKnightTimer()
     {
+        gameIsRunning = true;
         SpawnEnemyKnight();
         yield return new WaitForSeconds(2f);
         EnemyKnightRef = null;
@@ -121,6 +145,22 @@ public class CatapultMovement : MonoBehaviour
             Rb2D.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
+
+    /// <summary>
+    /// Description: This method checks if the spacebar was pressed for the first time in the minigame.
+    /// If it was, the game timer coroutine will start
+    /// </summary>
+    private void GameStartCheck()
+    {
+        if (spaceIsPressed)
+        {
+            if (EnemyKnightRef == null)
+            {
+                EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
+            }
+        }
+    }
+
     /// <summary>
     /// Description: This function will enable the action map and read inputs
     /// </summary>
@@ -142,12 +182,12 @@ public class CatapultMovement : MonoBehaviour
 
     private void Quit_started(InputAction.CallbackContext obj)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private void Restart_started(InputAction.CallbackContext obj)
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     #region spawnFunctions
@@ -158,11 +198,14 @@ public class CatapultMovement : MonoBehaviour
     /// </summary>
     public void SpawnEnemyKnight()
     {
-        Vector2 playerPause = enemyKnightSpawn.transform.position;
-        GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
-        temp.transform.tag = "Enemy";
+        if (gameIsRunning)
+        {
+            Vector2 playerPause = enemyKnightSpawn.transform.position;
+            GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
+            temp.transform.tag = "Enemy";
 
-        temp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(2,4), 0);
+            temp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(2, 4), 0);
+        }
     }
 
     /// <summary>
@@ -200,6 +243,7 @@ public class CatapultMovement : MonoBehaviour
         {
             loseScene.SetActive(true);
             Time.timeScale = 0;
+            gameIsRunning = false;
         }
     }
     #endregion
@@ -207,13 +251,20 @@ public class CatapultMovement : MonoBehaviour
     #region inputActions
     private void Shoot_started(InputAction.CallbackContext obj)
     {
-        if (IsAmmoDestroyed)
+        if(!spaceIsPressed)
         {
-            didShoot = true;
-
-            SpawnAmmo();
+            startMinigame.gameObject.SetActive(false);
+            spaceIsPressed = true;
         }
+        else if(spaceIsPressed)
+        {
+            if (IsAmmoDestroyed)
+            {
+                didShoot = true;
 
+                SpawnAmmo();
+            }
+        }
     }
 
     private void Move_canceled(InputAction.CallbackContext obj)

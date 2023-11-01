@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: ce893e1301161834885804e558dca25e
   - enabled: 1
-    path: Assets/Scenes/EganDragonRiding.unity
+    path: Assets/Scenes/DragonRiding.unity
     guid: 5ccf8c63ee315e4488499e86ec3f2199
   - enabled: 1
     path: Assets/Scenes/CatapultScene.unity

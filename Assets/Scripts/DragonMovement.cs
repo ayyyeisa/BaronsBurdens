@@ -204,14 +204,14 @@ public class DragonMovement : MonoBehaviour
     private void Quit_started(InputAction.CallbackContext obj)
     {
         // Loads back the Main menu scene
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         
     }
 
     private void Restart_started(InputAction.CallbackContext obj)
     {
         // loads back the Dragon Riding Scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     #region inputActions
