@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 
 public class DuelEnemyScript : MonoBehaviour
 {
-    private GameObject Block;
-    private GameObject Attack;
-    private GameObject Parry;
+   [SerializeField] private GameObject Block;
+    [SerializeField] private GameObject Attack;
+    [SerializeField] private GameObject Parry;
+
+    public Coroutine DuelEnemyRef;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,10 @@ public class DuelEnemyScript : MonoBehaviour
         InputSystem.DisableDevice(Keyboard.current);
 
         //Start the coroutine defined below named EnemyCoroutine.
-        StartCoroutine(EnemyCoroutine());
+        if(DuelEnemyRef == null)
+        {
+            DuelEnemyRef = StartCoroutine(EnemyCoroutine());
+        }
     }
 
     // Update is called once per frame
