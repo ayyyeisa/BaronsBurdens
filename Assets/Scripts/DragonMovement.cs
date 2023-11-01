@@ -1,6 +1,6 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan
+/// Author: Ryan Egan, Isa Luluquisin
 /// Date: October 23, 2023
 /// 
 /// Description: This is a file that works on most controls for the 
@@ -30,8 +30,11 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] private GameObject startGameScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
-    
 
+    // ui timer variables
+    [SerializeField] private TMP_Text timerText;
+    private float currentTime = 0f;
+    private float startingTime = 20f;
 
     public Coroutine EnemyFireballRef;
     public Coroutine GameTimerRef;
@@ -56,11 +59,9 @@ public class DragonMovement : MonoBehaviour
     void Start()
     {
         // Enables the action map
-
         EnableInputs();
 
         // bools are set
-
         isMoving = false;
         didFire = false;
         isFireballDestroyed = true;
@@ -68,6 +69,7 @@ public class DragonMovement : MonoBehaviour
         spaceIsPressed = false;
         gameIsOver = false;
 
+        currentTime = startingTime;
 
     }
 
@@ -91,6 +93,13 @@ public class DragonMovement : MonoBehaviour
             {
                 EnemyFireballRef = StartCoroutine(EnemyFireballTimer());
             }
+            currentTime -= 1 * Time.deltaTime;
+            int convertTimeToInt = Mathf.CeilToInt(currentTime);
+            if (currentTime < 0)
+            {
+                currentTime = 0;
+            }
+            timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
         }
 
 
