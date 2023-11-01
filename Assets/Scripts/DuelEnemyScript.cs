@@ -8,11 +8,11 @@ using UnityEditor.SceneManagement;
 
 public class DuelEnemyScript : MonoBehaviour
 {
-    private GameObject Block;
-    private GameObject Attack;
-    private GameObject Parry;
-    private GameObject WinScreen;
-    private GameObject LoseScreen;
+    public GameObject Block;
+    public GameObject Attack;
+    public GameObject Parry;
+    public GameObject WinScreen;
+    public GameObject LoseScreen;
     int playerHP = 2;
     int enemyHP = 2;
 
@@ -20,6 +20,7 @@ public class DuelEnemyScript : MonoBehaviour
     //use this 
     public TMP_Text livesText;
     public TMP_Text timerText;
+    public TMP_Text enemyLivesText;
     private float gameDuration = 30f;
     private float timer = 0f;
     private bool isRunning = false;
@@ -46,6 +47,7 @@ public class DuelEnemyScript : MonoBehaviour
     {
         livesText.text = "Lives: " + playerHP;
         timerText.text = "Time: " + (int)(gameDuration - timer);
+        enemyLivesText.text = "Enemy Lives: " + enemyHP;
     }
 
     //Start the game by initializing game variables, resetting the timer,
@@ -57,7 +59,6 @@ public class DuelEnemyScript : MonoBehaviour
         //use this 
         isRunning = true;
         timer = 0f;
-        playerHP = 2;
     }
 
     // Update is called once per frame
@@ -96,7 +97,7 @@ public class DuelEnemyScript : MonoBehaviour
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(rand);
-
+        InputSystem.EnableDevice(Keyboard.current);
         int rand2 = Random.Range(1, 4);
         if (rand2 == 1)
         {
@@ -111,45 +112,49 @@ public class DuelEnemyScript : MonoBehaviour
             GuardDown();
         }
 
-        InputSystem.DisableDevice(Keyboard.current);
+        
 
+        
+
+        yield return new WaitForSeconds(2);
         if (rand2 == 1)
         {
-            if (DidBlock() == true && Block.activeSelf == true)
+            if (DidBlock() == true)
             {
-
+                StabAttack();
             }
             else
             {
                 playerHP--;
+                StabAttack();
             }
         }
         else if (rand2 == 2)
         {
-            if (DidParry() == true && Parry.activeSelf == true)
+            if (DidParry() == true)
             {
-
+                HeavyAttack();
             }
             else
             {
                 playerHP--;
+                HeavyAttack();
             }
         }
         else if (rand2 == 3)
         {
-            if (DidAttack() == true && Attack.activeSelf == true)
+            if (DidAttack() == true)
             {
                 enemyHP--;
+                GuardDown();
             }
             else
             {
-
+                GuardDown();
             }
         }
 
-        yield return new WaitForSeconds(2);
         InputSystem.DisableDevice(Keyboard.current);
-
 
     }
 
