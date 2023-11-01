@@ -1,5 +1,5 @@
 //PlayerDuel.cs
-//Carl Crumer
+//Author(s): Carl Crumer, Isa Luluquisin
 //Creation Date: October 24 2023
 //
 // The script the player functions of the game,input, and User Interface
@@ -9,6 +9,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEditor.SceneManagement;
+using UnityEngine.InputSystem;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class PlayerDuel : MonoBehaviour
 {
@@ -17,11 +20,19 @@ public class PlayerDuel : MonoBehaviour
     public TMP_Text instructionText;
     public TMP_Text livesText;
     public TMP_Text timerText;
-    private float gameDuration = 30f;
+    private float gameDuration = 20f;
     private float timer = 0f;
     private bool isRunning = false;
-     // 
 
+    [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private GameObject startGameScreen;
+    [SerializeField] private GameObject winScene;
+    [SerializeField] private GameObject loseScene;
+    //private InputAction parry;
+    //private InputAction block;
+    //private InputAction attack;
+    private InputAction restart;
+    private InputAction quit;
 
     //player gets 2 lives, the game lasts for 20 seconds
     private int lives = 2;
@@ -31,15 +42,18 @@ public class PlayerDuel : MonoBehaviour
     private KeyCode action = KeyCode.None;
     private int roundCount = 0;
 
-
-    //
     private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
-
 
     // Start is called before the first frame update
     void Start()
-    {
-        StartGame();
+    {  
+        //Enables action map
+        EnableInputs();
+
+        isRunning = true;  //starts the timer
+
+        timer = 0f;
+        lives = 2;
         UpdateScreen();
     }
     //Updates the user interface,updates the player's lives and time remaining
@@ -48,18 +62,7 @@ public class PlayerDuel : MonoBehaviour
         livesText.text = "Lives: " + lives;
         timerText.text = "Time: " + (int)(gameDuration - timer);
     }
-
-    //Start the game by initializing game variables, resetting the timer,
-    // and displaying the initial instruction. This function is called
-    // at the beginning and when the player restarts the game.
-    private void StartGame()
-    {
-
-        //use this 
-        isRunning = true;
-        timer = 0f;
-        lives = 2;
-    }
+   
         // The Update function is called once per frame and handles game state updates,
         // track the timer, check for player input, and ends the game
         // when the timer reaches the game duration. It also updates the user interface.
@@ -99,16 +102,38 @@ public class PlayerDuel : MonoBehaviour
             isRunning = false;
             if (hits == 2)
             {
-                instructionText.text = "YOU WIN!";
+            winScene.gameObject.SetActive(true);
             }
             else
             {
-                instructionText.text = "YOU LOSE!";
+            loseScene.gameObject.SetActive(true) ;
             }
-            EditorSceneManager.LoadScene("MainMenu");
-
-
         }
+
+    public void EnableInputs()
+    {
+        //parry = playerInput.currentActionMap.FindAction("Parry");
+        //block = playerInput.currentActionMap.FindAction("Block");
+        //attack = playerInput.currentActionMap.FindAction("Attack");
+        restart = playerInput.currentActionMap.FindAction("Restart");
+        quit = playerInput.currentActionMap.FindAction("Quit");
+
+        restart.started += Restart_started;
+        quit.started += Quit_started;
+    }
+
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        //Loads Main Menu scene
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    private void Restart_started(InputAction.CallbackContext obj)
+    {
+        //Reloads current scene
+        SceneManager.LoadScene(3);
+    }
+
         // CheckInput is called when the player presses a key during an active game.
         // It validates the key pressed against the allowed inputs and provides feedback
         // to the player. If the input is correct, the game continues, but if it's incorrect,

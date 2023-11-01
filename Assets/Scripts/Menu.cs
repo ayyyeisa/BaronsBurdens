@@ -1,6 +1,6 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan
+/// Author: Carl Crumer
 /// Date: October 23, 2023
 /// 
 /// Description: This is a file that works on most controls for the 
