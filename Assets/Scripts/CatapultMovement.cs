@@ -46,7 +46,7 @@ public class CatapultMovement : MonoBehaviour
     private bool didShoot;
     private float moveDirection;
     public static bool IsAmmoDestroyed;
-    private int numOfEnemyKnights = 20;
+    private int numOfEnemyKnights = 10;
 
     //variables for countdown timer
     [SerializeField] private TMP_Text timerText;
