@@ -2,39 +2,98 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
+using UnityEditor.SceneManagement;
 
 public class DuelEnemyScript : MonoBehaviour
 {
     private GameObject Block;
     private GameObject Attack;
     private GameObject Parry;
-    
+    private GameObject WinScreen;
+    private GameObject LoseScreen;
+    int playerHP = 2;
+    int enemyHP = 2;
+
+    //Text for instructions, the player's lives, and a time
+    //use this 
+    public TMP_Text livesText;
+    public TMP_Text timerText;
+    private float gameDuration = 30f;
+    private float timer = 0f;
+    private bool isRunning = false;
+
     // Start is called before the first frame update
     void Start()
     {
         Block.SetActive(false);
         Parry.SetActive(false);
         Attack.SetActive(false);
+        WinScreen.SetActive(false);
+        LoseScreen.SetActive(false);
         InputSystem.DisableDevice(Keyboard.current);
+
+        StartGame();
+        UpdateScreen();
 
         //Start the coroutine defined below named EnemyCoroutine.
         StartCoroutine(EnemyCoroutine());
     }
 
+    //Updates the user interface,updates the player's lives and time remaining
+    private void UpdateScreen()
+    {
+        livesText.text = "Lives: " + playerHP;
+        timerText.text = "Time: " + (int)(gameDuration - timer);
+    }
+
+    //Start the game by initializing game variables, resetting the timer,
+    // and displaying the initial instruction. This function is called
+    // at the beginning and when the player restarts the game.
+    private void StartGame()
+    {
+
+        //use this 
+        isRunning = true;
+        timer = 0f;
+        playerHP = 2;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        //use some of this 
+        if (isRunning)
+        {
+            //timer
+            timer += Time.deltaTime;
+            UpdateScreen();
+
+            //lose conditions
+            if (timer >= gameDuration)
+            {
+                isRunning = false;
+                EndGame();
+            }
+            if (playerHP == 0)
+            {
+                isRunning = false;
+                EndGame();
+            }
+            if (enemyHP == 0)
+            {
+                isRunning = false;
+                EndGame();
+            }
+        }
     }
 
     IEnumerator EnemyCoroutine()
     {
-        int playerHP = 2;
-        int enemyHP = 2;
-        
         int rand = Random.Range(1, 6);
 
-   
+
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(rand);
 
@@ -62,7 +121,7 @@ public class DuelEnemyScript : MonoBehaviour
             }
             else
             {
-                playerHP -= 1;
+                playerHP--;
             }
         }
         else if (rand2 == 2)
@@ -73,14 +132,14 @@ public class DuelEnemyScript : MonoBehaviour
             }
             else
             {
-                playerHP -= 1;
+                playerHP--;
             }
         }
         else if (rand2 == 3)
         {
             if (DidAttack() == true && Attack.activeSelf == true)
             {
-                enemyHP -= 1;
+                enemyHP--;
             }
             else
             {
@@ -161,5 +220,22 @@ public class DuelEnemyScript : MonoBehaviour
         }
 
         return pressedBar;
+    }
+
+    // changes the isRunning boolean to false and changes instruction
+    //text on UI to read win or lose, and goes back to main menu
+
+    private void EndGame()
+    {
+        isRunning = false;
+        if (enemyHP == 0)
+        {
+            WinScreen.SetActive(true);
+        }
+        else
+        {
+            LoseScreen.SetActive(true);
+        }
+        EditorSceneManager.LoadScene("MainMenu");
     }
 }
