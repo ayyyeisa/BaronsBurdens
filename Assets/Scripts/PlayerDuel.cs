@@ -17,7 +17,7 @@ public class PlayerDuel : MonoBehaviour
     public TMP_Text instructionText;
     public TMP_Text livesText;
     public TMP_Text timerText;
-    private float gameDuration = 30f;
+    private float gameDuration = 20f;
     private float timer = 0f;
     private bool isRunning = false;
      // 
