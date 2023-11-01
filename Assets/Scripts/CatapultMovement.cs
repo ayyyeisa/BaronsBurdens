@@ -49,6 +49,7 @@ public class CatapultMovement : MonoBehaviour
     private int numOfEnemyKnights = 20;
 
     //variables for countdown timer
+    [SerializeField] private TMP_Text knightCounter;
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
@@ -97,7 +98,7 @@ public class CatapultMovement : MonoBehaviour
                 currentTime = 0;
             }
             timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
-
+            knightCounter.GetComponent<TMP_Text>().text = "Knights left: " + numOfEnemyKnights;
 
             // Starts coroutine of spawning enemy knights
             if (numOfEnemyKnights > 0)
