@@ -41,6 +41,7 @@ public class CatapultMovement : MonoBehaviour
     private bool spaceIsPressed;
     private bool gameIsRunning;
 
+    //valuables for moving enemies
     private bool isMoving;
     private bool didShoot;
     private float moveDirection;
@@ -64,8 +65,10 @@ public class CatapultMovement : MonoBehaviour
         spaceIsPressed = false;
         gameIsRunning = false;
 
+        //set start timer to 20
         currentTime = startingTime;
 
+        //basic settings when player starts game
         startMinigame.SetActive(true);
         winScene.SetActive(false);
         loseScene.SetActive(false);
@@ -86,6 +89,7 @@ public class CatapultMovement : MonoBehaviour
 
         if(spaceIsPressed && gameIsRunning)
         {
+            //start counting down and display
             currentTime -= 1 * Time.deltaTime;
             int convertTimeToInt = Mathf.CeilToInt(currentTime);
             if (currentTime < 0)
@@ -101,6 +105,7 @@ public class CatapultMovement : MonoBehaviour
                 if (EnemyKnightRef == null)
                 {
                     EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
+                    //win scene and lose scene trigger conditions
                     if (currentTime == 0 && numOfEnemyKnights == 0)
                     {
                         winScene.SetActive(true);
