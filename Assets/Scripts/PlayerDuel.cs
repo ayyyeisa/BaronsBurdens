@@ -57,13 +57,9 @@ public class PlayerDuel : MonoBehaviour
         //Enables action map
         EnableInputs();
 
-        spaceIsPressed = false;
-        isRunning = false;
-
-        timer = 0f;
-        lives = 2;
-
+        StartGame();
         UpdateScreen();
+
     }
     //Updates the user interface,updates the player's lives and time remaining
     private void UpdateScreen()
@@ -77,14 +73,6 @@ public class PlayerDuel : MonoBehaviour
         // when the timer reaches the game duration. It also updates the user interface.
         void Update()
         {
-            if(!isRunning)
-            {
-                if(spaceIsPressed)
-                {
-                isRunning = true; //starts timer
-                }
-            }
-            
             if (spaceIsPressed && isRunning)
             {
                 //timer
@@ -111,6 +99,14 @@ public class PlayerDuel : MonoBehaviour
 
         }
         
+    private void StartGame()
+    {
+        startGameScreen.gameObject.SetActive(false);
+        isRunning = true;
+        spaceIsPressed = true;
+        timer = 0f;
+        lives = 2;
+    }
 
         // changes the isRunning boolean to false and changes instruction
         //text on UI to read win or lose
@@ -130,12 +126,15 @@ public class PlayerDuel : MonoBehaviour
 
     public void EnableInputs()
     {
+        playerInput.currentActionMap.Enable();
+
         //parry = playerInput.currentActionMap.FindAction("Parry");
         //block = playerInput.currentActionMap.FindAction("Block");
         attack = playerInput.currentActionMap.FindAction("Attack");
         restart = playerInput.currentActionMap.FindAction("Restart");
         quit = playerInput.currentActionMap.FindAction("Quit");
 
+        attack.started += Attack_started;
         restart.started += Restart_started;
         quit.started += Quit_started;
     }
@@ -145,8 +144,9 @@ public class PlayerDuel : MonoBehaviour
     {
         if(!spaceIsPressed)
         {
-            startGameScreen.gameObject.SetActive(false);
-            spaceIsPressed = true;
+
+            spaceIsPressed = true; 
+            StartGame();
         }
         else if(spaceIsPressed)
         {
@@ -259,8 +259,14 @@ public class PlayerDuel : MonoBehaviour
             return instructions[randomIndex];
 
         }
-
+    public void OnDestroy()
+    {
+        attack.started -= Attack_started;
+        restart.started -= Restart_started;
+        quit.started -= Quit_started;
 
     }
+
+}
 
 

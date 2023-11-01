@@ -40,7 +40,10 @@ public class Menu : MonoBehaviour
         
        
     }
-
+    public void SkipIntroScene()
+    {
+        SceneManager.LoadScene(1);
+    }
 
 
 }

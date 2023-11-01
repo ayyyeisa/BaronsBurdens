@@ -27,8 +27,5 @@ public class IntroScene : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    public void SkipIntroScene()
-    {
-        SceneManager.LoadScene(1);
-    }
+    
 }

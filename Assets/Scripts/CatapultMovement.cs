@@ -35,6 +35,7 @@ public class CatapultMovement : MonoBehaviour
     private InputAction shoot;
     private InputAction restart;
     private InputAction quit;
+    private InputAction skipToWin;
 
     public Coroutine EnemyKnightRef;
 
@@ -173,11 +174,25 @@ public class CatapultMovement : MonoBehaviour
         restart = playerInput.currentActionMap.FindAction("Restart");
         quit = playerInput.currentActionMap.FindAction("Quit");
 
+        //cheat code
+        skipToWin = playerInput.currentActionMap.FindAction("CheatCode");
+        skipToWin.started += skipToWin_started;
+
         move.started += Move_started;
         move.canceled += Move_canceled;
         shoot.started += Shoot_started;
         restart.started += Restart_started;
         quit.started += Quit_started;
+
+    }
+    //cheat code
+    private void skipToWin_started(InputAction.CallbackContext obj)
+    {
+        currentTime = 0;
+        numOfEnemyKnights = 0;
+        winScene.SetActive(true);
+        gameIsRunning = false;
+        StopAllCoroutines();
     }
 
     private void Quit_started(InputAction.CallbackContext obj)
