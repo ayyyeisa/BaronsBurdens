@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.SceneManagement;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
@@ -48,7 +47,7 @@ public class DuelScript : MonoBehaviour
     private int hits = 0;
     private KeyCode action = KeyCode.None;
     
-    private int roundCount = 0;
+    //private int roundCount = 0;
 
     private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
 

@@ -174,7 +174,7 @@ public class CatapultMovement : MonoBehaviour
         restart = playerInput.currentActionMap.FindAction("Restart");
         quit = playerInput.currentActionMap.FindAction("Quit");
 
-        //cheat code
+        //cheat code. if player hits 'x', win scene automatically appears
         skipToWin = playerInput.currentActionMap.FindAction("CheatCode");
         skipToWin.started += skipToWin_started;
 

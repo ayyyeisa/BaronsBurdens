@@ -11,7 +11,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
@@ -19,17 +18,17 @@ public class Menu : MonoBehaviour
     public void PlayDragon()
     {
         //Opens Dragon Riding Scene from Menu
-        EditorSceneManager.LoadScene(2);
+        SceneManager.LoadScene(2);
     }
     public void PlayCatapult()
     {
         //Opens Catapult Scene from Menu
-        EditorSceneManager.LoadScene(3);
+        SceneManager.LoadScene(3);
     }
     public void PlayDuel()
     {
         //Opens Duel Scene from Menu
-        EditorSceneManager.LoadScene(4);
+        SceneManager.LoadScene(4);
 
     }
     public void QuitGame()
