@@ -1,6 +1,6 @@
 /// <summary>
 /// 
-/// Author: Ryan Egan
+/// Author: Ryan Egan, Tri Nguyen
 /// Date: October 23, 2023
 /// Description: This is a file that works on the behavior for the enemy
 /// knights that spawn in for the Catapult minigame
