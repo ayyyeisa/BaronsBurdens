@@ -194,15 +194,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "CheatCode",
-                    "type": "Button",
-                    "id": "f46687f3-4ea8-4a23-8fc9-d7f6b42885b0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -315,17 +306,6 @@
                     "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "757f280e-3dcc-4432-987e-ac92619191d0",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CheatCode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -361,18 +341,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Restart",
+                    "name": "Quit",
                     "type": "Button",
-                    "id": "9f631d3f-c8f1-4f4d-af6f-036b79aec8f0",
+                    "id": "d8f30ee9-1a2b-4985-99e5-bf0e8ca96e68",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Quit",
+                    "name": "Restart",
                     "type": "Button",
-                    "id": "26921aa5-569e-48a7-a961-e89c75c1ec16",
+                    "id": "13e98f05-3b46-44a6-9c53-5a40b9ff57a9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -415,23 +395,23 @@
                 },
                 {
                     "name": "",
-                    "id": "85fcc4c2-a314-42d4-97c8-2e2c69add4aa",
-                    "path": "<Keyboard>/r",
+                    "id": "75f3de20-2814-490a-9519-484e1cba0fbf",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Restart",
+                    "action": "Quit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "584faad9-b326-427b-a14a-ccb54e99b05d",
-                    "path": "<Keyboard>/escape",
+                    "id": "29db183e-6c46-42ff-9fdd-85e02c5a81a8",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Quit",
+                    "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
