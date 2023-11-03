@@ -224,8 +224,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 136174789972729720, guid: afa5904a2d482da42bb07c59767631aa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1487862406}
+      addedObject: {fileID: 1487862402}
   m_SourcePrefab: {fileID: 100100000, guid: afa5904a2d482da42bb07c59767631aa, type: 3}
+--- !u!114 &441727490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2727073807481345699, guid: afa5904a2d482da42bb07c59767631aa, type: 3}
+  m_PrefabInstance: {fileID: 441727489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &491899255 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 746888604329247779, guid: afa5904a2d482da42bb07c59767631aa, type: 3}
@@ -427,7 +438,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 136174789972729720, guid: afa5904a2d482da42bb07c59767631aa, type: 3}
   m_PrefabInstance: {fileID: 441727489}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1487862406
+--- !u!114 &1487862402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -436,7 +447,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1487862401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b72663f7f66854940957f8e947f6aadf, type: 3}
+  m_Script: {fileID: 11500000, guid: ced945170d7509140af0a0913e273e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Block: {fileID: 1143665608}
@@ -446,6 +457,7 @@ MonoBehaviour:
   LoseScreen: {fileID: 251329310}
   livesText: {fileID: 135445601}
   timerText: {fileID: 300540743}
+  enemyLivesText: {fileID: 441727490}
 --- !u!1 &1543248806
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +495,7 @@ MonoBehaviour:
   LoseScreen: {fileID: 0}
   livesText: {fileID: 0}
   timerText: {fileID: 0}
+  enemyLivesText: {fileID: 0}
 --- !u!212 &1543248808
 SpriteRenderer:
   m_ObjectHideFlags: 0
