@@ -30,6 +30,7 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject startMinigame;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
+    [SerializeField] private TMP_Text controlsText;
 
     private InputAction move;
     private InputAction shoot;
@@ -100,6 +101,7 @@ public class CatapultMovement : MonoBehaviour
             }
             timerText.GetComponent<TMP_Text>().text = "Timer: " + convertTimeToInt;
             knightCounter.GetComponent<TMP_Text>().text = "Knights left: " + numOfEnemyKnights;
+            controlsText.gameObject.SetActive(true);
 
             // Starts coroutine of spawning enemy knights
             if (numOfEnemyKnights > 0)
@@ -111,12 +113,14 @@ public class CatapultMovement : MonoBehaviour
                     if (currentTime == 0 && numOfEnemyKnights == 0)
                     {
                         winScene.SetActive(true);
+                        controlsText.gameObject.SetActive(false);
                         gameIsRunning = false;
                         StopAllCoroutines();
                     }
                     else if(currentTime == 0 && numOfEnemyKnights > 0)
                     {
                         loseScene.SetActive(true);
+                        controlsText.gameObject.SetActive(false);
                         gameIsRunning = false;
                         StopAllCoroutines();
                     }
@@ -263,6 +267,7 @@ public class CatapultMovement : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             loseScene.SetActive(true);
+            controlsText.gameObject.SetActive(false);
             Time.timeScale = 0;
             gameIsRunning = false;
         }

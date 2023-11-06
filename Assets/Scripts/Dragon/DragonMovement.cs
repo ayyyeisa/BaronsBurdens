@@ -27,6 +27,7 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] private GameObject enemyFireballSpawn;
     [SerializeField] private GameObject eF;
     [SerializeField] private TMP_Text livesText;
+    [SerializeField] private TMP_Text controlsText;
     [SerializeField] private GameObject startGameScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
@@ -136,6 +137,8 @@ public class DragonMovement : MonoBehaviour
             if(numOfLives == 0)
             {
                 loseScreen.gameObject.SetActive(true);
+                controlsText.gameObject.SetActive(false);
+                livesText.gameObject.SetActive(false);
                 isGameRunning = false;
             }
             
@@ -186,6 +189,8 @@ public class DragonMovement : MonoBehaviour
         if(numOfLives > 0)
         {
             winScreen.gameObject.SetActive(true);
+            controlsText.gameObject.SetActive(false);
+            livesText.gameObject.SetActive(false);
         }
     }
     #endregion
@@ -230,6 +235,7 @@ public class DragonMovement : MonoBehaviour
         {
             startGameScreen.gameObject.SetActive(false);
             livesText.gameObject.SetActive(true);
+            controlsText.gameObject.SetActive(true);
             livesText.text = "Lives: " + numOfLives;
             spaceIsPressed = true;
 

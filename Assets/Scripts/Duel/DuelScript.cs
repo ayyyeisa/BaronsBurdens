@@ -25,6 +25,7 @@ public class DuelScript : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text hitText;
     public TMP_Text missText;
+    [SerializeField] private TMP_Text controlsText;
     private float gameDuration = 20f;
     private float timer = 0f;
     private bool isRunning = false;
@@ -35,12 +36,9 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
-    private InputAction parry;
-    private InputAction block;
-    private InputAction attack;
+  
     private InputAction restart;
     private InputAction quit;
-    private bool spaceIsPressed;
 
     //player gets 2 lives, the game lasts for 20 seconds
     private int lives = 2;
@@ -56,14 +54,10 @@ public class DuelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Enables action map
-        EnableInputs();
-        spaceIsPressed = false;
         isRunning = false;
+        playerInput.currentActionMap.Disable(); 
         timer = 0f;
         lives = 2;
-        Hit.gameObject.SetActive(false);
-        Miss.gameObject.SetActive(false);
         Update();
         StartCoroutine(GameLoop());
 
@@ -96,6 +90,7 @@ public class DuelScript : MonoBehaviour
         }
         isRunning = true;
         startGameScreen.gameObject.SetActive(false);
+        controlsText.gameObject.SetActive(true);
         //ready set fight text
         instructionText.text = "READY!";
         yield return new WaitForSeconds(1f);
@@ -122,20 +117,19 @@ public class DuelScript : MonoBehaviour
                     instructionText.text = "CORRECT!";
                     HitScreen();
                     hits++;
-                    break;;
-                   
+                    break;;     
                 }
                //quit 
-                if (Input.GetKeyDown(KeyCode.Q))
+               if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    QuitGame();
-                    yield break;
+                  QuitGame();
+                   yield break;
                 }
                 //restart 
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    RestartGame();
-                    yield break;
+               if (Input.GetKeyDown(KeyCode.R))
+               {
+                  RestartGame();
+                   yield break;
                 }
                 yield return null;
             }
@@ -146,19 +140,16 @@ public class DuelScript : MonoBehaviour
                 lives--;
                 MissScreen();
                 instructionText.text = "MISSED!";
-              
-                
             }
         }
         timer += 2f;
         Update();
             //win and lose conditions
-            if (timer >= gameDuration || lives == 0 || hits == 2)
+            if (timer >= gameDuration || lives == 0 || hits == 2) 
              {
                 isRunning = false;
                 EndGame();
             }
-
             yield return null;
         }
     //IEnumerator to display Hit Screen for 1 second 
@@ -191,61 +182,24 @@ public class DuelScript : MonoBehaviour
     private void EndGame()
     {
         isRunning = false;
+        EnableInputs();
         //player wins
         if (hits == 2)
         {
             //display win scene
             winScene.gameObject.SetActive(true);
+            controlsText.gameObject.SetActive(false);
         }
         //loser
         else
         {
             //display losing scene
             loseScene.gameObject.SetActive(true);
+            controlsText.gameObject.SetActive(false);
         }
-        //back to main menu
-        SceneManager.LoadScene("MainMenu");
 
     }
 
-    //EnableInputs enables all player inputs 
-    public void EnableInputs()
-    {
-        parry = playerInput.currentActionMap.FindAction("Parry");
-        block = playerInput.currentActionMap.FindAction("Block");
-        attack = playerInput.currentActionMap.FindAction("Attack");
-        restart = playerInput.currentActionMap.FindAction("Restart");
-        quit = playerInput.currentActionMap.FindAction("Quit");
-
-        restart.started += Restart_started;
-        quit.started += Quit_started;
-    }
-
-    #region Input Actions
-    private void Attack_started(InputAction.CallbackContext obj)
-    {
-        if (!spaceIsPressed)
-        {
-            startGameScreen.gameObject.SetActive(false);
-            spaceIsPressed = true;
-        }
-        else if (spaceIsPressed)
-        {
-            spaceIsPressed = true;
-        }
-    }
-    private void Quit_started(InputAction.CallbackContext obj)
-    {
-        //Loads Main Menu scene
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    private void Restart_started(InputAction.CallbackContext obj)
-    {
-        //Reloads current scene
-        SceneManager.LoadScene(4);
-    }
-    #endregion
     //GetRandomInstruction creates a random index in the list of actions and 
     //selects one of the 3 attacks for the Enemy/
     private string GetRandomInstruction()
@@ -274,15 +228,38 @@ public class DuelScript : MonoBehaviour
  //returns the string variable corresponding to the action chosen for the enemy
  //i.e keycode.F for Parry, keycode.A for Block,keycode.space for Attack
  
+
     //back to main menu
     private void QuitGame()
     {
-        SceneManager.LoadScene("MainMenu");
+       SceneManager.LoadScene("MainMenu");
     }
     //back to start of the scene
     private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    private void EnableInputs()
+    {
+        playerInput.currentActionMap.Enable();
+
+        quit = playerInput.currentActionMap.FindAction("Quit");
+        restart = playerInput.currentActionMap.FindAction("Restart");
+
+        restart.started += Restart_started;
+        quit.started += Quit_started;
+    }
+
+    private void Restart_started(InputAction.CallbackContext obj)
+    {
+        //reloads current scene when prompted during win or lose scenes
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        //quits game with escape key
+        SceneManager.LoadScene("MainMenu");
     }
 }
 
