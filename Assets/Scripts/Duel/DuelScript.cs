@@ -14,6 +14,8 @@ using TMPro;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+
 
 public class DuelScript : MonoBehaviour
 {
@@ -37,7 +39,7 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
-    [SerializeField] private AudioClip click;
+   // [SerializeField] private AudioSource newInstructionPop;
   
     private InputAction restart;
     private InputAction quit;
@@ -132,14 +134,15 @@ public class DuelScript : MonoBehaviour
 
             // Display the current instruction
             instructionText.text = currentInstruction;
+           // newInstructionPop.Play();
             
             correctKeyEntered = false;
 
             
             float startTime = Time.time;
 
-            // Process player input for 2 seconds
-            while (Time.time - startTime < 2f)
+            // Process player input for 1.5 seconds
+            while (Time.time - startTime < 1.5f)
             {
                 if (Input.GetKeyDown(action))
                 {
