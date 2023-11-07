@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEditor.SceneManagement;
 
-public class DuelEnemyScript : MonoBehaviour
+public class DuelEnemyScriptOriginal : MonoBehaviour
 {
     public GameObject Block;
     public GameObject Attack;
@@ -112,9 +112,9 @@ public class DuelEnemyScript : MonoBehaviour
             GuardDown();
         }
 
-        
 
-        
+
+
 
         yield return new WaitForSeconds(2);
         if (rand2 == 1)
@@ -244,3 +244,4 @@ public class DuelEnemyScript : MonoBehaviour
         EditorSceneManager.LoadScene("MainMenu");
     }
 }
+

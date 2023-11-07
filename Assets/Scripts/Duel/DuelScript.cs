@@ -25,6 +25,7 @@ public class DuelScript : MonoBehaviour
     public TMP_Text timerText;
     public TMP_Text hitText;
     public TMP_Text missText;
+    [SerializeField] private TMP_Text controlsText;
     private float gameDuration = 20f;
     private float timer = 0f;
     private bool isRunning = false;
@@ -110,6 +111,7 @@ public class DuelScript : MonoBehaviour
 
         // Disable the start screen and start the game
         startGameScreen.gameObject.SetActive(false);
+        controlsText.gameObject.SetActive(false);
         isRunning = true;
 
         // Display "READY! SET! FIGHT!"
@@ -218,6 +220,7 @@ public class DuelScript : MonoBehaviour
             HoldScreen();
             hits = 0;
             lives = 4;
+            controlsText.gameObject.SetActive(false);
         }
         //loser
         else
@@ -227,6 +230,7 @@ public class DuelScript : MonoBehaviour
             HoldScreen();
             hits = 0;
             lives = 4;
+            controlsText.gameObject.SetActive(false);
         }
 
     }
