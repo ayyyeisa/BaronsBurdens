@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3674313381021331567}
   - component: {fileID: 4753079047630485483}
   - component: {fileID: -2389606979743078127}
+  - component: {fileID: -362157117869586587}
   m_Layer: 9
   m_Name: CatapultEnemy
   m_TagString: Untagged
@@ -99,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c50c913339a8244f9bc0477d05b28b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseScene: {fileID: 8710621612033000965, guid: 4c623ef40b43cb74e915ebc1578ee900, type: 3}
 --- !u!50 &4753079047630485483
 Rigidbody2D:
   serializedVersion: 4
@@ -172,3 +172,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.05, y: 2.46}
   m_EdgeRadius: 0
+--- !u!95 &-362157117869586587
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794374308437319978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
