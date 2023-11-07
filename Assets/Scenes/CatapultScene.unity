@@ -2267,7 +2267,6 @@ MonoBehaviour:
   startMinigame: {fileID: 1143256191}
   winScene: {fileID: 69443003}
   loseScene: {fileID: 998665558}
-  controlsText: {fileID: 1202224048}
   knightCounter: {fileID: 1234508613}
   timerText: {fileID: 125902852}
 --- !u!1001 &1635057347716354824
@@ -2554,17 +2553,29 @@ PrefabInstance:
       propertyPath: loseScene
       value: 
       objectReference: {fileID: 998665558}
+    - target: {fileID: -362157117869586587, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: de34bb8d12146344ca9f35c5532df0f2, type: 2}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7703
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7703
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.84
+      value: -6.46
       objectReference: {fileID: 0}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8298
+      value: -2.58
       objectReference: {fileID: 0}
     - target: {fileID: 2538706891081641655, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
       propertyPath: m_LocalPosition.z
