@@ -48,7 +48,6 @@ public class CatapultMovement : MonoBehaviour
     private float moveDirection;
     public static bool IsAmmoDestroyed;
     private int numOfEnemyKnights = 10;
-
     //variables for countdown timer
     [SerializeField] private TMP_Text knightCounter;
     [SerializeField] private TMP_Text timerText;
@@ -107,21 +106,18 @@ public class CatapultMovement : MonoBehaviour
                 if (EnemyKnightRef == null)
                 {
                     EnemyKnightRef = StartCoroutine(EnemyKnightTimer());
-                    //win scene and lose scene trigger conditions
-                    if (currentTime == 0 && numOfEnemyKnights == 0)
-                    {
-                        winScene.SetActive(true);
-                        gameIsRunning = false;
-                        StopAllCoroutines();
-                    }
-                    else if(currentTime == 0 && numOfEnemyKnights > 0)
-                    {
-                        loseScene.SetActive(true);
-                        gameIsRunning = false;
-                        StopAllCoroutines();
-                    }
+                    
                 }
             }
+            //win scene and lose scene trigger conditions
+            if (numOfEnemyKnights == 0)
+            {
+               
+                winScene.SetActive(true);
+                gameIsRunning = false;
+                StopAllCoroutines();
+            }
+
         }
     }
 
