@@ -112,10 +112,9 @@ public class CatapultMovement : MonoBehaviour
             //win scene and lose scene trigger conditions
             if (numOfEnemyKnights == 0)
             {
-               
                 winScene.SetActive(true);
                 gameIsRunning = false;
-                StopAllCoroutines();
+                Time.timeScale = 0;
             }
 
         }
@@ -176,25 +175,12 @@ public class CatapultMovement : MonoBehaviour
         restart = playerInput.currentActionMap.FindAction("Restart");
         quit = playerInput.currentActionMap.FindAction("Quit");
 
-        //cheat code. if player hits 'x', win scene automatically appears
-        skipToWin = playerInput.currentActionMap.FindAction("CheatCode");
-        skipToWin.started += skipToWin_started;
-
         move.started += Move_started;
         move.canceled += Move_canceled;
         shoot.started += Shoot_started;
         restart.started += Restart_started;
         quit.started += Quit_started;
 
-    }
-    //cheat code
-    private void skipToWin_started(InputAction.CallbackContext obj)
-    {
-        currentTime = 0;
-        numOfEnemyKnights = 0;
-        winScene.SetActive(true);
-        gameIsRunning = false;
-        StopAllCoroutines();
     }
 
     private void Quit_started(InputAction.CallbackContext obj)
@@ -205,6 +191,7 @@ public class CatapultMovement : MonoBehaviour
     private void Restart_started(InputAction.CallbackContext obj)
     {
         SceneManager.LoadScene(3);
+        Time.timeScale = 1;
     }
 
     #region spawnFunctions
@@ -259,8 +246,9 @@ public class CatapultMovement : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             loseScene.SetActive(true);
-            Time.timeScale = 0;
             gameIsRunning = false;
+            StopCoroutine("EnemyKnightTimer");
+            Time.timeScale = 0;
         }
     }
     #endregion
