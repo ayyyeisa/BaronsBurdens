@@ -39,6 +39,7 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
+    
    // [SerializeField] private AudioSource newInstructionPop;
   
     private InputAction restart;
@@ -78,6 +79,7 @@ public class DuelScript : MonoBehaviour
         if(isRunning)
         {
          timer += Time.deltaTime; // Increment the timer
+            controlsText.gameObject.SetActive(true);
         }
        
 
@@ -128,6 +130,7 @@ public class DuelScript : MonoBehaviour
         // Main game loop
         while (isRunning)
         {
+            
        
             // Display action and record start time
             string currentInstruction = GetRandomInstruction();

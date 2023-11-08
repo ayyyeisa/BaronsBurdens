@@ -30,6 +30,7 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject startMinigame;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
+    [SerializeField] private TMP_Text controlsText;
 
     private InputAction move;
     private InputAction shoot;
@@ -115,6 +116,7 @@ public class CatapultMovement : MonoBehaviour
                 winScene.SetActive(true);
                 gameIsRunning = false;
                 Time.timeScale = 0;
+                controlsText.gameObject.SetActive(false);
             }
 
         }
@@ -247,6 +249,7 @@ public class CatapultMovement : MonoBehaviour
         {
             loseScene.SetActive(true);
             gameIsRunning = false;
+            controlsText.gameObject.SetActive(false);
             StopCoroutine("EnemyKnightTimer");
             Time.timeScale = 0;
         }
@@ -260,6 +263,7 @@ public class CatapultMovement : MonoBehaviour
         {
             startMinigame.gameObject.SetActive(false);
             spaceIsPressed = true;
+            controlsText.gameObject.SetActive(true);
         }
         else if(spaceIsPressed)
         {
