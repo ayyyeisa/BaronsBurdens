@@ -254,6 +254,8 @@ public class CatapultMovement : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+
     #endregion
 
     #region inputActions

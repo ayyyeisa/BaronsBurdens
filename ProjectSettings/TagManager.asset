@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - CatapultAmmo
   - Enemy
+  - Edge
+  - Trajectory
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - GameLayer
   - Fireball
   - Enemy
-  - 
-  - 
+  - Edge
+  - Trajectory
   - 
   - 
   - 
