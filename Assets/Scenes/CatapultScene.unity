@@ -2267,6 +2267,7 @@ MonoBehaviour:
   startMinigame: {fileID: 1143256191}
   winScene: {fileID: 69443003}
   loseScene: {fileID: 998665558}
+  controlsText: {fileID: 1202224048}
   knightCounter: {fileID: 1234508613}
   timerText: {fileID: 125902852}
 --- !u!1001 &1635057347716354824
