@@ -285,7 +285,11 @@ public class CatapultMovement : MonoBehaviour
 
     private void Move_started(InputAction.CallbackContext obj)
     {
-        isMoving = true;
+        if(gameIsRunning)
+        {
+            isMoving = true;
+        }
+        
     }
     #endregion
 
