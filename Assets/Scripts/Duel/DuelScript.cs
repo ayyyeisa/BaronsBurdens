@@ -4,7 +4,7 @@
 ///Author(s): Carl Crumer, Isa Luluquisin,Scott Berry 
 ///Creation Date: October 24, 2023
 ///
-///Description: The script the player functions of the game,input, and User Interface
+///Description: The script the player functions of the game,input,timer, and User Interface displaying intructions and lives
 /// </summary>
 using System.Collections;
 using System.Collections.Generic;
@@ -23,10 +23,11 @@ public class DuelScript : MonoBehaviour
     //Text for instructions, the player's lives, and a time
     //use this 
     public TMP_Text instructionText;
-    public TMP_Text livesText;
+    public TMP_Text PlayerHP;
     public TMP_Text timerText;
     public TMP_Text hitText;
     public TMP_Text missText;
+    public TMP_Text EnemyHP;
     [SerializeField] private TMP_Text controlsText;
     private float gameDuration = 20f;
     private float timer = 0f;
@@ -45,8 +46,9 @@ public class DuelScript : MonoBehaviour
     private InputAction quit;
 
     //player gets 4 lives, the game lasts for 20 seconds
-    private int lives = 4;
+    private int lives = 5;
     private int hits = 0;
+    private int enemyLives = 5;
     private KeyCode action = KeyCode.None;
     
     
@@ -60,9 +62,9 @@ public class DuelScript : MonoBehaviour
     void Start()
     {
         isRunning = false;
-        playerInput.currentActionMap.Disable(); 
+        //playerInput.currentActionMap.Disable(); 
         timer = 0f;
-        lives = 4;
+        lives = 5;
         Miss.gameObject.SetActive(false);
         Hit.gameObject.SetActive(false);
         Update();
@@ -74,22 +76,30 @@ public class DuelScript : MonoBehaviour
     // when the timer reaches the game duration. It also updates the user interface.
     void Update()
     {
-
+        //if game is running starts the timer
         if(isRunning)
         {
          timer += Time.deltaTime; // Increment the timer
         }
-       
-
-        livesText.text = "Lives: " + lives;
-        timerText.text = "Time: " + (int)(gameDuration - timer);
-        if (hits == 4)
+        //if escape is called the game ends
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            EndGame();
-           
+            QuitGame();
+            
         }
+        //if R is called the game restarts 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
+        //displays player and enemy lives
+        //displays timer text
+        PlayerHP.text =  lives + "/5";
+        timerText.text = "Time: " + (int)(gameDuration - timer);
+        EnemyHP.text = enemyLives + "/5";
+        
         // win/lose conditions or time runs out 
-        if (lives == 0 || hits == 4 || ((int)(gameDuration - timer)) == 0)
+        if (lives == 0 || hits == 5 || ((int)(gameDuration - timer)) == 0)
         {
             EndGame();
             
@@ -114,8 +124,7 @@ public class DuelScript : MonoBehaviour
         // Disable the start screen and start the game
         startGameScreen.gameObject.SetActive(false);
         controlsText.gameObject.SetActive(false);
-        isRunning = true;
-
+      
         // Display "READY! SET! FIGHT!"
         instructionText.text = "READY!";
         yield return new WaitForSeconds(.5f);
@@ -123,6 +132,7 @@ public class DuelScript : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         instructionText.text = "FIGHT!";
         yield return new WaitForSeconds(.5f);
+        isRunning = true;
 
         
         // Main game loop
@@ -141,43 +151,55 @@ public class DuelScript : MonoBehaviour
             
             float startTime = Time.time;
 
-            // Process player input for 1.5 seconds
-            while (Time.time - startTime < 1.5f)
+            // Process player input for .75 of a second
+            while (Time.time - startTime < .75f)
             {
+                //if key clicked is the same as the action
                 if (Input.GetKeyDown(action))
                 {
-                    // Player gets a hit
-                    hits++;
+                   //correctly attacked
+                  
+                    if(action==KeyCode.Space)
+                    { 
+                      //player gets a hit, and enemy loses a life
+                      //coroutine that displays hit screen displays for a second
+                        hits++;
+                        enemyLives--;
+                        yield return StartCoroutine(HitScreen());
+
+                    }
+                    //correct key was entered
                     correctKeyEntered = true;
-                    yield return StartCoroutine(HitScreen());
+                    
                     break;
                 }
-                else if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    QuitGame();
-                    yield break;
-                }
-                else if (Input.GetKeyDown(KeyCode.R))
-                {
-                    RestartGame();
-                    yield break;
-                }
+  
                 yield return null;
             
             }
 
-            // Player misses after 2 seconds
+            // Player misses key
             if (!correctKeyEntered)
             {
+               //player misses a block 
+                if(action==KeyCode.A)
+                {
+                //loses a life
+                //the miss screen displays for one second
                 lives--;
                 yield return StartCoroutine(MissScreen());
+                }
+               
              
             }
            
         }
     }
-    //IEnumerator to display Hit Screen for 1 second 
+   
     
+    //IEnumerator to display Hit Screen(player scores) for .1 second 
+    //sets the screen active for .1 second then makes 
+    //the screen unactive again
     private IEnumerator HitScreen()
     {
         Hit.gameObject.SetActive(true);
@@ -187,7 +209,9 @@ public class DuelScript : MonoBehaviour
 
 
     }
-    //IEnumerator to display Miss Screen for 1 second
+    //IEnumerator to display Miss Screen(player gets attacked) for .1 second 
+    //sets the screen active for .1 second then makes 
+    //the screen unactive again
     private IEnumerator MissScreen()
     {
        Miss.gameObject.SetActive(true);
@@ -203,26 +227,26 @@ public class DuelScript : MonoBehaviour
     // changes the isRunning boolean to false and changes instruction
     //text on UI to read win or lose
 
-    //EndGame sets the running boolean to false. And displays winning or losing 
-    //screen based on the condition, and then takes the player back to the main menu
+    //holds the game for 3 seconds
     private IEnumerator HoldScreen()
     {
         yield return new WaitForSeconds(3f);
     }
 
-   
+   //EndGame sets the running boolean to false. And displays winning or losing 
+    //screen based on the condition, and then takes the player back to the main menu
     private void EndGame()
     {
         isRunning = false;
         EnableInputs();
         //player wins
-        if (hits == 4)
+        if (hits == 5)
         {
             //display win scene
             winScene.gameObject.SetActive(true);
             HoldScreen();
             hits = 0;
-            lives = 4;
+            lives = 5;
             controlsText.gameObject.SetActive(false);
         }
         //loser
@@ -232,38 +256,26 @@ public class DuelScript : MonoBehaviour
             loseScene.gameObject.SetActive(true);
             HoldScreen();
             hits = 0;
-            lives = 4;
+            lives = 5;
             controlsText.gameObject.SetActive(false);
         }
 
     }
 
     //GetRandomInstruction creates a random index in the list of actions and 
-    //selects one of the 3 attacks for the Enemy/
+    //selects one of the 3 attacks for the Enemy to throw at the player 
     private string GetRandomInstruction()
     {
-        string[] instructions = { "Parry (Press F)", "Block (Press A)", "Attack (Press Space)" };
-        // int randomIndex = Random.Range(0, instructions.Length);
-
-        // if (randomIndex == 0)
-        // {
-        //     action = KeyCode.F;
-        // }
-        // else if (randomIndex == 1)
-        // {
-        //    action = KeyCode.A;
-        // }
-        // else if (randomIndex == 2)
-        //  {
-        //     action = KeyCode.Space;
-        //  }
-        // return action;
+        //instructions that can be displayed
+        string[] instructions = { "F", "A", "Space" };
+       //random index in the list of keycodes
         int randomIndex = Random.Range(0, validInputs.Length);
+        //assuring that the same instructions aren't being displayed over and over again
         if(randomIndex==lastInstruction)
         {
             randomIndex = Random.Range(0, validInputs.Length);
         }
-
+        //saving current action and index as the last action chosen
         action = validInputs[randomIndex];
         lastInstruction = randomIndex;
         return instructions[randomIndex];
@@ -272,16 +284,18 @@ public class DuelScript : MonoBehaviour
  //i.e keycode.F for Parry, keycode.A for Block,keycode.space for Attack
  
 
-    //back to main menu
+    //loads the main menu
     private void QuitGame()
     {
        SceneManager.LoadScene("MainMenu");
     }
-    //back to start of the scene
+    //restarts the game
     private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+   //enables player inputs and turns on 
+   //the duel action map
     private void EnableInputs()
     {
         playerInput.currentActionMap.Enable();
@@ -292,7 +306,7 @@ public class DuelScript : MonoBehaviour
         restart.started += Restart_started;
         quit.started += Quit_started;
     }
-
+    
     private void Restart_started(InputAction.CallbackContext obj)
     {
         //reloads current scene when prompted during win or lose scenes
