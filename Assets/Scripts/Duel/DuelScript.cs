@@ -55,6 +55,7 @@ public class DuelScript : MonoBehaviour
 
     private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
 
+    //valuables for animations
     const string ATTACK_ANIM = "AttackSpace";
     const string BLOCK_ANIM = "BlockA";
     const string PARRY_ANIM = "ParryF";

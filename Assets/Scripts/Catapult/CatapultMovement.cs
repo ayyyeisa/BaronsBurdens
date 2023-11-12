@@ -36,7 +36,6 @@ public class CatapultMovement : MonoBehaviour
     private InputAction shoot;
     private InputAction restart;
     private InputAction quit;
-    private InputAction skipToWin;
 
     public Coroutine EnemyKnightRef;
 
@@ -54,6 +53,8 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
+
+    
     #endregion
 
     // Start is called before the first frame update
@@ -74,6 +75,7 @@ public class CatapultMovement : MonoBehaviour
         startMinigame.SetActive(true);
         winScene.SetActive(false);
         loseScene.SetActive(false);
+
     }
 
     // Update is called once per frame
