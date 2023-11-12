@@ -55,6 +55,10 @@ public class DuelScript : MonoBehaviour
 
     private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
 
+    const string ATTACK_ANIM = "AttackSpace";
+    const string BLOCK_ANIM = "BlockA";
+    const string PARRY_ANIM = "ParryF";
+    private Animator duelAnimator;
     #endregion
 
     // Start is called before the first frame update
@@ -68,7 +72,7 @@ public class DuelScript : MonoBehaviour
         Hit.gameObject.SetActive(false);
         Update();
         StartCoroutine(GameLoop());
-
+        duelAnimator = GetComponent<Animator>();
     }
     // The Update function is called once per frame and handles game state updates,
     // track the timer, check for player input, and ends the game
@@ -97,6 +101,18 @@ public class DuelScript : MonoBehaviour
             
         }
 
+        if(Input.GetKeyDown(KeyCode.Space)) 
+        {
+            duelAnimator.SetTrigger(ATTACK_ANIM);
+        }
+        else if(Input.GetKeyDown(KeyCode.A)) 
+        {
+            duelAnimator.SetTrigger(BLOCK_ANIM);
+        }
+        else if(Input.GetKeyDown(KeyCode.F)) 
+        {
+            duelAnimator.SetTrigger(PARRY_ANIM);
+        }
     }
     //corotutine that handles all game functions. Takes Users input, checks users 
     //input and acts accordinlgy based on if correct key was placed in time, user wants
