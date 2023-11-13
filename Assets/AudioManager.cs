@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource SFXSource;
 
     //define sound file sources to be played
-    [Header("---------- Audio Clip ----------")]
+    [Header("---------- SFX Clips ----------")]
     public AudioClip Catapult;
     public AudioClip Damage;
     public AudioClip SwordHitPerson;

@@ -16,6 +16,7 @@ public class PauseMenuScript : MonoBehaviour
     //Different panels managed by the PauseMenuObject
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [Tooltip("The instruction at the beginning of the game")]
     [SerializeField] private GameObject howToPlayMenu;
     //bool to keep track of when the game is paused
     private bool isPaused;
