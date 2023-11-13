@@ -161,8 +161,8 @@ public class DuelScript : MonoBehaviour
             
             float startTime = Time.time;
 
-            // Process player input for 1.5 seconds
-            while (Time.time - startTime < 1.5f)
+            // Process player input for .75 of a second
+            while (Time.time - startTime < .55f)
             {
                 if (Input.GetKeyDown(action))
                 {
