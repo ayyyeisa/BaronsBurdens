@@ -5,32 +5,12 @@ using UnityEngine.InputSystem;
 
 public class DuelEnemyScript : MonoBehaviour
 {
-<<<<<<< HEAD
    [SerializeField] private GameObject Block;
     [SerializeField] private GameObject Attack;
     [SerializeField] private GameObject Parry;
 
     public Coroutine DuelEnemyRef;
     
-=======
-    public GameObject Block;
-    public GameObject Attack;
-    public GameObject Parry;
-    public GameObject WinScreen;
-    public GameObject LoseScreen;
-    int playerHP = 2;
-    int enemyHP = 2;
-
-    //Text for instructions, the player's lives, and a time
-    //use this 
-    public TMP_Text livesText;
-    public TMP_Text timerText;
-    public TMP_Text enemyLivesText;
-    private float gameDuration = 30f;
-    private float timer = 0f;
-    private bool isRunning = false;
-
->>>>>>> 37ba136b424cb226bae5955bf882c9bfc4f41795
     // Start is called before the first frame update
     void Start()
     {
