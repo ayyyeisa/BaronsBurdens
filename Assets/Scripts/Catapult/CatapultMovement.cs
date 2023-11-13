@@ -256,6 +256,8 @@ public class CatapultMovement : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+
     #endregion
 
     #region inputActions
@@ -285,7 +287,11 @@ public class CatapultMovement : MonoBehaviour
 
     private void Move_started(InputAction.CallbackContext obj)
     {
-        isMoving = true;
+        if(gameIsRunning)
+        {
+            isMoving = true;
+        }
+        
     }
     #endregion
 
