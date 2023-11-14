@@ -890,15 +890,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &187872476
-Transform:
+--- !u!224 &187872476
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187872475}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -193.14716, y: -311.79938, z: -7.128099}
+  m_LocalPosition: {x: 0, y: 0, z: -7.128099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -909,6 +909,11 @@ Transform:
   m_Father: {fileID: 63524631}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -231, y: -574}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &715063949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3266,8 +3271,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 85}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -32.593475, y: 93.148346}
+  m_SizeDelta: {x: 532.4532, y: 66.2967}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071973565
 MonoBehaviour:
@@ -3289,19 +3294,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Prove your worth to the King and his people! Follow the instructions
-    to Block, Parry, or Attack your opponent.
-
-    Block: Press ''A''
-
-    Parry:
-    Press ''F''
-
-    Attack: Press Spacebar
-
-    Successfully blocking an enemy attack
-    scores you a point, while missing a block results in your opponent scoring a
-    point. The first to 5 hits wins. Click Spacebar to start."'
+  m_text: "\"Prove your worth to the King and his people! \nFollow the instructions
+    to \nBlock, Parry, or Attack your opponent.\n\nBlock: Press 'A'\nParry: Press
+    'F'\nAttack: Press Spacebar\n\nSuccessfully blocking an enemy attack scores you
+    a point, while missing a block results in your opponent scoring a point. The
+    first to 5 hits wins. \nClick Spacebar to start.\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3364,7 +3361,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -366.4677, y: 0, z: -407.81015, w: 0}
+  m_margin: {x: -188.96085, y: -74.964966, z: -261.02567, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
