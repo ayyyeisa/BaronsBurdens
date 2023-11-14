@@ -1,14 +1,12 @@
-/// <summary>
-/// 
-/// Author: Ryan Egan, Isa Luluquisin
-/// Date: October 23, 2023
-/// 
-/// Description: This is a file that works on most controls for the 
-/// Dragon Riding minigame, as well as spawning in player and enemy fireballs
-/// and implementing the Game timer
-/// 
-/// </summary>
-
+/*****************************************************************************
+// File Name : DragonMovement.cs
+// Author : Ryan Egan, Isa Luluquisin
+// Creation Date : October 25, 2023
+//
+// Brief Description :  This is a file that works on most controls for the 
+                        Dragon Riding minigame, as well as spawning in player and enemy fireballs
+                        and implementing the Game timer
+*****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -20,39 +18,58 @@ using UnityEngine.SceneManagement;
 public class DragonMovement : MonoBehaviour
 {
     #region variables
+
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Rigidbody2D Rb2D;
+    [Tooltip("Speed at which player is able to move up and down screen")]
     [SerializeField] private float moveSpeed;
+
+    [Header("Fireball References")]
+    [Tooltip("Player fireball object")]
     [SerializeField] private GameObject pF;
+    [Tooltip("Spawning points for enemy fireballs")]
     [SerializeField] private GameObject enemyFireballSpawn;
+    [Tooltip("Enemy fireball object")]
     [SerializeField] private GameObject eF;
+
+    [Header("Text Scenes")]
     [SerializeField] private TMP_Text livesText;
+    [Tooltip("Text that states the keyboard inputs")]
     [SerializeField] private TMP_Text controlsText;
+    [Tooltip("Canvas that provides instruction before game has started")]
     [SerializeField] private GameObject startGameScreen;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
 
     // ui timer variables
+    [Tooltip("Text for the UI timer")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
 
     public Coroutine EnemyFireballRef;
     public Coroutine GameTimerRef;
+
     private bool isGameRunning;
     private bool spaceIsPressed;
     private bool gameIsOver;
 
+    //whether player's fireball was destroyed
     public static bool isFireballDestroyed;
 
+    //input actions
     private InputAction move;
     private InputAction fireball;
     private InputAction restart;
     private InputAction quit;
 
+    //determines whether player dragon is moving
     private bool isMoving;
+    //determines whether a fireball was shot and onscreen
     public bool didFire;
+    //finds out which directin player was moving (up or down)
     private float moveDirection;
+    //numer of times players may be hit before losing
     private int numOfLives = 3;
     #endregion
 
@@ -120,14 +137,12 @@ public class DragonMovement : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// Description: This method checks the collisions the player will be interacting with
+    /// This checks the collision the player will be interacting with.
+    /// If the player collides with an enemy fireball and has more than 0 lives, they lose a life.
+    /// When lives reach 0, player loses.
     /// </summary>
-    /// <param>
-    /// Collision2D collision
-    /// collider is the player
-    /// </param>
+    /// <param name="collision"> collision between player and another game object </param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if ((collision.transform.name == "Enemy_Fireball(Clone)") && (numOfLives > 0))
@@ -144,7 +159,6 @@ public class DragonMovement : MonoBehaviour
             
         }
     }
-
 
     /// <summary>
     /// Description: This method checks if the spacebar was pressed for the first time in the minigame.
@@ -215,22 +229,10 @@ public class DragonMovement : MonoBehaviour
         quit.started += Quit_started;
     }
 
-    private void Quit_started(InputAction.CallbackContext obj)
-    {
-        // Loads back the Main menu scene
-        SceneManager.LoadScene(1);
-        
-    }
-
-    private void Restart_started(InputAction.CallbackContext obj)
-    {
-        // loads back the Dragon Riding Scene
-        SceneManager.LoadScene(2);
-    }
-
     #region inputActions
     private void Fireball_started(InputAction.CallbackContext obj)
     {
+        //if space is being pressed for the first time
         if(!spaceIsPressed)
         {
             startGameScreen.gameObject.SetActive(false);
@@ -253,9 +255,6 @@ public class DragonMovement : MonoBehaviour
 
             }
         }
-       
-
-
 
     }
 
@@ -271,6 +270,18 @@ public class DragonMovement : MonoBehaviour
             isMoving = true;
         }
         
+    }
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        // Loads back the Main menu scene
+        SceneManager.LoadScene(1);
+
+    }
+
+    private void Restart_started(InputAction.CallbackContext obj)
+    {
+        // loads back the Dragon Riding Scene
+        SceneManager.LoadScene(2);
     }
     #endregion
 

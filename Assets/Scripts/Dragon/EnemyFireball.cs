@@ -1,13 +1,11 @@
-/// <summary>
-/// 
-/// Author: Ryan Egan
-/// Date: October 23, 2023
-/// 
-/// Description: This is a file that works on the behavior for the enemy
-/// fireballs that spawn in for the Dragon Riding minigame
-/// 
-/// </summary>
-
+/*****************************************************************************
+// File Name : EnemyFireball.cs
+// Author : Ryan Egan
+// Creation Date : October 23, 2023
+//
+// Brief Description :  This is a file that works on the behavior for the enemy
+                        fireballs that spawn in for the Dragon Riding minigame
+*****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,25 +13,12 @@ using UnityEngine;
 
 public class EnemyFireball : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     /// <summary>
-    /// Description: This function checks the collisions the enemy fireballs will interact with
+    /// This function checks the collisions the enemy fireballs will interact with. 
+    /// If a fireball collides with the edge of the screen, another fireball,
+    /// or the player's dragon, it is destroyed.
     /// </summary>
-    /// <param>
-    /// Collision2D collision
-    /// Collider is the enemy fireball
-    /// </param>
+    /// <param name="collision"> collider is the enemy fireball </param>
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Wall")

@@ -1,13 +1,11 @@
-/// <summary>
-/// 
-/// Author: Ryan Egan
-/// Date: October 25, 2023
-/// 
-/// Description: This file makes the background in the game move and loop repeatedly
-/// 
-/// </summary>
-
-
+/*****************************************************************************
+// File Name : MovingBackground.cs
+// Author : Ryan Egan
+// Creation Date : October 25, 2023
+//
+// Brief Description :  Description: This file makes the 
+                        background in the game move and loop repeatedly
+*****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,8 +13,10 @@ using UnityEngine;
 
 public class MovingBackground : MonoBehaviour
 {
-
+    [Header("Values for background's movement")]
+    [Tooltip("Speed at which background is moving")]
     [SerializeField] private float scrollSpeed;
+    [Tooltip("Width of the background. Used to loop background")]
     [SerializeField] private float scrollWidth;
 
     // Start is called before the first frame update
