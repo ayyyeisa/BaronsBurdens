@@ -1,13 +1,13 @@
-/// <summary>
-/// 
-/// Author: Carl Crumer
-/// Date: October 23, 2023
-/// 
-/// Description: This is a file that works on most controls for the 
-/// Dragon Riding minigame, as well as spawning in player and enemy fireballs
-/// and implementing the Game timer
-/// 
-/// </summary>
+/*****************************************************************************
+// File Name : Menu.cs
+// Author : Carl Crumer
+// Creation Date : October 23, 2023
+//
+// Brief Description : This is a file that connects all the scenes together, 
+                       as well as allow for the skipping of the introduction 
+                       scene.
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,30 +15,40 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    /// <summary>
+    /// Loads the dragon scene when the dragon button is clicked
+    /// </summary>
     public void PlayDragon()
     {
-        //Opens Dragon Riding Scene from Menu
         SceneManager.LoadScene(2);
     }
+    /// <summary>
+    /// Loads the catapult scene when the catapult button is clicked
+    /// </summary>
     public void PlayCatapult()
     {
-        //Opens Catapult Scene from Menu
         SceneManager.LoadScene(3);
     }
+    /// <summary>
+    /// Loads the duel scene when the catapult button is clicked
+    /// </summary>
     public void PlayDuel()
     {
-        //Opens Duel Scene from Menu
         SceneManager.LoadScene(4);
 
     }
+    /// <summary>
+    /// Quits the game on selection of esc
+    /// </summary>
     public void QuitGame()
     {
-         Debug.Log("Quit");
-        //On Selction of the Quit Button, Game will close
+        Debug.Log("Quit");
         Application.Quit();
-        
-       
     }
+
+    /// <summary>
+    /// Skips the intro scene when the skip button is pressed in intro scene
+    /// </summary>
     public void SkipIntroScene()
     {
         SceneManager.LoadScene(1);

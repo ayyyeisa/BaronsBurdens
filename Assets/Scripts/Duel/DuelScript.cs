@@ -1,11 +1,12 @@
-///<summary>
-///PlayerDuel.cs 
-///
-///Author(s): Carl Crumer, Isa Luluquisin,Scott Berry 
-///Creation Date: October 24, 2023
-///
-///Description: The script the player functions of the game,input,timer, and User Interface displaying intructions and lives
-/// </summary>
+/*****************************************************************************
+// File Name : DuelScript.cs
+// Author : Carl Crumer, Isa Luluquisin, Scott Berry
+// Creation Date : October 24, 2023
+//
+// Brief Description : The script the player functions of the game,input,timer,
+                       and User Interface displaying intructions and lives
+*****************************************************************************/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
