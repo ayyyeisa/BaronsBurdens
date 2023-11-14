@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1977575771317392602
 SpriteRenderer:
@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: 253ccf0f90a321347a4759ce05014ba2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0d690195226b5e41976a78c1adc7fb9, type: 3}
   m_Color: {r: 0.7830189, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 2.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -107,8 +107,11 @@ MonoBehaviour:
   enemyKnightSpawn: {fileID: 0}
   catapultAmmo: {fileID: 5861994652682480189, guid: e73c08b4968186c45b6f3884d30298c4, type: 3}
   catapultAmmoSpawn: {fileID: 0}
+  startMinigame: {fileID: 0}
   winScene: {fileID: 0}
   loseScene: {fileID: 0}
+  controlsText: {fileID: 0}
+  knightCounter: {fileID: 0}
   timerText: {fileID: 0}
 --- !u!114 &1637051763243224337
 MonoBehaviour:
