@@ -48,6 +48,7 @@ public class DuelScript : MonoBehaviour
     //player gets 4 lives, the game lasts for 20 seconds
     private int lives = 5;
     private int hits = 0;
+    private int enemyHits = 0;
     private int enemyLives = 5;
     private KeyCode action = KeyCode.None;
     
@@ -94,9 +95,9 @@ public class DuelScript : MonoBehaviour
         }
         //displays player and enemy lives
         //displays timer text
-        PlayerHP.text =  lives + "/5";
+        PlayerHP.text = "Player:"+hits;
         timerText.text = "Time: " + (int)(gameDuration - timer);
-        EnemyHP.text = enemyLives + "/5";
+        EnemyHP.text = "Enemy:"+enemyHits;
         
         // win/lose conditions or time runs out 
         if (lives == 0 || hits == 5 || ((int)(gameDuration - timer)) == 0)
@@ -152,7 +153,7 @@ public class DuelScript : MonoBehaviour
             float startTime = Time.time;
 
             // Process player input for .75 of a second
-            while (Time.time - startTime < .75f)
+            while (Time.time - startTime < .55f)
             {
                 //if key clicked is the same as the action
                 if (Input.GetKeyDown(action))
@@ -187,6 +188,7 @@ public class DuelScript : MonoBehaviour
                 //loses a life
                 //the miss screen displays for one second
                 lives--;
+                 enemyHits++;
                 yield return StartCoroutine(MissScreen());
                 }
                

@@ -478,7 +478,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -204, y: 512}
+  m_AnchoredPosition: {x: -209.7, y: 570.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &66929366
@@ -944,7 +944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 502, y: 512}
+  m_AnchoredPosition: {x: 520.5, y: 569.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &715063951
@@ -3219,19 +3219,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Prove your worth to the King and his people!
-
-    Follow the instructions
+  m_text: '"Prove your worth to the King and his people! Follow the instructions
     to Block, Parry, or Attack your opponent.
 
-    Block: ''A''
+    Block: Press ''A''
 
-    Parry: ''F''
+    Parry:
+    Press ''F''
 
-    Attack:
-    Spacebar
+    Attack: Press Spacebar
 
-    Click on space to start.'
+    Successfully blocking an enemy
+    attack scores you a point, while missing a block results in your opponent scoring
+    a point. The first to 5 hits wins. Click Spacebar to start."'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
