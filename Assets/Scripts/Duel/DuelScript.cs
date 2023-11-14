@@ -59,6 +59,10 @@ public class DuelScript : MonoBehaviour
     const string ATTACK_ANIM = "AttackSpace";
     const string BLOCK_ANIM = "BlockA";
     const string PARRY_ANIM = "ParryF";
+
+    const string ENEMY_ATTACK_ANIM = "EnemyAttack";
+    const string ENEMY_BLOCK_ANIM = "EnemyBlock";
+    const string ENEMY_PARRY_ANIM = "EnemyParry";
     private Animator duelAnimator;
     #endregion
 
@@ -169,6 +173,18 @@ public class DuelScript : MonoBehaviour
                     // Player gets a hit
                     hits++;
                     correctKeyEntered = true;
+                    if(currentInstruction == "Parry (Press F)")
+                    {
+                        duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
+                    }
+                    else if(currentInstruction == "Block (Press A)")
+                    {
+                        duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
+                    }
+                    else if (currentInstruction == "Attack (Press Space)")
+                    {
+                        duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
+                    }
                     yield return StartCoroutine(HitScreen());
                     break;
                 }
@@ -190,6 +206,18 @@ public class DuelScript : MonoBehaviour
             if (!correctKeyEntered)
             {
                 lives--;
+                if (currentInstruction == "Parry (Press F)")
+                {
+                    duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
+                }
+                else if (currentInstruction == "Block (Press A)")
+                {
+                    duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
+                }
+                else if (currentInstruction == "Attack (Press Space)")
+                {
+                    duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
+                }
                 yield return StartCoroutine(MissScreen());
              
             }
