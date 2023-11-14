@@ -216,9 +216,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CheatCode",
+                    "name": "Pause",
                     "type": "Button",
-                    "id": "e369c706-25f7-4372-815e-9cbd077b2bbd",
+                    "id": "9c086b7b-470d-4c5c-9e77-c82ca78a7aae",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -338,12 +338,12 @@
                 },
                 {
                     "name": "",
-                    "id": "2d314458-0a39-4a80-bcd4-3003e83dba16",
-                    "path": "<Keyboard>/x",
+                    "id": "3821b12d-e3b3-4252-afee-009a497a3248",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CheatCode",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -370,6 +370,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "aff96a47-1365-4852-ac1a-965cf5c56a6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -392,6 +401,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "87dc0718-e286-4c48-bb1b-8343b8109b1c",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

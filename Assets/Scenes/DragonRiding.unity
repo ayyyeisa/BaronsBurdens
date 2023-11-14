@@ -1442,11 +1442,11 @@ RectTransform:
   m_Father: {fileID: 992245126}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 295, y: 20}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &999451387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,17 +2607,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Survive for 20 seconds against the dragons!
-
-    W/Up arrow: Move up
-
-    S/Down
-    arrow: Move down
-
-    Spacebar/Left mouse click: Shoot fireball
-
-    Press the
-    Spacebar or left mouse click to begin the game'
+  m_text: "Survive for 20 seconds against the dragons!\n\nW/Up arrow: Move up\nS/Down
+    arrow: Move down\nSpacebar/Left mouse click: Shoot fireball\n\nPress the Spacebar
+    or left mouse click \nto begin the game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2644,8 +2636,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26
-  m_fontSizeBase: 26
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2680,7 +2672,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -73.92397, z: 0, w: -87.306755}
+  m_margin: {x: -58.01068, y: -73.92397, z: -66.449585, w: -87.306755}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
