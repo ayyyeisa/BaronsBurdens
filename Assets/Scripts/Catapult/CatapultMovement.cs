@@ -1,13 +1,12 @@
-/// <summary>
-/// 
-/// Author: Ryan Egan, Tri Nguyen, Isa Luluquisin
-/// Date: October 23, 2023
-/// 
-/// Description: This is a file that works on most controls for the 
+/*****************************************************************************
+// File Name : CatapultMovement.cs
+// Author : Ryan Egan, Tri Nguyen, Isa Luluquisin
+// Creation Date : October 23, 2023
+//
+// Brief Description : This is a file that works on most controls for the 
 /// Catapult minigame, as well as spawning in enemy knights and 
 /// ammo for the catapult
-/// 
-/// </summary>
+*****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -187,17 +186,6 @@ public class CatapultMovement : MonoBehaviour
 
     }
 
-    private void Quit_started(InputAction.CallbackContext obj)
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    private void Restart_started(InputAction.CallbackContext obj)
-    {
-        SceneManager.LoadScene(3);
-        Time.timeScale = 1;
-    }
-
     #region spawnFunctions
 
 
@@ -244,7 +232,13 @@ public class CatapultMovement : MonoBehaviour
     }
     #endregion
 
+
     #region Collider
+    /// <summary>
+    /// This triggers the lose scene if an enemy soldier collides with the castle.
+    /// When the lose scene is triggered, the coroutine is also stopped.
+    /// </summary>
+    /// <param name="collision"> collision between enemy sprite and trigger scene </param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Enemy")
@@ -287,11 +281,22 @@ public class CatapultMovement : MonoBehaviour
 
     private void Move_started(InputAction.CallbackContext obj)
     {
-        if(gameIsRunning)
+        if (gameIsRunning)
         {
             isMoving = true;
         }
-        
+
+    }
+
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    private void Restart_started(InputAction.CallbackContext obj)
+    {
+        SceneManager.LoadScene(3);
+        Time.timeScale = 1;
     }
     #endregion
 
