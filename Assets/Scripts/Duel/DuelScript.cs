@@ -62,6 +62,10 @@ public class DuelScript : MonoBehaviour
     const string ATTACK_ANIM = "AttackSpace";
     const string BLOCK_ANIM = "BlockA";
     const string PARRY_ANIM = "ParryF";
+
+    const string ENEMY_BLOCK_ANIM = "EnemyBlock";
+    const string ENEMY_ATTACK_ANIM = "EnemyAttack";
+    const string ENEMY_PARRY_ANIM = "EnemyParry";
     private Animator duelAnimator;
     #endregion
 
@@ -165,7 +169,7 @@ public class DuelScript : MonoBehaviour
 
             // Display the current instruction
             instructionText.text = currentInstruction;
-           // newInstructionPop.Play();
+            // newInstructionPop.Play();
             
             correctKeyEntered = false;
 
@@ -178,14 +182,27 @@ public class DuelScript : MonoBehaviour
                 //if key clicked is the same as the action
                 if (Input.GetKeyDown(action))
                 {
-                   //correctly attacked
+                    //correctly attacked
                   
                     if(action==KeyCode.Space)
                     { 
-                      //player gets a hit, and enemy loses a life
-                      //coroutine that displays hit screen displays for a second
+                        //player gets a hit, and enemy loses a life
+                        //coroutine that displays hit screen displays for a second
                         hits++;
                         enemyLives--;
+                        //Scripts for enemy animations
+                        if(currentInstruction == "Space")
+                        {
+                            duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
+                        }
+                        else if(currentInstruction == "A") 
+                        {
+                            duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
+                        }
+                        else if (currentInstruction == "F")
+                        {
+                            duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
+                        }
                         yield return StartCoroutine(HitScreen());
 
                     }
@@ -205,11 +222,24 @@ public class DuelScript : MonoBehaviour
                //player misses a block 
                 if(action==KeyCode.A)
                 {
-                //loses a life
-                //the miss screen displays for one second
-                lives--;
-                 enemyHits++;
-                yield return StartCoroutine(MissScreen());
+                    //loses a life
+                    //the miss screen displays for one second
+                    lives--;
+                    enemyHits++;
+                    //comment these out if you going to fix the scene later on
+                    if (currentInstruction == "Space")
+                    {
+                        duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
+                    }
+                    else if (currentInstruction == "A")
+                    {
+                        duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
+                    }
+                    else if (currentInstruction == "F")
+                    {
+                        duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
+                    }
+                    yield return StartCoroutine(MissScreen());
                 }
                
              
@@ -255,7 +285,7 @@ public class DuelScript : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
-   //EndGame sets the running boolean to false. And displays winning or losing 
+    //EndGame sets the running boolean to false. And displays winning or losing 
     //screen based on the condition, and then takes the player back to the main menu
     private void EndGame()
     {
@@ -302,8 +332,8 @@ public class DuelScript : MonoBehaviour
         lastInstruction = randomIndex;
         return instructions[randomIndex];
     }
- //returns the string variable corresponding to the action chosen for the enemy
- //i.e keycode.F for Parry, keycode.A for Block,keycode.space for Attack
+    //returns the string variable corresponding to the action chosen for the enemy
+    //i.e keycode.F for Parry, keycode.A for Block,keycode.space for Attack
  
 
     //loads the main menu
@@ -316,8 +346,8 @@ public class DuelScript : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-   //enables player inputs and turns on 
-   //the duel action map
+    //enables player inputs and turns on 
+    //the duel action map
     private void EnableInputs()
     {
         playerInput.currentActionMap.Enable();
