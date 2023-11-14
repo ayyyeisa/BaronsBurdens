@@ -29,6 +29,9 @@ public class CatapultAmmo : MonoBehaviour
             Destroy(gameObject);
             CatapultMovement.IsAmmoDestroyed = true;
         }
+        
     }
+
+    
 
 }
