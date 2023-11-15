@@ -1,3 +1,13 @@
+/*****************************************************************************
+// File Name : CatapultAnim.cs
+// Author : Ryan Egan
+// Creation Date : October 25, 2023
+//
+// Brief Description :  This is a file that works on the animation for the catapult
+// in the Catapult minigame
+*****************************************************************************/
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -13,11 +13,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenuScript : MonoBehaviour
 {
-    //Different panels managed by the PauseMenuObject
+    
+    [Tooltip("All Panels in Pause Menu")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject howToPlayMenu;
-    //bool to keep track of when the game is paused
+    
+    [Tooltip("Bool to check if game is paused")]
     private bool isPaused;
 
 
