@@ -29,6 +29,7 @@ public class PauseMenuScript : MonoBehaviour
         //initialize the panels to be inactive
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        howToPlayMenu.SetActive(false);
     }
 
     // Update is called once per frame
