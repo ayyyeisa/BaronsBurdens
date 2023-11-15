@@ -145,6 +145,7 @@ public class DuelScript : MonoBehaviour
     /// checking user input and acting accordingly whether the correct or incorrect key was pushed in time,
     /// or if the user wants to quit or restart
     /// </summary>
+    /// <returns> coroutine that controls nearly the entire game functions </returns>
     private IEnumerator GameLoop()
     {
         bool correctKeyEntered = false;
@@ -259,11 +260,11 @@ public class DuelScript : MonoBehaviour
            
         }
     }
-   
 
     /// <summary>
     /// This function is a coroutine that displays the Hit screen(player scores) for 0.1 seconds
     /// </summary>
+    /// <returns> coroutine that displays hit screen </returns>
     private IEnumerator HitScreen()
     {
         Hit.gameObject.SetActive(true);
@@ -277,6 +278,7 @@ public class DuelScript : MonoBehaviour
     /// <summary>
     /// This function is a coroutine that displays the Miss screen(player gets attacked) for 0.1 seconds
     /// </summary>
+    /// <returns> courtine that displays miss screen </returns>
     private IEnumerator MissScreen()
     {
        Miss.gameObject.SetActive(true);
@@ -296,6 +298,7 @@ public class DuelScript : MonoBehaviour
     /// <summary>
     /// This function is a coroutine that holds the game screen for 3 seconds
     /// </summary>
+    /// <returns> coroutine that prevents new changes for 3 seconds </returns>
     private IEnumerator HoldScreen()
     {
         yield return new WaitForSeconds(3f);
@@ -341,6 +344,7 @@ public class DuelScript : MonoBehaviour
     /// This function will create a random index in the list of enemy actions and selects
     /// one of the 3 attacks for the Enemy to use against the player
     /// </summary>
+    /// <returns> instructions in the form of strings </returns>
     private string GetRandomInstruction()
     {
         //instructions that can be displayed

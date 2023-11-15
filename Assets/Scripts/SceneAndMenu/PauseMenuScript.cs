@@ -141,6 +141,9 @@ public class PauseMenuScript : MonoBehaviour
         howToPlayMenu.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets pause menu and howtoplay to false
+    /// </summary>
     public void Features()
     {
         pauseMenu.SetActive(false);
