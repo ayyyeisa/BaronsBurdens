@@ -17,6 +17,7 @@ public class PauseMenuScript : MonoBehaviour
     [Tooltip("All Panels in Pause Menu")]
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [Tooltip("The instruction at the beginning of the game")]
     [SerializeField] private GameObject howToPlayMenu;
     
     [Tooltip("Bool to check if game is paused")]
@@ -30,6 +31,7 @@ public class PauseMenuScript : MonoBehaviour
         //initialize the panels to be inactive
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        howToPlayMenu.SetActive(false);
     }
 
     // Update is called once per frame

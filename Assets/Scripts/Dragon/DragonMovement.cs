@@ -41,6 +41,9 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
 
+    //create audio manager object
+    private AudioManager audioManager;
+
     // ui timer variables
     [Tooltip("Text for the UI timer")]
     [SerializeField] private TMP_Text timerText;
@@ -76,6 +79,9 @@ public class DragonMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Access the audio manger object 
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
         // Enables the action map
         EnableInputs();
 
@@ -244,6 +250,8 @@ public class DragonMovement : MonoBehaviour
         }
         else if(spaceIsPressed)
         {
+            //Play corresponding SFX
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().Fireball);
             if (isFireballDestroyed && isGameRunning)
             {
                 didFire = true;
@@ -265,7 +273,9 @@ public class DragonMovement : MonoBehaviour
 
     private void Move_started(InputAction.CallbackContext obj)
     {
-        if(isGameRunning)
+        //Play corresponding SFX
+        audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().WingBeat);
+        if (isGameRunning)
         {
             isMoving = true;
         }

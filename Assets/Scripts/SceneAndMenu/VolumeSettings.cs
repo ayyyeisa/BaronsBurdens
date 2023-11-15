@@ -13,16 +13,13 @@ using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
 {
-    
-    [Tooltip("Game Mixer")]
+    //Game mixer
     [SerializeField] private AudioMixer myMixer;
-
-    [Tooltip("Sliders for Sound FX and Music")]
+    //Sliders for volume control
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider SFXSlider;
-
-    [Tooltip("The Settings Menu")]
-    public GameObject SettingsMenu;
+    //settings panel
+    [SerializeField] private GameObject SettingsMenu;
 
 
     private void Start()
