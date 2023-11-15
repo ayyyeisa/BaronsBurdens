@@ -529,14 +529,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609920062}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1230663751}
   - {fileID: 1267636079}
-  m_Father: {fileID: 1087705067}
+  m_Father: {fileID: 1282083533}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -581,7 +581,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609920062}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &652829399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,11 +1406,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1060641158}
   m_CullTransparentMesh: 1
---- !u!224 &1087705067 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1759541966833330771, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
-  m_PrefabInstance: {fileID: 2130604538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1143256191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,6 +2145,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267636078}
   m_CullTransparentMesh: 1
+--- !u!224 &1282083533 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8884475798187334300, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
+  m_PrefabInstance: {fileID: 2130604538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1407390601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,7 +2979,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1759541966833330771, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 8884475798187334300, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
       insertIndex: -1
       addedObject: {fileID: 609920063}
     m_AddedComponents: []
