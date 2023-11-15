@@ -14,6 +14,13 @@ using UnityEngine;
 
 public class EnemyKnight : MonoBehaviour
 {
+    //create audio manager object
+    private AudioManager audioManager;
+    private void Start()
+    {
+        //Access the audio manger object 
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     /// <summary>
     /// Description: This method will check the collisions the enemy knights will interact with
     /// </summary>
@@ -26,6 +33,8 @@ public class EnemyKnight : MonoBehaviour
         if (collision.transform.tag == "CatapultAmmo")
         {
             Destroy(gameObject);
+            //Play corresponding SFX
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().Damage);
         }
         else if(collision.transform.name == "LoseSceneTrigger")
         {

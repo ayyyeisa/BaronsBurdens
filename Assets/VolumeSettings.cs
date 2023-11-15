@@ -19,7 +19,7 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider SFXSlider;
     //settings panel
-    public GameObject SettingsMenu;
+    [SerializeField] private GameObject SettingsMenu;
 
 
     private void Start()

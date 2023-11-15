@@ -1,7 +1,7 @@
 ///<summary>
 ///PlayerDuel.cs 
 ///
-///Author(s): Carl Crumer, Isa Luluquisin,Scott Berry 
+///Author(s): Carl Crumer, Isa Luluquisin, Scott Berry 
 ///Creation Date: October 24, 2023
 ///
 ///Description: The script the player functions of the game,input, and User Interface
@@ -39,9 +39,12 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
-    
-   // [SerializeField] private AudioSource newInstructionPop;
-  
+
+    //create audio manager object
+    private AudioManager audioManager;
+
+    // [SerializeField] private AudioSource newInstructionPop;
+
     private InputAction restart;
     private InputAction quit;
 
@@ -65,6 +68,9 @@ public class DuelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Access the audio manger object 
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        
         isRunning = false;
         playerInput.currentActionMap.Disable(); 
         timer = 0f;
@@ -104,14 +110,23 @@ public class DuelScript : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)) 
         {
+            //Play corresponding SFX
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
+            //Play corresponding animation
             duelAnimator.SetTrigger(ATTACK_ANIM);
         }
         else if(Input.GetKeyDown(KeyCode.A)) 
         {
+            //Play corresponding SFX
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
+            //Play corresponding animation
             duelAnimator.SetTrigger(BLOCK_ANIM);
         }
         else if(Input.GetKeyDown(KeyCode.F)) 
         {
+            //Play corresponding SFX
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
+            //Play corresponding animation
             duelAnimator.SetTrigger(PARRY_ANIM);
         }
     }
@@ -210,7 +225,9 @@ public class DuelScript : MonoBehaviour
     //IEnumerator to display Miss Screen for 1 second
     private IEnumerator MissScreen()
     {
-       Miss.gameObject.SetActive(true);
+        //Play corresponding SFX
+        audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
+        Miss.gameObject.SetActive(true);
        yield return new WaitForSeconds(.1f);
        Miss.gameObject.SetActive(false);
         yield break;

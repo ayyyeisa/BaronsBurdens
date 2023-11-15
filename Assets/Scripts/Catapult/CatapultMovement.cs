@@ -42,6 +42,9 @@ public class CatapultMovement : MonoBehaviour
     private bool spaceIsPressed;
     private bool gameIsRunning;
 
+    //create audio manager object
+    private AudioManager audioManager;
+
     //valuables for moving enemies
     private bool isMoving;
     private bool didShoot;
@@ -54,12 +57,15 @@ public class CatapultMovement : MonoBehaviour
     private float currentTime = 0f;
     private float startingTime = 20f;
 
-    
+
     #endregion
 
+    
     // Start is called before the first frame update
     void Start()
     {
+        //Access the audio manger object 
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         // Enabling action map, setting bools
         EnableInputs();
         isMoving = false;
@@ -269,6 +275,8 @@ public class CatapultMovement : MonoBehaviour
         }
         else if(spaceIsPressed)
         {
+            //Play corresponding SFX
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().Catapult);
             if (IsAmmoDestroyed)
             {
                 didShoot = true;
