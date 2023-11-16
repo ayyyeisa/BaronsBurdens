@@ -1555,12 +1555,31 @@ MonoBehaviour:
   hitText: {fileID: 1244241895}
   missText: {fileID: 21800423}
   controlsText: {fileID: 1739187622}
+  gameDuration: 20
+  timer: 0
+  isRunning: 0
+  lastInstruction: 0
   playerInput: {fileID: 822633166}
   startGameScreen: {fileID: 158369700}
   winScene: {fileID: 1768125403}
   loseScene: {fileID: 7080226}
   Hit: {fileID: 1996330426}
   Miss: {fileID: 1678449788}
+  audioManager: {fileID: 0}
+  restart:
+    m_Name: Restart
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 97e040ab-0e12-46c9-9506-5328b94b9125
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  lives: 4
+  hits: 0
+  action: 0
+  validInputs: 660000006100000020000000
+  duelAnimator: {fileID: 0}
 --- !u!114 &822633166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3532,6 +3551,7 @@ GameObject:
   - component: {fileID: 2028582290}
   - component: {fileID: 2028582289}
   - component: {fileID: 2028582291}
+  - component: {fileID: 2028582292}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -3627,6 +3647,49 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2028582292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028582287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7680eb30d6b694e8aaee22ced8dd25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instructionText: {fileID: 116542984}
+  livesText: {fileID: 66929366}
+  timerText: {fileID: 1664643722}
+  hitText: {fileID: 1244241895}
+  missText: {fileID: 21800423}
+  controlsText: {fileID: 1739187622}
+  gameDuration: 20
+  timer: 0
+  isRunning: 0
+  lastInstruction: 0
+  playerInput: {fileID: 822633166}
+  startGameScreen: {fileID: 158369700}
+  winScene: {fileID: 1768125403}
+  loseScene: {fileID: 7080226}
+  Hit: {fileID: 1996330426}
+  Miss: {fileID: 1678449788}
+  audioManager: {fileID: 0}
+  restart:
+    m_Name: Restart
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 97e040ab-0e12-46c9-9506-5328b94b9125
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  lives: 4
+  hits: 0
+  action: 0
+  validInputs: 660000006100000020000000
+  duelAnimator: {fileID: 0}
 --- !u!1 &2071973563
 GameObject:
   m_ObjectHideFlags: 0
