@@ -23,12 +23,12 @@ public class DuelScript : MonoBehaviour
     //Text for instructions, the player's lives, and a time
     //use this 
     [Header("TMP TEXT VARIABLES")]
-    public TMP_Text instructionText;
-    public TMP_Text PlayerHP;
-    public TMP_Text timerText;
-    public TMP_Text hitText;
-    public TMP_Text missText;
-    public TMP_Text EnemyHP;
+    [SerializeField] private TMP_Text instructionText;
+    [SerializeField] private TMP_Text PlayerHP;
+    [SerializeField] private TMP_Text timerText;
+    [SerializeField] private TMP_Text hitText;
+    [SerializeField] private TMP_Text missText;
+    [SerializeField] private TMP_Text EnemyHP;
     [SerializeField] private TMP_Text controlsText;
 
     [Header("GAME TIMER")]
