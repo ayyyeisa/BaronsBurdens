@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1947676958}
+      - m_Target: {fileID: 1027890856}
         m_TargetAssemblyTypeName: PauseMenuScript, Assembly-CSharp
         m_MethodName: BackButtonHowToPlay
         m_Mode: 1
@@ -2010,6 +2010,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1027890856 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 918287541208375758, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
+  m_PrefabInstance: {fileID: 1947676957}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77979c26604d6c743aa88236005aa6b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1035372076
 GameObject:
   m_ObjectHideFlags: 0
@@ -3290,6 +3301,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5910631116637315668, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7680842759190239138, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3330,17 +3345,6 @@ PrefabInstance:
       addedObject: {fileID: 402475088}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
---- !u!114 &1947676958 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 918287541208375758, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
-  m_PrefabInstance: {fileID: 1947676957}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77979c26604d6c743aa88236005aa6b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1947676959 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3260522395643163733, guid: 85328aeabe7993a4a9575ac33d348404, type: 3}
