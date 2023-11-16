@@ -28,10 +28,10 @@ public class DuelScript : MonoBehaviour
     public TMP_Text hitText;
     public TMP_Text missText;
     [SerializeField] private TMP_Text controlsText;
-    private float gameDuration = 20f;
-    private float timer = 0f;
-    private bool isRunning = false;
-    private int lastInstruction = 0;
+    [SerializeField] private float gameDuration = 20f;
+    [SerializeField] private float timer = 0f;
+    [SerializeField] private bool isRunning = false;
+    [SerializeField] private int lastInstruction = 0;
 
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private GameObject startGameScreen;
@@ -41,28 +41,28 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject Miss;
 
     //create audio manager object
-    private AudioManager audioManager;
+    [SerializeField] private AudioManager audioManager;
 
     // [SerializeField] private AudioSource newInstructionPop;
 
-    private InputAction restart;
+    [SerializeField] private InputAction restart;
     private InputAction quit;
 
     //player gets 4 lives, the game lasts for 20 seconds
-    private int lives = 4;
-    private int hits = 0;
-    private KeyCode action = KeyCode.None;
-    
-    
+    [SerializeField] private int lives = 4;
+    [SerializeField] private int hits = 0;
+    [SerializeField] private KeyCode action = KeyCode.None;
+
+
     //private int roundCount = 0;
 
-    private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
+    [SerializeField] private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
 
     //valuables for animations
-    const string ATTACK_ANIM = "AttackSpace";
-    const string BLOCK_ANIM = "BlockA";
-    const string PARRY_ANIM = "ParryF";
-    private Animator duelAnimator;
+    [SerializeField] const string ATTACK_ANIM = "AttackSpace";
+    [SerializeField] const string BLOCK_ANIM = "BlockA";
+    [SerializeField] const string PARRY_ANIM = "ParryF";
+    [SerializeField] private Animator duelAnimator;
     #endregion
 
     // Start is called before the first frame update
@@ -329,7 +329,7 @@ public class DuelScript : MonoBehaviour
         restart.started += Restart_started;
         quit.started += Quit_started;
     }
-
+   
     private void Restart_started(InputAction.CallbackContext obj)
     {
         //reloads current scene when prompted during win or lose scenes
