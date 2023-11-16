@@ -202,7 +202,7 @@ public class DuelScript : MonoBehaviour
             float startTime = Time.time;
 
             // Process player input for .75 of a second
-            while (Time.time - startTime < .55f)
+            while (Time.time - startTime < .75f)
             {
                 //if key clicked is the same as the action
                 if (Input.GetKeyDown(action))
@@ -359,7 +359,7 @@ public class DuelScript : MonoBehaviour
     private string GetRandomInstruction()
     {
         //instructions that can be displayed
-        string[] instructions = { "F", "A", "Space" };
+        string[] instructions = { "Parry", "Block", "Attack" };
         //random index in the list of keycodes
         int randomIndex = Random.Range(0, validInputs.Length);
         //assuring that the same instructions aren't being displayed over and over again
