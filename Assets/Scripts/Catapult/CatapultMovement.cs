@@ -19,17 +19,29 @@ using TMPro;
 public class CatapultMovement : MonoBehaviour
 {
     #region variables
+    [Tooltip("Point at which the ammo will land")]
     [SerializeField] private GameObject trajectoryPoint;
+
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Rigidbody2D Rb2D;
+
+    [Tooltip("Speed at which catapult is moving")]
     [SerializeField] private float moveSpeed;
+
+    [Header("ENEMY KNIGHT REFERENCES")]
     [SerializeField] private GameObject enemyKnight;
     [SerializeField] private GameObject enemyKnightSpawn;
+
+    [Header("AMMO REFERENCES")]
     [SerializeField] private GameObject catapultAmmo;
     [SerializeField] private GameObject catapultAmmoSpawn;
+
+    [Header("CANVAS REFERENCES")]
+    [Tooltip("What appears to players before game has started")]
     [SerializeField] private GameObject startMinigame;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
+    [Tooltip("Text that explains what keyboard inputs are")]
     [SerializeField] private TMP_Text controlsText;
 
     private InputAction move;
@@ -45,14 +57,20 @@ public class CatapultMovement : MonoBehaviour
     //create audio manager object
     private AudioManager audioManager;
 
-    //valuables for moving enemies
+    
+    [Header("MOVING ENEMY VARIABLES")]
     private bool isMoving;
     private bool didShoot;
     private float moveDirection;
     public static bool IsAmmoDestroyed;
     private int numOfEnemyKnights = 10;
+
+
     //variables for countdown timer
+    [Header("UI TIMER VARIABLES")]
+    [Tooltip("Number of knights there are left")]
     [SerializeField] private TMP_Text knightCounter;
+    [Header("UI TIMER")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
@@ -134,6 +152,9 @@ public class CatapultMovement : MonoBehaviour
     /// <summary>
     /// Description: This function is a coroutine that will spawn in an enemy knight every 2 seconds
     /// </summary>
+    /// <returns>
+    /// Returns 2 seconds after an enemy knight is spawned
+    /// </returns>
     public IEnumerator EnemyKnightTimer()
     {
         gameIsRunning = true;
@@ -251,6 +272,11 @@ public class CatapultMovement : MonoBehaviour
     #endregion
 
     #region Collider
+    /// <summary>
+    /// This triggers the lose scene if an enemy soldier collides with the castle.
+    /// When the lose scene is triggered, the coroutine is also stopped
+    /// </summary>
+    /// <param name="collision"> collision between enemy sprite and trigger scene </param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Enemy")

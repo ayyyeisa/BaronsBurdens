@@ -52,6 +52,7 @@ public class MovingBackground : MonoBehaviour
     /// <summary>
     /// Description: This method is what makes the background loop back to its original position
     /// </summary>
+    /// <param name="pos"> the position of where the background is </param>
     public virtual void HandleOffScreen(ref Vector2 pos)
     {
         pos.x += 2 * scrollWidth;

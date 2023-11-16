@@ -186,6 +186,9 @@ public class DragonMovement : MonoBehaviour
     /// <summary>
     /// Description: This function is a coroutine that will spawn in an enemy fireball per second
     /// </summary>
+    /// <returns>
+    /// Returns 1 second before another enemy fireball is spawned
+    /// </returns>
     public IEnumerator EnemyFireballTimer()
     {
        
@@ -198,6 +201,9 @@ public class DragonMovement : MonoBehaviour
     /// <summary>
     /// Description: This function is a coroutine that is the main game timer, set to 20 seconds
     /// </summary>
+    /// <returns>
+    /// Returns 20 seconds to start the game
+    /// </returns>
     public IEnumerator GameTimer()
     {
         isGameRunning = true;

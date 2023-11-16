@@ -20,20 +20,26 @@ using UnityEngine.Audio;
 public class DuelScript : MonoBehaviour
 {
     #region variables
-    //Text for instructions, the player's lives, and a time
-    //use this 
+    
+    [Header("TMP TEXT VARIABLES")]
     public TMP_Text instructionText;
     public TMP_Text livesText;
     public TMP_Text timerText;
     public TMP_Text hitText;
     public TMP_Text missText;
     [SerializeField] private TMP_Text controlsText;
+
+    [Header("GAME TIMER")]
+    [Tooltip("Setting duration of game and setting timer to 0")]
     private float gameDuration = 20f;
     private float timer = 0f;
+    [Tooltip("Checking if game is running")]
     private bool isRunning = false;
     private int lastInstruction = 0;
 
+    [Header("UI AND PLAYER INPUT")]
     [SerializeField] private PlayerInput playerInput;
+    [Tooltip("Main UI on game screen")]
     [SerializeField] private GameObject startGameScreen;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
@@ -44,11 +50,11 @@ public class DuelScript : MonoBehaviour
     private AudioManager audioManager;
 
     // [SerializeField] private AudioSource newInstructionPop;
-
+    [Tooltip("Input Actions")]
     private InputAction restart;
     private InputAction quit;
 
-    //player gets 4 lives, the game lasts for 20 seconds
+    [Header("PLAYER/ENEMY HITS AND LIVES")]
     private int lives = 4;
     private int hits = 0;
     private KeyCode action = KeyCode.None;
@@ -58,7 +64,8 @@ public class DuelScript : MonoBehaviour
 
     private KeyCode[] validInputs = { KeyCode.F, KeyCode.A, KeyCode.Space };
 
-    //valuables for animations
+    [Header("ANIMATION VARIABLES")]
+    [Tooltip("Player animations")]
     const string ATTACK_ANIM = "AttackSpace";
     const string BLOCK_ANIM = "BlockA";
     const string PARRY_ANIM = "ParryF";
@@ -130,9 +137,15 @@ public class DuelScript : MonoBehaviour
             duelAnimator.SetTrigger(PARRY_ANIM);
         }
     }
-    //corotutine that handles all game functions. Takes Users input, checks users 
-    //input and acts accordinlgy based on if correct key was placed in time, user wants
-    //to quit or restart, or if user doesn't input correct key or any key at all
+    
+    /// <summary>
+    /// This function is a coroutine that handles all of the game functions like taking user input,
+    /// checking user input and acting accordingly whether the correct or incorrect key was pushed in time,
+    /// or if the user wants to quit or restart
+    /// </summary>
+    /// <returns>
+    /// Returns 0.5 seconds if game is starting, or starts the HitScreen or MissScreen coroutines
+    /// </returns>
     private IEnumerator GameLoop()
     {
         bool correctKeyEntered = false;
@@ -211,8 +224,13 @@ public class DuelScript : MonoBehaviour
            
         }
     }
-    //IEnumerator to display Hit Screen for 1 second 
     
+    /// <summary>
+    /// This function is a coroutine that displays the Hit screen(player scores) for 0.1 seconds
+    /// </summary>
+    /// <returns>
+    /// Returns 0.1 seconds 
+    /// </returns>
     private IEnumerator HitScreen()
     {
         Hit.gameObject.SetActive(true);
@@ -223,6 +241,12 @@ public class DuelScript : MonoBehaviour
 
     }
     //IEnumerator to display Miss Screen for 1 second
+    /// <summary>
+    /// This function is a coroutine that displays the Miss screen(player gets attacked) for 0.1 seconds
+    /// </summary>
+    /// <returns>
+    /// Returns 0.1 seconds
+    /// </returns>
     private IEnumerator MissScreen()
     {
         //Play corresponding SFX
@@ -233,21 +257,25 @@ public class DuelScript : MonoBehaviour
         yield break;
 
     }
-    // The Update function is called once per frame and handles game state updates,
-    // track the timer, check for player input, and ends the game
-    // when the timer reaches the game duration. It also updates the user interface.
+   
 
-    // changes the isRunning boolean to false and changes instruction
-    //text on UI to read win or lose
-
-    //EndGame sets the running boolean to false. And displays winning or losing 
-    //screen based on the condition, and then takes the player back to the main menu
+    
+    /// <summary>
+    /// This function is a coroutine that holds the game screen for 3 seconds
+    /// </summary>
+    /// <returns>
+    /// Returns 3 seconds
+    /// </returns>
     private IEnumerator HoldScreen()
     {
         yield return new WaitForSeconds(3f);
     }
 
-   
+   /// <summary>
+   /// This function will end the game by setting the isRunning bool to false then will display
+   /// the win or lose screen based on the condition, then takes the player 
+   /// back to the main menu
+   /// </summary>
     private void EndGame()
     {
         isRunning = false;
@@ -275,8 +303,14 @@ public class DuelScript : MonoBehaviour
 
     }
 
-    //GetRandomInstruction creates a random index in the list of actions and 
-    //selects one of the 3 attacks for the Enemy/
+    
+    /// <summary>
+    /// This function will create a random index in the list of enemy actions and selects one of the 3 attacks
+    /// for the Enemy to use against the player
+    /// </summary>
+    /// <returns>
+    /// Returns one of the 3 enemy actions the enemy will perform in the form of a string
+    /// </returns>
     private string GetRandomInstruction()
     {
         string[] instructions = { "Parry (Press F)", "Block (Press A)", "Attack (Press Space)" };
@@ -305,8 +339,7 @@ public class DuelScript : MonoBehaviour
         lastInstruction = randomIndex;
         return instructions[randomIndex];
     }
- //returns the string variable corresponding to the action chosen for the enemy
- //i.e keycode.F for Parry, keycode.A for Block,keycode.space for Attack
+ 
  
 
     //back to main menu
