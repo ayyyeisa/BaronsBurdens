@@ -1,13 +1,13 @@
-/// <summary>
-/// 
-/// Author: Ryan Egan, Tri Nguyen, Isa Luluquisin
-/// Date: October 23, 2023
-/// 
-/// Description: This is a file that works on most controls for the 
+
+/*****************************************************************************
+// File Name : CatapultMovement.cs
+// Author : Ryan Egan, Tri Nguyen, Isa Luluquisin
+// Creation Date : October 23, 2023
+//
+// Brief Description : This is a file that works on most controls for the 
 /// Catapult minigame, as well as spawning in enemy knights and 
 /// ammo for the catapult
-/// 
-/// </summary>
+*****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
