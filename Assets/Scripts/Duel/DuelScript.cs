@@ -133,21 +133,21 @@ public class DuelScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Play corresponding SFX
-            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
+            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
             //Play corresponding animation
             duelAnimator.SetTrigger(ATTACK_ANIM);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             //Play corresponding SFX
-            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
+            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
             //Play corresponding animation
             duelAnimator.SetTrigger(BLOCK_ANIM);
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
             //Play corresponding SFX
-            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
+            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
             //Play corresponding animation
             duelAnimator.SetTrigger(PARRY_ANIM);
         }
@@ -216,15 +216,15 @@ public class DuelScript : MonoBehaviour
                         hits++;
                         enemyLives--;
                         //Scripts for enemy animations
-                        if (currentInstruction == "Space")
+                        if (currentInstruction == "Attack")
                         {
                             duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
                         }
-                        else if (currentInstruction == "A")
+                        else if (currentInstruction == "Block")
                         {
                             duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
                         }
-                        else if (currentInstruction == "F")
+                        else if (currentInstruction == "Parry")
                         {
                             duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
                         }
@@ -252,15 +252,15 @@ public class DuelScript : MonoBehaviour
                     lives--;
                     enemyHits++;
                     //comment these out if you going to fix the scene later on
-                    if (currentInstruction == "Space")
+                    if (currentInstruction == "Attack")
                     {
                         duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
                     }
-                    else if (currentInstruction == "A")
+                    else if (currentInstruction == "Block")
                     {
                         duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
                     }
-                    else if (currentInstruction == "F")
+                    else if (currentInstruction == "Parry")
                     {
                         duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
                     }
@@ -293,7 +293,7 @@ public class DuelScript : MonoBehaviour
     private IEnumerator MissScreen()
     {
         //Play corresponding SFX
-        audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
+        //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
         Miss.gameObject.SetActive(true);
         yield return new WaitForSeconds(.1f);
         Miss.gameObject.SetActive(false);
