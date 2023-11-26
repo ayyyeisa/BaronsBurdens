@@ -1,13 +1,13 @@
-/// <summary>
-/// 
-/// Author: Ryan Egan, Tri Nguyen, Isa Luluquisin
-/// Date: October 23, 2023
-/// 
-/// Description: This is a file that works on most controls for the 
+
+/*****************************************************************************
+// File Name : CatapultMovement.cs
+// Author : Ryan Egan, Tri Nguyen, Isa Luluquisin
+// Creation Date : October 23, 2023
+//
+// Brief Description : This is a file that works on most controls for the 
 /// Catapult minigame, as well as spawning in enemy knights and 
 /// ammo for the catapult
-/// 
-/// </summary>
+*****************************************************************************/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -19,19 +19,32 @@ using TMPro;
 public class CatapultMovement : MonoBehaviour
 {
     #region variables
+    [Tooltip("Point at which the ammo will land")]
     [SerializeField] private GameObject trajectoryPoint;
+
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private Rigidbody2D Rb2D;
+
+    [Tooltip("Speed at which catapult is moving")]
     [SerializeField] private float moveSpeed;
+
+    [Header("ENEMY KNIGHT REFERENCES")]
     [SerializeField] private GameObject enemyKnight;
     [SerializeField] private GameObject enemyKnightSpawn;
+
+    [Header("AMMO REFERENCES")]
     [SerializeField] private GameObject catapultAmmo;
     [SerializeField] private GameObject catapultAmmoSpawn;
+
+    [Header("CANVAS REFERENCES")]
+    [Tooltip("What appears to players before game has started")]
     [SerializeField] private GameObject startMinigame;
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
+    [Tooltip("Text that explains what keyboard inputs are")]
     [SerializeField] private TMP_Text controlsText;
 
+    //input actions
     private InputAction move;
     private InputAction shoot;
     private InputAction restart;
@@ -45,14 +58,21 @@ public class CatapultMovement : MonoBehaviour
     //create audio manager object
     private AudioManager audioManager;
 
-    //valuables for moving enemies
+    //whether catapult is moving
     private bool isMoving;
+    //if player shot ammo
     private bool didShoot;
+    //direction in which the trajectory is moving (left or right)
     private float moveDirection;
+    //if ammo is still on screen or was destroyed
     public static bool IsAmmoDestroyed;
+    //number of enemy knights to defeat during game duration
     private int numOfEnemyKnights = 10;
-    //variables for countdown timer
+
+    [Header("UI TIMER VARIABLES")]
+    [Tooltip("Number of knights there are left")]
     [SerializeField] private TMP_Text knightCounter;
+    [Header("UI timer")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
@@ -60,7 +80,7 @@ public class CatapultMovement : MonoBehaviour
 
     #endregion
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -251,6 +271,11 @@ public class CatapultMovement : MonoBehaviour
     #endregion
 
     #region Collider
+    /// <summary>
+    /// This triggers the lose scene if an enemy soldier collides with the castle.
+    /// When the lose scene is triggered, the coroutine is also stopped.
+    /// </summary>
+    /// <param name="collision"> collision between enemy sprite and trigger scene </param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Enemy")

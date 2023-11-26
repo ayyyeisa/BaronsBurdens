@@ -14,11 +14,15 @@ using UnityEngine.UI;
 public class VolumeSettings : MonoBehaviour
 {
     //Game mixer
+    [Tooltip("Mixer for controlling game audio levels")]
     [SerializeField] private AudioMixer myMixer;
     //Sliders for volume control
+    [Tooltip("Slider for Music volume level control")]
     [SerializeField] private Slider musicSlider;
+    [Tooltip("Slider for SFX volume level control")]
     [SerializeField] private Slider SFXSlider;
     //settings panel
+    [Tooltip("All Panels in Settings Menu")]
     [SerializeField] private GameObject SettingsMenu;
 
 

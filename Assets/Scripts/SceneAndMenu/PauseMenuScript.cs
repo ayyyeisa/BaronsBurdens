@@ -16,6 +16,7 @@ public class PauseMenuScript : MonoBehaviour
     
     [Tooltip("All Panels in Pause Menu")]
     [SerializeField] private GameObject pauseMenu;
+    [Tooltip("All Panels in Settings Menu")]
     [SerializeField] private GameObject settingsMenu;
     [Tooltip("The instruction at the beginning of the game")]
     [SerializeField] private GameObject howToPlayMenu;
