@@ -133,21 +133,21 @@ public class DuelScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Play corresponding SFX
-            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
             //Play corresponding animation
             duelAnimator.SetTrigger(ATTACK_ANIM);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             //Play corresponding SFX
-            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
             //Play corresponding animation
             duelAnimator.SetTrigger(BLOCK_ANIM);
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
             //Play corresponding SFX
-            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
+            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
             //Play corresponding animation
             duelAnimator.SetTrigger(PARRY_ANIM);
         }
