@@ -47,6 +47,9 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
+/*    [SerializeField] private GameObject ParryButton;
+    [SerializeField] private GameObject AttackButton;
+    [SerializeField] private GameObject BlockButton;*/
 
     [Tooltip("audio source")]
     [SerializeField] private AudioManager audioManager;
@@ -193,21 +196,35 @@ public class DuelScript : MonoBehaviour
             string currentInstruction = GetRandomInstruction();
 
             // Display the current instruction
-            instructionText.text = currentInstruction;
+            /*instructionText.text = currentInstruction;
+            if(currentInstruction=="Parry")
+            {
+                ParryButton.SetActive(true);
+            }
+            if (currentInstruction=="Attack")
+            {
+                AttackButton.SetActive(true);
+            }
+            else
+            {
+                BlockButton.SetActive(true);
+            }*/
             // newInstructionPop.Play();
 
             correctKeyEntered = false;
 
 
             float startTime = Time.time;
-
-            // Process player input for .75 of a second
-            while (Time.time - startTime < .75f)
+            float randomTime = Random.Range(0.75f, 3f);
+            // Process player input for random amount of time between .75 and 3 seconds
+            while (Time.time - startTime < randomTime)
             {
+                Debug.Log("Time:" + randomTime+"Action:"+action);
                 //if key clicked is the same as the action
                 if (Input.GetKeyDown(action))
                 {
                     //correctly attacked
+                   
 
                     if (action == KeyCode.Space)
                     {
@@ -269,7 +286,9 @@ public class DuelScript : MonoBehaviour
 
 
             }
-
+           /* ParryButton.SetActive(false);
+            BlockButton.SetActive(false);
+            AttackButton.SetActive(false);*/
         }
     }
 
@@ -280,7 +299,7 @@ public class DuelScript : MonoBehaviour
     private IEnumerator HitScreen()
     {
         Hit.gameObject.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.5f);
         Hit.gameObject.SetActive(false);
         yield break;
 
@@ -295,7 +314,7 @@ public class DuelScript : MonoBehaviour
         //Play corresponding SFX
         //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
         Miss.gameObject.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.5f);
         Miss.gameObject.SetActive(false);
         yield break;
 
