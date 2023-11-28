@@ -30,6 +30,8 @@ public class CatapultMovement : MonoBehaviour
 
     [Header("ENEMY KNIGHT REFERENCES")]
     [SerializeField] private GameObject enemyKnight;
+    [SerializeField] private GameObject slowEnemyKnight;
+    [SerializeField] private GameObject fastEnemyKnight;
     [SerializeField] private GameObject enemyKnightSpawn;
 
     [Header("AMMO REFERENCES")]
@@ -235,10 +237,26 @@ public class CatapultMovement : MonoBehaviour
         if (gameIsRunning)
         {
             Vector2 playerPause = enemyKnightSpawn.transform.position;
-            GameObject temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
-            temp.transform.tag = "Enemy";
-
-            temp.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(2, 4), 0);
+            GameObject temp;
+            int random = Random.Range(2, 4);
+            if (random == 2)
+            {
+                temp = Instantiate(slowEnemyKnight, playerPause, Quaternion.identity);
+                temp.transform.tag = "Enemy";
+                temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
+            }
+            else if(random == 3)
+            {
+                temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
+                temp.transform.tag = "Enemy";
+                temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
+            }
+            else
+            {
+                temp = Instantiate(fastEnemyKnight, playerPause, Quaternion.identity);
+                temp.transform.tag = "Enemy";
+                temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
+            }
         }
     }
 

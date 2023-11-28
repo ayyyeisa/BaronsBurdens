@@ -74,7 +74,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.4}
+  m_AnchoredPosition: {x: -0.2, y: 1.4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6589669187516327658
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.57939553, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -302,10 +302,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2538706891081641655}
   - component: {fileID: 3314458580166756063}
-  - component: {fileID: -3674313381021331567}
   - component: {fileID: 4753079047630485483}
   - component: {fileID: -2389606979743078127}
   - component: {fileID: -362157117869586587}
+  - component: {fileID: 163857865027625654}
   m_Layer: 9
   m_Name: SlowEnemy
   m_TagString: Untagged
@@ -381,18 +381,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3674313381021331567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5794374308437319978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c50c913339a8244f9bc0477d05b28b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &4753079047630485483
 Rigidbody2D:
   serializedVersion: 4
@@ -486,6 +474,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &163857865027625654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794374308437319978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a5f0299746d4b96bc0d0ada7d03a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthSlider: {fileID: 5744861410439948906}
 --- !u!1 &7156958686125686460
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,6 +497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7205628082239014925}
   - component: {fileID: 2831489320777235906}
+  - component: {fileID: 5744861410439948906}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -576,3 +578,16 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5744861410439948906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7156958686125686460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0913e5de8efd44e1492c8b8116c0bc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarSlider: {fileID: 2831489320777235906}
