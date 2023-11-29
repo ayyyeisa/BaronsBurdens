@@ -29,9 +29,7 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
 
     [Header("ENEMY KNIGHT REFERENCES")]
-    [SerializeField] private GameObject enemyKnight;
-    [SerializeField] private GameObject slowEnemyKnight;
-    [SerializeField] private GameObject fastEnemyKnight;
+    [SerializeField] private GameObject[] EnemyPrefabs;
     [SerializeField] private GameObject enemyKnightSpawn;
 
     [Header("AMMO REFERENCES")]
@@ -77,9 +75,6 @@ public class CatapultMovement : MonoBehaviour
     [Header("UI timer")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
-    private float startingTime = 20f;
-
-
     #endregion
 
 
@@ -97,7 +92,7 @@ public class CatapultMovement : MonoBehaviour
         gameIsRunning = false;
 
         //set start timer to 20
-        currentTime = startingTime;
+        currentTime = 20f;
 
         //basic settings when player starts game
         startMinigame.SetActive(true);
@@ -236,27 +231,12 @@ public class CatapultMovement : MonoBehaviour
     {
         if (gameIsRunning)
         {
-            Vector2 playerPause = enemyKnightSpawn.transform.position;
-            GameObject temp;
+            Vector2 enemySpawnPos = enemyKnightSpawn.transform.position;
+            
             int random = Random.Range(2, 4);
-            if (random == 2)
-            {
-                temp = Instantiate(slowEnemyKnight, playerPause, Quaternion.identity);
-                temp.transform.tag = "Enemy";
-                temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
-            }
-            else if(random == 3)
-            {
-                temp = Instantiate(enemyKnight, playerPause, Quaternion.identity);
-                temp.transform.tag = "Enemy";
-                temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
-            }
-            else
-            {
-                temp = Instantiate(fastEnemyKnight, playerPause, Quaternion.identity);
-                temp.transform.tag = "Enemy";
-                temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
-            }
+            GameObject temp = Instantiate(EnemyPrefabs[random-2], enemySpawnPos, Quaternion.identity);
+            temp.tag = "Enemy";
+            temp.GetComponent<Rigidbody2D>().velocity = new Vector2(random, 0);
         }
     }
 

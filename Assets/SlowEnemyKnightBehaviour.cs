@@ -14,20 +14,16 @@ using UnityEngine.UI;
 
 public class SlowerEnemyKnightBehaviour : MonoBehaviour
 {
-    [SerializeField] HealthBarBehaviour healthSlider;
-    private int enemyLives, enemyMaxLives = 2;
+    //private HealthBarBehaviour healthSlider;
+    private int enemyLives = 2;
+    [SerializeField] private Slider healthBarSlider;
     //create audio manager object
     private AudioManager audioManager;
 
-    private void Awake()
-    {
-        healthSlider = GetComponentInChildren<HealthBarBehaviour>();
-    }
     private void Start()
     {
         //Access the audio manger object 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        healthSlider.UpdateHealthBar(enemyLives, enemyMaxLives);
     }
     /// <summary>
     /// Description: This method will check the collisions the enemy knights will interact with. 
@@ -39,7 +35,7 @@ public class SlowerEnemyKnightBehaviour : MonoBehaviour
         if (collision.transform.tag == "CatapultAmmo")
         {
             enemyLives--;
-            healthSlider.UpdateHealthBar(enemyLives, enemyMaxLives);
+            healthBarSlider.value = ((float)enemyLives / 2);
             //Play corresponding SFX
             audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().Damage);
             if (enemyLives == 0)
