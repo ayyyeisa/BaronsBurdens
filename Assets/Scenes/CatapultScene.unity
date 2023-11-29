@@ -2738,9 +2738,10 @@ MonoBehaviour:
   playerInput: {fileID: 4730583842977407380}
   Rb2D: {fileID: 4730583842977407379}
   moveSpeed: 5
-  enemyKnight: {fileID: 5794374308437319978, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
-  slowEnemyKnight: {fileID: 5794374308437319978, guid: c1cc5df26bac644e2924d937797fd8e8, type: 3}
-  fastEnemyKnight: {fileID: 5794374308437319978, guid: a9e7a54546bc14d6b9859c05500d67e9, type: 3}
+  EnemyPrefabs:
+  - {fileID: 5794374308437319978, guid: c1cc5df26bac644e2924d937797fd8e8, type: 3}
+  - {fileID: 5794374308437319978, guid: 38e2786b67e6ffa4a9d45c93ce21247a, type: 3}
+  - {fileID: 5794374308437319978, guid: a9e7a54546bc14d6b9859c05500d67e9, type: 3}
   enemyKnightSpawn: {fileID: 2030144657}
   catapultAmmo: {fileID: 5861994652682480189, guid: e73c08b4968186c45b6f3884d30298c4, type: 3}
   catapultAmmoSpawn: {fileID: 1242512994}
