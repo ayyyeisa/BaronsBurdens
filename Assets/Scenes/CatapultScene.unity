@@ -854,15 +854,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Defend the castle from invaders!
+  m_text: 'Protect the Castle!
 
-    A/Left Arrow: Move catapult projection
-    left
+    A/Left Arrow: Move left
 
-    D/Right Arrow: Move catapult projection right
+    D/Right Arrow: Move
+    right
 
-    LeftClick/Spacebar:
-    Release catapult ammo'
+    LeftClick/Spacebar: Release ammo'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
