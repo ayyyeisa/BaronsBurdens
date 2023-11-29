@@ -3015,9 +3015,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Survive for 20 seconds against the dragons!\n\nW/Up arrow: Move up\nS/Down
-    arrow: Move down\nSpacebar/Left mouse click: Shoot fireball\n\nPress the Spacebar
-    or left mouse click \nto begin the game"
+  m_text: 'Survive against the dragons!
+
+    W/Up arrow: Move up
+
+    S/Down arrow:
+    Move down
+
+    Space/Left mouse: Shoot fireball
+
+    Press Space or Left mouse
+    to start'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
