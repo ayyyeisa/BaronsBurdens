@@ -293,7 +293,7 @@ public class DuelScript : MonoBehaviour
     private IEnumerator MissScreen()
     {
         //Play corresponding SFX
-        //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
+        audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
         Miss.gameObject.SetActive(true);
         yield return new WaitForSeconds(.1f);
         Miss.gameObject.SetActive(false);
