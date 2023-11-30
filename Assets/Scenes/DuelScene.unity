@@ -1322,6 +1322,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 725494535}
   m_CullTransparentMesh: 1
+--- !u!114 &730331273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3357921077592373602, guid: 295c8a9f40ccad7459b75f22fc777d68, type: 3}
+  m_PrefabInstance: {fileID: 461840489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffe28e781898c240bc685e264e891a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &742610841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,7 +1574,7 @@ MonoBehaviour:
   loseScene: {fileID: 7080226}
   Hit: {fileID: 1996330426}
   Miss: {fileID: 1678449788}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 730331273}
 --- !u!114 &822633166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1670,7 +1681,7 @@ AudioSource:
   m_GameObject: {fileID: 822633164}
   m_Enabled: 0
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6617306979988341344, guid: 7b67ad44ced4b3b478910b3232cc0686, type: 2}
   m_audioClip: {fileID: 8300000, guid: 61335a7077bf8a7498c7cf88e3a4a324, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -3791,7 +3802,7 @@ MonoBehaviour:
   loseScene: {fileID: 7080226}
   Hit: {fileID: 1996330426}
   Miss: {fileID: 1678449788}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 730331273}
 --- !u!1 &2071973563
 GameObject:
   m_ObjectHideFlags: 0
