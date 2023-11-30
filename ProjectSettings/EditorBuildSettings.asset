@@ -17,10 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CatapultScene.unity
     guid: d9bc99bf1851dea4eaecadb0925396d9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DuelScene.unity
     guid: 9dc20d9a2413ee14b90d6c42103add85
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/DuelScene.unity
     guid: 9dc20d9a2413ee14b90d6c42103add85
   m_configObjects: {}
