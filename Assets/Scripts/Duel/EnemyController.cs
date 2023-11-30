@@ -11,12 +11,12 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Constants for animation names
+    [Header("ANIMATION_CONSTANTS")]
     const string ENEMY_BLOCK_ANIM = "EnemyBlock";
     const string ENEMY_ATTACK_ANIM = "EnemyAttack";
     const string ENEMY_PARRY_ANIM = "EnemyParry";
 
-    // Reference to the Animator component
+    [Tooltip("Animator reference")]
     private Animator duelAnimator;
 
     // Start is called before the first frame update
@@ -26,19 +26,28 @@ public class EnemyController : MonoBehaviour
         duelAnimator = GetComponent<Animator>();
     }
 
-    // Triggers the animation for enemy parry
+    
+    /// <summary>
+    /// Description: This is a function that will initiate the enemy to parry. Plays the parry animation
+    /// </summary>
     public void StartEnemyParry()
     {
         duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
     }
 
-    // Triggers the animation for enemy block
+    
+    /// <summary>
+    /// Description: This is a function that will initiate the enemy to block. Plays the block animation
+    /// </summary>
     public void StartEnemyBlock()
     {
         duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
     }
 
-    // Triggers the animation for enemy attack
+    
+    /// <summary>
+    /// Description: This is a function that will initiate the enemy to attack. Plays the attack animation
+    /// </summary>
     public void StartEnemyAttack()
     {
         duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);

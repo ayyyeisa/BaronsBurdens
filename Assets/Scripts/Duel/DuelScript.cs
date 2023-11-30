@@ -332,12 +332,7 @@ public class DuelScript : MonoBehaviour
         yield break;
 
     }
-    // The Update function is called once per frame and handles game state updates,
-    // track the timer, check for player input, and ends the game
-    // when the timer reaches the game duration. It also updates the user interface.
-
-    // changes the isRunning boolean to false and changes instruction
-    //text on UI to read win or lose
+  
 
 
     /// <summary>
@@ -348,8 +343,7 @@ public class DuelScript : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
-    //EndGame sets the running boolean to false. And displays winning or losing 
-    //screen based on the condition, and then takes the player back to the main menu
+    
 
     /// <summary>
     /// This function will end the game by setting the isRunning bool to false then will
