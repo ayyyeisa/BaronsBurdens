@@ -47,9 +47,10 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
-/*    [SerializeField] private GameObject ParryButton;
+    [SerializeField] private GameObject ParryButton;
     [SerializeField] private GameObject AttackButton;
-    [SerializeField] private GameObject BlockButton;*/
+    [SerializeField] private GameObject BlockButton;
+    [SerializeField] EnemyController enemyController;
 
     [Tooltip("audio source")]
     [SerializeField] private AudioManager audioManager;
@@ -78,6 +79,7 @@ public class DuelScript : MonoBehaviour
     const string BLOCK_ANIM = "BlockA";
     const string PARRY_ANIM = "ParryF";
     [Tooltip("Enemy animations")]
+    
     const string ENEMY_BLOCK_ANIM = "EnemyBlock";
     const string ENEMY_ATTACK_ANIM = "EnemyAttack";
     const string ENEMY_PARRY_ANIM = "EnemyParry";
@@ -185,6 +187,7 @@ public class DuelScript : MonoBehaviour
         instructionText.text = "FIGHT!";
         yield return new WaitForSeconds(.5f);
         isRunning = true;
+        instructionText.text = "";
 
 
         // Main game loop
@@ -195,8 +198,8 @@ public class DuelScript : MonoBehaviour
             // Display action and record start time
             string currentInstruction = GetRandomInstruction();
 
-            // Display the current instruction
-            /*instructionText.text = currentInstruction;
+             //Display the current instruction
+           // instructionText.text = currentInstruction;
             if(currentInstruction=="Parry")
             {
                 ParryButton.SetActive(true);
@@ -204,19 +207,20 @@ public class DuelScript : MonoBehaviour
             if (currentInstruction=="Attack")
             {
                 AttackButton.SetActive(true);
+                Debug.Log("Should be Attack");
             }
             else
             {
                 BlockButton.SetActive(true);
-            }*/
+            }
             // newInstructionPop.Play();
 
             correctKeyEntered = false;
 
 
             float startTime = Time.time;
-            float randomTime = Random.Range(0.75f, 3f);
-            // Process player input for random amount of time between .75 and 3 seconds
+            float randomTime = Random.Range(1f, 3f);
+            // Process player input for random amount of time between 1 and 3 seconds
             while (Time.time - startTime < randomTime)
             {
                 Debug.Log("Time:" + randomTime+"Action:"+action);
@@ -236,14 +240,20 @@ public class DuelScript : MonoBehaviour
                         if (currentInstruction == "Attack")
                         {
                             duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
+                           
+                           
+
                         }
                         else if (currentInstruction == "Block")
                         {
                             duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
+                            enemyController.StartEnemyAttack();
+                          
                         }
                         else if (currentInstruction == "Parry")
                         {
                             duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
+                           
                         }
                         yield return StartCoroutine(HitScreen());
 
@@ -272,23 +282,26 @@ public class DuelScript : MonoBehaviour
                     if (currentInstruction == "Attack")
                     {
                         duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
+                        enemyController.StartEnemyBlock();
                     }
                     else if (currentInstruction == "Block")
                     {
                         duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
+                        enemyController.StartEnemyAttack();
                     }
                     else if (currentInstruction == "Parry")
                     {
                         duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
+                        
                     }
                     yield return StartCoroutine(MissScreen());
                 }
 
 
             }
-           /* ParryButton.SetActive(false);
+            ParryButton.SetActive(false);
             BlockButton.SetActive(false);
-            AttackButton.SetActive(false);*/
+            AttackButton.SetActive(false);
         }
     }
 
