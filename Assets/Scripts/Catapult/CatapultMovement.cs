@@ -42,7 +42,7 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
     [Tooltip("Text that explains what keyboard inputs are")]
-    [SerializeField] private TMP_Text controlsText;
+    [SerializeField] private GameObject controlsText;
 
     //input actions
     private InputAction move;
@@ -75,6 +75,8 @@ public class CatapultMovement : MonoBehaviour
     [Header("UI timer")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
+
+
     #endregion
 
 
