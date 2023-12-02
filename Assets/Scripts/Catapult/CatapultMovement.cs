@@ -42,31 +42,35 @@ public class CatapultMovement : MonoBehaviour
     [SerializeField] private GameObject winScene;
     [SerializeField] private GameObject loseScene;
     [Tooltip("Text that explains what keyboard inputs are")]
-    [SerializeField] private TMP_Text controlsText;
+    [SerializeField] private GameObject controlsText;
 
-    //input actions
+    [Header("INPUT_ACTIONS")]
     private InputAction move;
     private InputAction shoot;
     private InputAction restart;
     private InputAction quit;
 
+    [Tooltip("Coroutine for enemy knights")]
     public Coroutine EnemyKnightRef;
 
+    [Header("BOOLS")]
+    [Tooltip("Was the spacebar pressed")]
     private bool spaceIsPressed;
     private bool gameIsRunning;
+    [Tooltip("Is the catapult moving")]
+    private bool isMoving;
+    [Tooltip("Did player shoot ammo")]
+    private bool didShoot;
+    [Tooltip("Is player ammo still on screen or destroyed")]
+    public static bool IsAmmoDestroyed;
 
     //create audio manager object
     private AudioManager audioManager;
 
-    //whether catapult is moving
-    private bool isMoving;
-    //if player shot ammo
-    private bool didShoot;
-    //direction in which the trajectory is moving (left or right)
+   
+    [Tooltip("Direction which trajectory arrow is moving")]
     private float moveDirection;
-    //if ammo is still on screen or was destroyed
-    public static bool IsAmmoDestroyed;
-    //number of enemy knights to defeat during game duration
+    [Tooltip("Number of enemy knights to defeat during game")]
     private int numOfEnemyKnights = 10;
 
     [Header("UI TIMER VARIABLES")]
@@ -75,6 +79,8 @@ public class CatapultMovement : MonoBehaviour
     [Header("UI timer")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
+
+
     #endregion
 
 

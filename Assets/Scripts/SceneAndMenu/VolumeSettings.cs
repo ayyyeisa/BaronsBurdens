@@ -32,11 +32,17 @@ public class VolumeSettings : MonoBehaviour
         SetMusicVolume();
     }
 
+    private void Update()
+    {
+        SetMusicVolume();
+        SetSFXVolume();
+    }
     /// <summary>
     /// uses slider volume to change volume in mixer for just music
     /// </summary>
     public void SetMusicVolume()
     {
+        Debug.Log("music slid");
         float volume = musicSlider.value;
         myMixer.SetFloat("music", Mathf.Log10(volume) * 20);
     }
