@@ -105,7 +105,6 @@ public class PauseMenuScript : MonoBehaviour
     public void Settings()
     {
         settingsMenu.SetActive(true);
-        pauseMenu.SetActive(false);
     }
 
     /// <summary>
@@ -115,7 +114,6 @@ public class PauseMenuScript : MonoBehaviour
     {
         settingsMenu.SetActive(false);
         howToPlayMenu.SetActive(false);
-        pauseMenu.SetActive(true);
     }
 
     /// <summary>

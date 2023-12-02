@@ -47,10 +47,6 @@ public class DuelScript : MonoBehaviour
     [SerializeField] private GameObject loseScene;
     [SerializeField] private GameObject Hit;
     [SerializeField] private GameObject Miss;
-    [SerializeField] private GameObject ParryButton;
-    [SerializeField] private GameObject AttackButton;
-    [SerializeField] private GameObject BlockButton;
-    [SerializeField] EnemyController enemyController;
 
     [Tooltip("audio source")]
     [SerializeField] private AudioManager audioManager;
@@ -79,7 +75,6 @@ public class DuelScript : MonoBehaviour
     const string BLOCK_ANIM = "BlockA";
     const string PARRY_ANIM = "ParryF";
     [Tooltip("Enemy animations")]
-    
     const string ENEMY_BLOCK_ANIM = "EnemyBlock";
     const string ENEMY_ATTACK_ANIM = "EnemyAttack";
     const string ENEMY_PARRY_ANIM = "EnemyParry";
@@ -138,21 +133,21 @@ public class DuelScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //Play corresponding SFX
-            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
+            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitPerson);
             //Play corresponding animation
             duelAnimator.SetTrigger(ATTACK_ANIM);
         }
         else if (Input.GetKeyDown(KeyCode.A))
         {
             //Play corresponding SFX
-            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
+            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitShield);
             //Play corresponding animation
             duelAnimator.SetTrigger(BLOCK_ANIM);
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
             //Play corresponding SFX
-            audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
+            //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordHitSword);
             //Play corresponding animation
             duelAnimator.SetTrigger(PARRY_ANIM);
         }
@@ -187,7 +182,6 @@ public class DuelScript : MonoBehaviour
         instructionText.text = "FIGHT!";
         yield return new WaitForSeconds(.5f);
         isRunning = true;
-        instructionText.text = "";
 
 
         // Main game loop
@@ -198,37 +192,22 @@ public class DuelScript : MonoBehaviour
             // Display action and record start time
             string currentInstruction = GetRandomInstruction();
 
-             //Display the current instruction
-           // instructionText.text = currentInstruction;
-            if(currentInstruction=="Parry")
-            {
-                ParryButton.SetActive(true);
-            }
-            if (currentInstruction=="Attack")
-            {
-                AttackButton.SetActive(true);
-                Debug.Log("Should be Attack");
-            }
-            else
-            {
-                BlockButton.SetActive(true);
-            }
+            // Display the current instruction
+            instructionText.text = currentInstruction;
             // newInstructionPop.Play();
 
             correctKeyEntered = false;
 
 
             float startTime = Time.time;
-            float randomTime = Random.Range(1f, 3f);
-            // Process player input for random amount of time between 1 and 3 seconds
-            while (Time.time - startTime < randomTime)
+
+            // Process player input for .75 of a second
+            while (Time.time - startTime < .75f)
             {
-                Debug.Log("Time:" + randomTime+"Action:"+action);
                 //if key clicked is the same as the action
                 if (Input.GetKeyDown(action))
                 {
                     //correctly attacked
-                   
 
                     if (action == KeyCode.Space)
                     {
@@ -240,20 +219,14 @@ public class DuelScript : MonoBehaviour
                         if (currentInstruction == "Attack")
                         {
                             duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
-                           
-                           
-
                         }
                         else if (currentInstruction == "Block")
                         {
                             duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
-                            enemyController.StartEnemyAttack();
-                          
                         }
                         else if (currentInstruction == "Parry")
                         {
                             duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
-                           
                         }
                         yield return StartCoroutine(HitScreen());
 
@@ -282,26 +255,21 @@ public class DuelScript : MonoBehaviour
                     if (currentInstruction == "Attack")
                     {
                         duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
-                        enemyController.StartEnemyBlock();
                     }
                     else if (currentInstruction == "Block")
                     {
                         duelAnimator.SetTrigger(ENEMY_ATTACK_ANIM);
-                        enemyController.StartEnemyAttack();
                     }
                     else if (currentInstruction == "Parry")
                     {
                         duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
-                        
                     }
                     yield return StartCoroutine(MissScreen());
                 }
 
 
             }
-            ParryButton.SetActive(false);
-            BlockButton.SetActive(false);
-            AttackButton.SetActive(false);
+
         }
     }
 
@@ -312,7 +280,7 @@ public class DuelScript : MonoBehaviour
     private IEnumerator HitScreen()
     {
         Hit.gameObject.SetActive(true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         Hit.gameObject.SetActive(false);
         yield break;
 
@@ -325,14 +293,19 @@ public class DuelScript : MonoBehaviour
     private IEnumerator MissScreen()
     {
         //Play corresponding SFX
-        audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
+        //audioManager.PlaySFX(GameObject.FindObjectOfType<AudioManager>().SwordMiss);
         Miss.gameObject.SetActive(true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         Miss.gameObject.SetActive(false);
         yield break;
 
     }
-  
+    // The Update function is called once per frame and handles game state updates,
+    // track the timer, check for player input, and ends the game
+    // when the timer reaches the game duration. It also updates the user interface.
+
+    // changes the isRunning boolean to false and changes instruction
+    //text on UI to read win or lose
 
 
     /// <summary>
@@ -343,7 +316,8 @@ public class DuelScript : MonoBehaviour
         yield return new WaitForSeconds(3f);
     }
 
-    
+    //EndGame sets the running boolean to false. And displays winning or losing 
+    //screen based on the condition, and then takes the player back to the main menu
 
     /// <summary>
     /// This function will end the game by setting the isRunning bool to false then will

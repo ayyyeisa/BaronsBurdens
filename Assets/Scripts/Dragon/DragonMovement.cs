@@ -44,39 +44,36 @@ public class DragonMovement : MonoBehaviour
     //create audio manager object
     private AudioManager audioManager;
 
-    
+    // ui timer variables
     [Tooltip("Text for the UI timer")]
     [SerializeField] private TMP_Text timerText;
     private float currentTime = 0f;
     private float startingTime = 20f;
 
-    [Header("COROUTINES")]
     public Coroutine EnemyFireballRef;
     public Coroutine GameTimerRef;
 
-    [Header("BOOLS")]
     private bool isGameRunning;
     private bool spaceIsPressed;
     private bool gameIsOver;
-    [Tooltip("Is player's fireball destroyed")]
-    public static bool isFireballDestroyed;
-    [Tooltip("Is player moving")]
-    private bool isMoving;
-    [Tooltip("Was a fireball shot")]
-    public bool didFire;
 
-    [Header("INPUT_ACTIONS")]
+    //whether player's fireball was destroyed
+    public static bool isFireballDestroyed;
+
+    //input actions
     private InputAction move;
     private InputAction fireball;
     private InputAction restart;
     private InputAction quit;
 
-    
-    [Tooltip("Direction player is moving in")]
+    //determines whether player dragon is moving
+    private bool isMoving;
+    //determines whether a fireball was shot and onscreen
+    public bool didFire;
+    //finds out which directin player was moving (up or down)
     private float moveDirection;
-    [Tooltip("Amount of player lives at start of game")]
-    private int numOfLives = 1;
-
+    //numer of times players may be hit before losing
+    private int numOfLives = 3;
     #endregion
 
     // Start is called before the first frame update
@@ -192,7 +189,7 @@ public class DragonMovement : MonoBehaviour
     public IEnumerator EnemyFireballTimer()
     {
        
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         SpawnEnemyFireball();
         EnemyFireballRef = null;
 
@@ -308,8 +305,8 @@ public class DragonMovement : MonoBehaviour
         if (didFire)
         {
             Vector2 playerPause = gameObject.transform.position;
-            playerPause.x += 1.7f;
-            playerPause.y -= 0.6f;
+            playerPause.x += 4.5f;
+            playerPause.y -= 1.3f;
             GameObject temp = Instantiate(pF, playerPause, Quaternion.identity);
 
             temp.GetComponent<Rigidbody2D>().velocity = new Vector2(7, 0);
@@ -329,7 +326,10 @@ public class DragonMovement : MonoBehaviour
 
             temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
         }
-       
+       // Vector2 playerPause = new Vector2(enemyFireballSpawn.transform.position.x, Random.Range(-3.55f, 3.55f));
+       // GameObject temp = Instantiate(eF, playerPause, Quaternion.identity);
+
+      //  temp.GetComponent<Rigidbody2D>().velocity = new Vector2(-7, 0);
     }
     #endregion
 
