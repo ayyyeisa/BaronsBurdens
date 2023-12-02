@@ -1923,10 +1923,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2314,9 +2314,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2045784075330214013, guid: 295c8a9f40ccad7459b75f22fc777d68, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2045784075330214013, guid: 295c8a9f40ccad7459b75f22fc777d68, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2045784075330214013, guid: 295c8a9f40ccad7459b75f22fc777d68, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: c49d2215e3e3fcd4c8c037659c1a219a, type: 3}
+    - target: {fileID: 2045784075330214013, guid: 295c8a9f40ccad7459b75f22fc777d68, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1276126916738938286, guid: 7b67ad44ced4b3b478910b3232cc0686, type: 2}
     - target: {fileID: 3586315424616440227, guid: 295c8a9f40ccad7459b75f22fc777d68, type: 3}
       propertyPath: m_Name
       value: AudioPrefab
@@ -3820,9 +3832,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Survive for 20 seconds against the dragons!\n\nW/Up arrow: Move up\nS/Down
-    arrow: Move down\nSpacebar/Left mouse click: Shoot fireball\n\nPress the Spacebar
-    or left mouse click \nto begin the game"
+  m_text: 'Survive against the dragons!
+
+    W/Up arrow: Move up
+
+    S/Down arrow:
+    Move down
+
+    Space/Left mouse: Shoot fireball
+
+    Press Space or Left mouse
+    to start'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
