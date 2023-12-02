@@ -207,19 +207,18 @@ public class DuelScript : MonoBehaviour
             if (currentInstruction=="Attack")
             {
                 AttackButton.SetActive(true);
-                Debug.Log("Should be Attack");
+              
             }
             else
             {
                 BlockButton.SetActive(true);
             }
-            // newInstructionPop.Play();
-
+           
             correctKeyEntered = false;
 
 
             float startTime = Time.time;
-            float randomTime = Random.Range(1f, 3f);
+            float randomTime = Random.Range(.75f, 2f);
             // Process player input for random amount of time between 1 and 3 seconds
             while (Time.time - startTime < randomTime)
             {
@@ -279,6 +278,8 @@ public class DuelScript : MonoBehaviour
                     lives--;
                     enemyHits++;
                     //comment these out if you going to fix the scene later on
+                   
+                }
                     if (currentInstruction == "Attack")
                     {
                         duelAnimator.SetTrigger(ENEMY_BLOCK_ANIM);
@@ -292,11 +293,9 @@ public class DuelScript : MonoBehaviour
                     else if (currentInstruction == "Parry")
                     {
                         duelAnimator.SetTrigger(ENEMY_PARRY_ANIM);
-                        
+                        enemyController.StartEnemyParry();
                     }
                     yield return StartCoroutine(MissScreen());
-                }
-
 
             }
             ParryButton.SetActive(false);
