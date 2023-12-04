@@ -219,6 +219,7 @@ public class CatapultMovement : MonoBehaviour
     private void Quit_started(InputAction.CallbackContext obj)
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
     }
 
     private void Restart_started(InputAction.CallbackContext obj)
@@ -287,7 +288,7 @@ public class CatapultMovement : MonoBehaviour
             loseScene.SetActive(true);
             gameIsRunning = false;
             controlsText.gameObject.SetActive(false);
-            StopCoroutine("EnemyKnightTimer");
+          
             Time.timeScale = 0;
         }
     }
