@@ -636,7 +636,7 @@ VideoPlayer:
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 3
   m_AspectRatio: 2
-  m_DataSource: 0
+  m_DataSource: 1
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -678,10 +678,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 272106425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fed31ee91d3b554c83e20831c7f4468, type: 3}
+  m_Script: {fileID: 11500000, guid: 9335ed0943b25244591791a4dc363bf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  video: {fileID: 272106426}
+  videoFileName: FinalIntro.mp4
 --- !u!1 &334567009
 GameObject:
   m_ObjectHideFlags: 0
